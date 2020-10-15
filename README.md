@@ -1,1 +1,1 @@
-# CGUI
+# CGUI (Cosmos Graphical User Interface)
