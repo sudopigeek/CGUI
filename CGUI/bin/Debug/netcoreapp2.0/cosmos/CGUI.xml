@@ -1,0 +1,1035 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CGUI</name>
+    </assembly>
+    <members>
+        <member name="T:CGUI.Line">
+            <summary>
+            The Line control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Line.Color">
+            <summary>
+            The line's color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Line.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Line class.
+            </summary>
+            <param name="color">The color of the line.</param>
+            <param name="startx">The start X coordinate.</param>
+            <param name="starty">The start Y coordinate.</param>
+            <param name="endx">The ending X coordinate.</param>
+            <param name="endy">The ending Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Line.Update">
+            <summary>
+            Updates the line.
+            </summary>
+        </member>
+        <member name="T:CGUI.Label">
+            <summary>
+            The Label control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Label.Text">
+            <summary>
+            The label's text.
+            </summary>
+        </member>
+        <member name="P:CGUI.Label.foreColor">
+            <summary>
+            The text color of the label.
+            </summary>
+        </member>
+        <member name="M:CGUI.Label.#ctor(System.String,System.Drawing.Color,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Label class.
+            </summary>
+            <param name="text">The label text.</param>
+            <param name="foreColor">The text color.</param>
+            <param name="x">The label's X coordinate.</param>
+            <param name="y">The label's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Label.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Label class.
+            </summary>
+            <param name="text">The label text in the default color (white).</param>
+            <param name="x">The label's X coordinate.</param>
+            <param name="y">The label's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Label.#ctor(System.String,Cosmos.System.Graphics.Point)">
+            <summary>
+            Starts a new instance of the Label class.
+            </summary>
+            <param name="text">The label text in the default color (white).</param>
+            <param name="point">The point to place the label.</param>
+        </member>
+        <member name="M:CGUI.Label.Update">
+            <summary>
+            Updates the label.
+            </summary>
+        </member>
+        <member name="T:CGUI.Picture">
+            <summary>
+            The Picture control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Picture.Image">
+            <summary>
+            The control's image.
+            </summary>
+        </member>
+        <member name="P:CGUI.Picture.borderColor">
+            <summary>
+            The border color around the image. This is off by default.
+            </summary>
+        </member>
+        <member name="M:CGUI.Picture.#ctor(Cosmos.System.Graphics.Image,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Picture class.
+            </summary>
+            <param name="image">The image to use.</param>
+            <param name="x">The picture's X coordinate.</param>
+            <param name="y">The picture's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Picture.Update">
+            <summary>
+            Updates the picture.
+            </summary>
+        </member>
+        <member name="T:CGUI.TextBox">
+            <summary>
+            The TextBox control.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.foreColor">
+            <summary>
+            The text color for the textbox (including the cursor).
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.backColor">
+            <summary>
+            The background color for the textbox.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.Filter">
+            <summary>
+            The character(s) that are allowed in the textbox. Set this to blank ("") to disable and allow all characters.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.Mask">
+            <summary>
+            The character to draw on the screen instead of the actual character. Set this to '~' to disable.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.Text">
+            <summary>
+            The current text in the textbox.
+            </summary>
+        </member>
+        <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the TextBox class.
+            </summary>
+            <param name="charLength">The number of characters allowed in the textbox.</param>
+            <param name="foreColor">The text color.</param>
+            <param name="x">The textbox's X coordinate.</param>
+            <param name="y">The textbox's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the TextBox class.
+            </summary>
+            <param name="charLength">The number of characters allowed in the textbox.</param>
+            <param name="x">The textbox's X coordinate.</param>
+            <param name="y">The textbox's Y coordinate.</param>
+        </member>
+        <member name="T:CGUI.DoubleBufferedVMWareSVGAII.Register">
+            <summary>
+            Register values.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.ID">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Enable">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Width">
+            <summary>
+            Width.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Height">
+            <summary>
+            Height.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.MaxWidth">
+            <summary>
+            Max width.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.MaxHeight">
+            <summary>
+            Max height.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Depth">
+            <summary>
+            Depth.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.BitsPerPixel">
+            <summary>
+            Bits per pixel.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.PseudoColor">
+            <summary>
+            Pseudo color.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.RedMask">
+            <summary>
+            Red mask.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.GreenMask">
+            <summary>
+            Green mask.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.BlueMask">
+            <summary>
+            Blue mask.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.BytesPerLine">
+            <summary>
+            Bytes per line.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.FrameBufferStart">
+            <summary>
+            Frame buffer start.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.FrameBufferOffset">
+            <summary>
+            Frame buffer offset.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.VRamSize">
+            <summary>
+            VRAM size.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.FrameBufferSize">
+            <summary>
+            Frame buffer size.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Capabilities">
+            <summary>
+            Capabilities.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.MemStart">
+            <summary>
+            Memory start.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.MemSize">
+            <summary>
+            Memory size.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.ConfigDone">
+            <summary>
+            Config done.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Sync">
+            <summary>
+            Sync.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.Busy">
+            <summary>
+            Busy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.GuestID">
+            <summary>
+            Guest ID.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.CursorID">
+            <summary>
+            Cursor ID.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.CursorX">
+            <summary>
+            Cursor X.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.CursorY">
+            <summary>
+            Cursor Y.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.CursorOn">
+            <summary>
+            Cursor on.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.HostBitsPerPixel">
+            <summary>
+            Host bits per pixel.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.ScratchSize">
+            <summary>
+            Scratch size.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.MemRegs">
+            <summary>
+            Memory registers.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.NumDisplays">
+            <summary>
+            Number of displays.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.PitchLock">
+            <summary>
+            Pitch lock.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Register.FifoNumRegisters">
+            <summary>
+            Indicates maximum size of FIFO Registers.
+            </summary>
+        </member>
+        <member name="T:CGUI.DoubleBufferedVMWareSVGAII.ID">
+            <summary>
+            ID values.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.ID.Magic">
+            <summary>
+            Magic starting point.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.ID.V0">
+            <summary>
+            V0.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.ID.V1">
+            <summary>
+            V1.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.ID.V2">
+            <summary>
+            V2.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.ID.Invalid">
+            <summary>
+            Invalid
+            </summary>
+        </member>
+        <member name="T:CGUI.DoubleBufferedVMWareSVGAII.FIFO">
+            <summary>
+            FIFO values.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFO.Min">
+            <summary>
+            Min.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFO.Max">
+            <summary>
+            Max.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFO.NextCmd">
+            <summary>
+            Next command.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFO.Stop">
+            <summary>
+            Stop.
+            </summary>
+        </member>
+        <member name="T:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand">
+            <summary>
+            FIFO command values.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.Update">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_FILL">
+            <summary>
+            Rectange fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_COPY">
+            <summary>
+            Rectange copy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DEFINE_BITMAP">
+            <summary>
+            Define bitmap.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DEFINE_BITMAP_SCANLINE">
+            <summary>
+            Define bitmap scanline.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DEFINE_PIXMAP">
+            <summary>
+            Define pixmap.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DEFINE_PIXMAP_SCANLINE">
+            <summary>
+            Define pixmap scanline.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_BITMAP_FILL">
+            <summary>
+            Rectange bitmap fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_PIXMAP_FILL">
+            <summary>
+            Rectange pixmap fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_BITMAP_COPY">
+            <summary>
+            Rectange bitmap copy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_PIXMAP_COPY">
+            <summary>
+            Rectange pixmap fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.FREE_OBJECT">
+            <summary>
+            Free object.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_ROP_FILL">
+            <summary>
+            Rectangle raster operation fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_ROP_COPY">
+            <summary>
+            Rectangle raster operation copy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_ROP_BITMAP_FILL">
+            <summary>
+            Rectangle raster operation bitmap fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_ROP_PIXMAP_FILL">
+            <summary>
+            Rectangle raster operation pixmap fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_ROP_BITMAP_COPY">
+            <summary>
+            Rectangle raster operation bitmap copy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.RECT_ROP_PIXMAP_COPY">
+            <summary>
+            Rectangle raster operation pixmap copy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DEFINE_CURSOR">
+            <summary>
+            Define cursor.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DISPLAY_CURSOR">
+            <summary>
+            Display cursor.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.MOVE_CURSOR">
+            <summary>
+            Move cursor.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFOCommand.DEFINE_ALPHA_CURSOR">
+            <summary>
+            Define alpha cursor.
+            </summary>
+        </member>
+        <member name="T:CGUI.DoubleBufferedVMWareSVGAII.IOPortOffset">
+            <summary>
+            IO port offset.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.IOPortOffset.Index">
+            <summary>
+            Index.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.IOPortOffset.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.IOPortOffset.Bios">
+            <summary>
+            BIOS.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.IOPortOffset.IRQ">
+            <summary>
+            IRQ.
+            </summary>
+        </member>
+        <member name="T:CGUI.DoubleBufferedVMWareSVGAII.Capability">
+            <summary>
+            Capability values.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.RectFill">
+            <summary>
+            Rectangle fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.RectCopy">
+            <summary>
+            Rectangle copy.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.RectPatFill">
+            <summary>
+            Rectangle pattern fill.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.LecacyOffscreen">
+            <summary>
+            Lecacy off screen.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.RasterOp">
+            <summary>
+            Raster operation.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.Cursor">
+            <summary>
+            Cruser.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.CursorByPass">
+            <summary>
+            Cursor bypass.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.CursorByPass2">
+            <summary>
+            Cursor bypass2.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.EigthBitEmulation">
+            <summary>
+            Eigth bit emulation.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.AlphaCursor">
+            <summary>
+            Alpha cursor.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.Glyph">
+            <summary>
+            Glyph.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.GlyphClipping">
+            <summary>
+            Glyph clipping.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.Offscreen1">
+            <summary>
+            Offscreen.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.AlphaBlend">
+            <summary>
+            Alpha blend.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.ThreeD">
+            <summary>
+            Three D.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.ExtendedFifo">
+            <summary>
+            Extended FIFO.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.MultiMon">
+            <summary>
+            Multi monitors.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.PitchLock">
+            <summary>
+            Pitch lock.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.IrqMask">
+            <summary>
+            IRQ mask.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.DisplayTopology">
+            <summary>
+            Display topology.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.Gmr">
+            <summary>
+            GMR.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.Traces">
+            <summary>
+            Traces.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.Gmr2">
+            <summary>
+            GMR2.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Capability.ScreenObject2">
+            <summary>
+            Screen objects.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.IndexPort">
+            <summary>
+            Index port.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.ValuePort">
+            <summary>
+            Value port.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.BiosPort">
+            <summary>
+            BIOS port.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.IRQPort">
+            <summary>
+            IRQ port.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.Video_Memory">
+            <summary>
+            Video memory block.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.FIFO_Memory">
+            <summary>
+            FIFO memory block.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.device">
+            <summary>
+            PCI device.
+            </summary>
+        </member>
+        <member name="P:CGUI.DoubleBufferedVMWareSVGAII.height">
+            <summary>
+            Height.
+            </summary>
+        </member>
+        <member name="P:CGUI.DoubleBufferedVMWareSVGAII.width">
+            <summary>
+            Width.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.depth">
+            <summary>
+            Depth.
+            </summary>
+        </member>
+        <member name="F:CGUI.DoubleBufferedVMWareSVGAII.capabilities">
+            <summary>
+            Capabilities.
+            </summary>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.InitializeFIFO">
+            <summary>
+            Initialize FIFO.
+            </summary>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.SetMode(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set video mode.
+            </summary>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <param name="depth">Depth.</param>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.WriteRegister(CGUI.DoubleBufferedVMWareSVGAII.Register,System.UInt32)">
+            <summary>
+            Write register.
+            </summary>
+            <param name="register">A register.</param>
+            <param name="value">A value.</param>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.ReadRegister(CGUI.DoubleBufferedVMWareSVGAII.Register)">
+            <summary>
+            Read register.
+            </summary>
+            <param name="register">A register.</param>
+            <returns>uint value.</returns>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.GetFIFO(CGUI.DoubleBufferedVMWareSVGAII.FIFO)">
+            <summary>
+            Get FIFO.
+            </summary>
+            <param name="cmd">FIFO command.</param>
+            <returns>uint value.</returns>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.SetFIFO(CGUI.DoubleBufferedVMWareSVGAII.FIFO,System.UInt32)">
+            <summary>
+            Set FIFO.
+            </summary>
+            <param name="cmd">Command.</param>
+            <param name="value">Value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.WaitForFifo">
+            <summary>
+            Wait for FIFO.
+            </summary>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.WriteToFifo(System.UInt32)">
+            <summary>
+            Write to FIFO.
+            </summary>
+            <param name="value">Value to write.</param>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.Update(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Update FIFO.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.SetPixel(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set pixel.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="color">Color.</param>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.GetPixel(System.UInt32,System.UInt32)">
+            <summary>
+            Get pixel.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <returns>uint value.</returns>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.Clear(System.UInt32)">
+            <summary>
+            Clear screen to specified color.
+            </summary>
+            <param name="color">Color.</param>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+            <exception cref="T:System.NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.Copy(System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Copy rectangle.
+            </summary>
+            <param name="x">Source X coordinate.</param>
+            <param name="y">Source Y coordinate.</param>
+            <param name="newX">Destination X coordinate.</param>
+            <param name="newY">Destination Y coordinate.</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <exception cref="T:System.NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.Fill(System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Fill rectangle.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <param name="color">Color.</param>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+            <exception cref="T:System.NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.DefineCursor">
+            <summary>
+            Define cursor.
+            </summary>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.SetCursor(System.Boolean,System.UInt32,System.UInt32)">
+            <summary>
+            Set cursor.
+            </summary>
+            <param name="visible">Visible.</param>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.DoubleBufferedVMWareSVGAII.#ctor">
+            <summary>
+            Create new inctanse of the VMWareSVGAII class.
+            </summary>
+        </member>
+        <member name="T:CGUI.VGADriver">
+            <summary>
+            Double-Buffered SVGAII Video Driver
+            </summary>
+        </member>
+        <member name="M:CGUI.VGADriver.#ctor">
+            <summary>
+            Starts a new instance of the VGADriver class using the default screen size (640x480).
+            </summary>
+        </member>
+        <member name="M:CGUI.VGADriver.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the VGADriver class using the specified screen width and height.
+            </summary>
+            <param name="screenWidth">The screen width, in pixels.</param>
+            <param name="screenHeight">The screen height, in pixels.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a reactangle.
+            </summary>
+            <param name="color">The rectangle color.</param>
+            <param name="x">The X coordinate on the screen.</param>
+            <param name="y">The Y coordinate on the screen.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Draws a filled or normal rectangle.
+            </summary>
+            <param name="color">The rectangle color.</param>
+            <param name="x">The X coordinate on the screen.</param>
+            <param name="y">The Y coordinate on the screen.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,CGUI.Area)">
+            <summary>
+            Draws a rectangle.
+            </summary>
+            <param name="color">The rectangle color.</param>
+            <param name="area">The Area instance containing the location for the rectangle.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,CGUI.Area,System.Boolean)">
+            <summary>
+            Draws a filled or normal rectangle.
+            </summary>
+            <param name="color">The rectangle color.</param>
+            <param name="area">The Area instance containing the location for the rectangle.</param>
+            <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawLine(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a line.
+            </summary>
+            <param name="color">The color of the line.</param>
+            <param name="startx">The X starting point.</param>
+            <param name="starty">The Y starting point.</param>
+            <param name="endx">The X endpoint.</param>
+            <param name="endy">The Y endpoint.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawLine(System.Drawing.Color,Cosmos.System.Graphics.Point,Cosmos.System.Graphics.Point)">
+            <summary>
+            Draws a line based on two points.
+            </summary>
+            <param name="color">The line color.</param>
+            <param name="startPoint">The starting point of the line.</param>
+            <param name="endPoint">The ending point of the line.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawImage(Cosmos.System.Graphics.Image,System.Int32,System.Int32)">
+            <summary>
+            Draws an image.
+            </summary>
+            <param name="image">The image to draw.</param>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.DrawImage(Cosmos.System.Graphics.Image,Cosmos.System.Graphics.Point)">
+            <summary>
+            Draws an image.
+            </summary>
+            <param name="image">The image to draw.</param>
+            <param name="point">The point to draw from.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.RenderScreen(CGUI.Screen)">
+            <summary>
+            Renders a Screen.
+            </summary>
+            <param name="screen">The Screen to render.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.UpdateScreen">
+            <summary>
+            Updates the screen.
+            </summary>
+        </member>
+        <member name="M:CGUI.VGADriver.ClearScreen">
+            <summary>
+            Clears the screen using the default color (black).
+            </summary>
+        </member>
+        <member name="M:CGUI.VGADriver.ClearScreen(System.Drawing.Color)">
+            <summary>
+            Clears the screen using the specified color.
+            </summary>
+            <param name="color">The color to clear the screen with.</param>
+        </member>
+        <member name="T:CGUI.Area">
+            <summary>
+            Represents an area on the screen.
+            </summary>
+        </member>
+        <member name="P:CGUI.Area.X">
+            <summary>
+            The X coordinate.
+            </summary>
+        </member>
+        <member name="P:CGUI.Area.Y">
+            <summary>
+            The Y coordinate.
+            </summary>
+        </member>
+        <member name="P:CGUI.Area.Width">
+            <summary>
+            The area width.
+            </summary>
+        </member>
+        <member name="P:CGUI.Area.Height">
+            <summary>
+            The area height.
+            </summary>
+        </member>
+        <member name="M:CGUI.Area.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Area class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="width">The area width.</param>
+            <param name="height">The area height.</param>
+        </member>
+        <member name="T:CGUI.Screen">
+            <summary>
+            Represents a screen containing controls.
+            </summary>
+        </member>
+        <member name="F:CGUI.Screen.Controls">
+            <summary>
+            The controls contained in this Screen instance.
+            </summary>
+        </member>
+        <member name="P:CGUI.Screen.backColor">
+            <summary>
+            The screen's background color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Screen.#ctor">
+            <summary>
+            Starts a new instance of the Screen class with the default background color (black).
+            </summary>
+        </member>
+        <member name="M:CGUI.Screen.#ctor(System.Drawing.Color)">
+            <summary>
+            Starts a new instance of the Screen class with the specified background color.
+            </summary>
+            <param name="backColor">The background color for the screen.</param>
+        </member>
+        <member name="T:CGUI.ControlType">
+            <summary>
+            Represents types of currently supported controls.
+            </summary>
+        </member>
+        <member name="F:CGUI.ControlType.Label">
+            <summary>
+            Represents a label.
+            </summary>
+        </member>
+        <member name="F:CGUI.ControlType.Line">
+            <summary>
+            Represents a line.
+            </summary>
+        </member>
+        <member name="F:CGUI.ControlType.TextBox">
+            <summary>
+            Represents a textbox.
+            </summary>
+        </member>
+        <member name="F:CGUI.ControlType.MaskedTextBox">
+            <summary>
+            Represents a masked textbox.
+            </summary>
+        </member>
+        <member name="T:CGUI.Control">
+            <summary>
+            Internal base class for CGUI controls.
+            </summary>
+        </member>
+    </members>
+</doc>
