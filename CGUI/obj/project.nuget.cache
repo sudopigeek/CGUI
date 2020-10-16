@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "myEVGTxwDiFz5zbNfKkdzwvLh8Pb9kQfG1xGh1Cc+MDHcpp63XXnmeXWznIiz3fhG9ynW1dXLK1dVh2rIIRQ0Q==",
+  "dgSpecHash": "MPO4WyU/0dSdpykiRHdvNWUTslqI6rXQYdqYpoLDvpKEM4nT6leZGX5I3M0udODAER+MEkrRWVOHyujR7gL8dA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\f\\source\\repos\\CGUI\\CGUI\\CGUI.csproj",
+  "projectFilePath": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\f\\.nuget\\packages\\cosmos.build\\0.1.0-localbuild20200708061311\\cosmos.build.0.1.0-localbuild20200708061311.nupkg.sha512",
     "C:\\Users\\f\\.nuget\\packages\\cosmos.common\\0.1.0-localbuild20200708061311\\cosmos.common.0.1.0-localbuild20200708061311.nupkg.sha512",

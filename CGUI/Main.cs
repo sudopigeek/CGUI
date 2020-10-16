@@ -631,7 +631,7 @@ namespace CGUI
     }
     
     /// <summary>
-    /// Internal base class for CGUI controls.
+    /// Internal base class for CGUI controls..
     /// </summary>
     public class Control
     {
