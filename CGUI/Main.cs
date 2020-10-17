@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Cosmos.System;
 
 namespace CGUI
 {
@@ -11,7 +12,7 @@ namespace CGUI
     public class VGADriver
     {
         internal static DoubleBufferedVMWareSVGAII driver;
-        private Screen currentScreen;
+        internal Screen currentScreen;
         /// <summary>
         /// Starts a new instance of the VGADriver class using the default screen size (640x480).
         /// </summary>
@@ -46,7 +47,7 @@ namespace CGUI
         /// <param name="y">The Y coordinate on the screen.</param>
         /// <param name="width">The rectangle's width.</param>
         /// <param name="height">The rectangle's height.</param>
-        internal void DrawRectangle(Color color, int x, int y, int width, int height)
+        public void DrawRectangle(Color color, int x, int y, int width, int height)
         {
             driver.DoubleBuffer_DrawRectangle((uint)color.ToArgb(), x, y, width, height);
             driver.DoubleBuffer_Update();
@@ -60,7 +61,7 @@ namespace CGUI
         /// <param name="width">The rectangle's width.</param>
         /// <param name="height">The rectangle's height.</param>
         /// <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
-        internal void DrawRectangle(Color color, int x, int y, int width, int height, bool fill)
+        public void DrawRectangle(Color color, int x, int y, int width, int height, bool fill)
         {
             if (fill)
                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, (uint)width, (uint)height, (uint)color.ToArgb());
@@ -74,7 +75,7 @@ namespace CGUI
         /// </summary>
         /// <param name="color">The rectangle color.</param>
         /// <param name="area">The Area instance containing the location for the rectangle.</param>
-        internal void DrawRectangle(Color color, Area area)
+        public void DrawRectangle(Color color, Area area)
         {
             driver.DoubleBuffer_DrawRectangle((uint)color.ToArgb(), area.X, area.Y, area.Width, area.Height);
             driver.DoubleBuffer_Update();
@@ -85,7 +86,7 @@ namespace CGUI
         /// <param name="color">The rectangle color.</param>
         /// <param name="area">The Area instance containing the location for the rectangle.</param>
         /// <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
-        internal void DrawRectangle(Color color, Area area, bool fill)
+        public void DrawRectangle(Color color, Area area, bool fill)
         {
             if (fill)
                 driver.DoubleBuffer_DrawFillRectangle((uint)color.ToArgb(), (uint)area.X, (uint)area.Y, (uint)area.Width, (uint)area.Height);
@@ -102,7 +103,7 @@ namespace CGUI
         /// <param name="starty">The Y starting point.</param>
         /// <param name="endx">The X endpoint.</param>
         /// <param name="endy">The Y endpoint.</param>
-        internal void DrawLine(Color color, int startx, int starty, int endx, int endy)
+        public void DrawLine(Color color, int startx, int starty, int endx, int endy)
         {
             driver.DoubleBuffer_DrawLine((uint)color.ToArgb(), startx, starty, endx, endy);
             driver.DoubleBuffer_Update();
@@ -113,7 +114,7 @@ namespace CGUI
         /// <param name="color">The line color.</param>
         /// <param name="startPoint">The starting point of the line.</param>
         /// <param name="endPoint">The ending point of the line.</param>
-        internal void DrawLine(Color color, Cosmos.System.Graphics.Point startPoint, Cosmos.System.Graphics.Point endPoint)
+        public void DrawLine(Color color, Cosmos.System.Graphics.Point startPoint, Cosmos.System.Graphics.Point endPoint)
         {
             if (startPoint.X == -1 || endPoint.X == -1)
                 throw new Exception("The points cannot be blank.");
@@ -121,26 +122,28 @@ namespace CGUI
             driver.DoubleBuffer_DrawLine((uint)color.ToArgb(), startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
             driver.DoubleBuffer_Update();
         }
-        /// <summary>
-        /// Draws an image.
-        /// </summary>
-        /// <param name="image">The image to draw.</param>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
         internal void DrawImage(Image image, int x, int y)
         {
             driver.DoubleBuffer_DrawImage(image, (uint)x, (uint)y);
             driver.DoubleBuffer_Update();
         }
-        /// <summary>
-        /// Draws an image.
-        /// </summary>
-        /// <param name="image">The image to draw.</param>
-        /// <param name="point">The point to draw from.</param>
         internal void DrawImage(Image image, Cosmos.System.Graphics.Point point)
         {
             driver.DoubleBuffer_DrawImage(image, (uint)point.X, (uint)point.Y);
             driver.DoubleBuffer_Update();
+        }
+        /// <summary>
+        /// Runs the mouse.
+        /// </summary>
+        public void RunMouse()
+        {
+            if (Internal.mouseActivated)
+            {
+                Internal.RunMouse();
+                UpdateScreen();
+                Mouse.DrawCursor(MouseManager.X, MouseManager.Y);
+                driver.DoubleBuffer_Update();
+            }    
         }
         /// <summary>
         /// Renders a Screen.
@@ -223,7 +226,7 @@ namespace CGUI
                 bool rkey = true;
                 while (rkey)
                 {
-                    ConsoleKeyInfo info = Console.ReadKey(true);
+                    ConsoleKeyInfo info = System.Console.ReadKey(true);
                     switch (info.KeyChar)
                     {
                         #region Letters&Numbers
@@ -363,7 +366,7 @@ namespace CGUI
                                     }
                                     else
                                     {
-                                        Console.Beep();
+                                        System.Console.Beep();
                                     }
                                 }
                                 else
@@ -403,7 +406,7 @@ namespace CGUI
                             }
                             else
                             {
-                                Console.Beep();
+                                System.Console.Beep();
                             }
                             break;
                         default:
@@ -443,7 +446,7 @@ namespace CGUI
                                     }
                                     else
                                     {
-                                        Console.Beep();
+                                        System.Console.Beep();
                                     }                                  
                                     break;
                                 case ConsoleKey.Tab:
@@ -614,6 +617,9 @@ namespace CGUI
     }
     internal class Internal
     {
+        public static bool mouseActivated = false;
+        public static bool L_Pressed = false;
+        public static bool R_Pressed = false;
         public static Color screenColor;
         public static int screenWidth;
         public static int screenHeight;
@@ -628,10 +634,28 @@ namespace CGUI
             }
             return -1;
         }
+        public static void RunMouse()
+        {
+            switch (MouseManager.MouseState)
+            {
+                case MouseState.Left:
+                    R_Pressed = false;
+                    L_Pressed = true;
+                    break;
+                case MouseState.Right:
+                    L_Pressed = false;
+                    R_Pressed = true;
+                    break;
+                case MouseState.None:
+                    L_Pressed = false;
+                    R_Pressed = false;
+                    break;
+            }
+        }
     }
     
     /// <summary>
-    /// Internal base class for CGUI controls..
+    /// Internal base class for CGUI controls.
     /// </summary>
     public class Control
     {
