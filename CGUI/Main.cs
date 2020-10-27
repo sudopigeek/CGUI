@@ -195,6 +195,7 @@ namespace CGUI
         private int tcount = 0;
         private int index = 0;
         private List<TextBox> tboxes = new List<TextBox>();
+        private int s = 0;
 
         private void TextBoxFocus(List<TextBox> tboxes, int x, int y, int tcount)
         {
