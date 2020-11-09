@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Dynamic;
 using System.Text;
 using Cosmos.System.Graphics;
 
@@ -241,10 +240,21 @@ namespace CGUI
     /// </summary>
     public class Button : Control
     {
+        internal EventHandler MyEvent_Handler;
         /// <summary>
-        /// Changes to true when the enter key is pressed [IN DEVELOPMENT].
+        /// Raised when the enter/return key is pressed.
         /// </summary>
-        public bool EnterPressed { get; set; } = false;
+        public event EventHandler OnEnter
+        {
+            add
+            {
+                MyEvent_Handler = value;
+            }
+            remove
+            {
+                MyEvent_Handler -= value;
+            }
+        }
         /// <summary>
         /// The text color when the button is not in focus.
         /// </summary>

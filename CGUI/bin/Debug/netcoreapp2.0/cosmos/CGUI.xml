@@ -168,9 +168,9 @@
             The Button control.
             </summary>
         </member>
-        <member name="P:CGUI.Button.EnterPressed">
+        <member name="E:CGUI.Button.OnEnter">
             <summary>
-            Changes to true when the enter key is pressed [IN DEVELOPMENT].
+            Raised when the enter/return key is pressed.
             </summary>
         </member>
         <member name="P:CGUI.Button.UnfocusTextColor">

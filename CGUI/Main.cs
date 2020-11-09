@@ -47,7 +47,7 @@ namespace CGUI
             int order = 0;
             for (int i = 0; i < screen.Controls.Count; i++)
             {
-                if (screen.Controls[i].controlType == ControlType.TextBox)
+                if (screen.Controls[i].controlType == ControlType.TextBox || screen.Controls[i].controlType == ControlType.Button)
                 {
                     ((TextBox)screen.Controls[i]).FocusOrder = order;
                     order++;
@@ -163,11 +163,10 @@ namespace CGUI
                                 rkey = false;
                                 break;
                             case ConsoleKey.Enter:
-                                first.EnterPressed = true;
-                                rkey = false;
+                                first.MyEvent_Handler.Invoke(first, new EventArgs());
+                                //rkey = false;
                                 break;
                             default:
-                                first.EnterPressed = false;
                                 break;
                         }
                     }
