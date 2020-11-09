@@ -163,6 +163,44 @@
             <param name="x">The textbox's X coordinate.</param>
             <param name="y">The textbox's Y coordinate.</param>
         </member>
+        <member name="T:CGUI.Button">
+            <summary>
+            The Button control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.EnterPressed">
+            <summary>
+            Changes to true when the enter key is pressed [IN DEVELOPMENT].
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.UnfocusTextColor">
+            <summary>
+            The text color when the button is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.UnfocusBackColor">
+            <summary>
+            The background color when the button is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.TextColor">
+            <summary>
+            The text color.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.BackColor">
+            <summary>
+            The background color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Button.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Button class.
+            </summary>
+            <param name="text">The button text.</param>
+            <param name="x">The button's X coordinate.</param>
+            <param name="y">The button's Y coordinate.</param>
+        </member>
         <member name="T:CGUI.DoubleBufferedVMWareSVGAII.Register">
             <summary>
             Register values.
@@ -865,6 +903,8 @@
             <param name="screenWidth">The screen width, in pixels.</param>
             <param name="screenHeight">The screen height, in pixels.</param>
         </member>
+<<<<<<< HEAD
+=======
         <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Draws a reactangle.
@@ -919,21 +959,12 @@
             <param name="startPoint">The starting point of the line.</param>
             <param name="endPoint">The ending point of the line.</param>
         </member>
-        <member name="M:CGUI.VGADriver.DrawImage(Cosmos.System.Graphics.Image,System.Int32,System.Int32)">
+        <member name="M:CGUI.VGADriver.RunMouse">
             <summary>
-            Draws an image.
+            Runs the mouse.
             </summary>
-            <param name="image">The image to draw.</param>
-            <param name="x">The X coordinate.</param>
-            <param name="y">The Y coordinate.</param>
         </member>
-        <member name="M:CGUI.VGADriver.DrawImage(Cosmos.System.Graphics.Image,Cosmos.System.Graphics.Point)">
-            <summary>
-            Draws an image.
-            </summary>
-            <param name="image">The image to draw.</param>
-            <param name="point">The point to draw from.</param>
-        </member>
+>>>>>>> da80c72621ccdc818b54dcb8972c0cd474a6cd46
         <member name="M:CGUI.VGADriver.RenderScreen(CGUI.Screen)">
             <summary>
             Renders a Screen.
@@ -1041,9 +1072,60 @@
             Represents a textbox.
             </summary>
         </member>
+        <member name="F:CGUI.ControlType.Button">
+            <summary>
+            Represents a button.
+            </summary>
+        </member>
         <member name="T:CGUI.Control">
             <summary>
             Internal base class for CGUI controls.
+            </summary>
+        </member>
+        <member name="T:CGUI.Mouse">
+            <summary>
+            Class for initiating a mouse.
+            </summary>
+        </member>
+        <member name="P:CGUI.Mouse.LeftClick">
+            <summary>
+            Equals true when the left button on the mouse is pressed.
+            </summary>
+        </member>
+        <member name="P:CGUI.Mouse.RightClick">
+            <summary>
+            Equals true when the right button on the mouse is pressed.
+            </summary>
+        </member>
+        <member name="P:CGUI.Mouse.Pointer">
+            <summary>
+            The mouse's pointer type.
+            </summary>
+        </member>
+        <member name="M:CGUI.Mouse.#ctor">
+            <summary>
+            Starts a new instance of the Mouse class using the default pointer (normal).
+            </summary>
+        </member>
+        <member name="M:CGUI.Mouse.SetPointer(CGUI.PointerType)">
+            <summary>
+            Changes how the pointer/mouse looks.
+            </summary>
+            <param name="type">The pointer type to change to.</param>
+        </member>
+        <member name="T:CGUI.PointerType">
+            <summary>
+            Represents a type of mouse pointer.
+            </summary>
+        </member>
+        <member name="F:CGUI.PointerType.Normal">
+            <summary>
+            Normal mouse pointer (arrow).
+            </summary>
+        </member>
+        <member name="F:CGUI.PointerType.Text">
+            <summary>
+            I-Beam shaped pointer normally shown when using a text editor.
             </summary>
         </member>
     </members>

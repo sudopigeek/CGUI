@@ -601,6 +601,9 @@ namespace CGUI
         /// Represents a textbox.
         /// </summary>
         TextBox,
+        /// <summary>
+        /// Represents a button.
+        /// </summary>
         Button
     }
     internal class Internal

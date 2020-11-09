@@ -1704,11 +1704,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
+      "projectUniqueName": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
       "projectName": "CGUI",
-      "projectPath": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
+      "projectPath": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
       "packagesPath": "C:\\Users\\f\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\obj\\",
+      "outputPath": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1786,5 +1786,13 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
