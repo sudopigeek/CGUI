@@ -903,68 +903,6 @@
             <param name="screenWidth">The screen width, in pixels.</param>
             <param name="screenHeight">The screen height, in pixels.</param>
         </member>
-<<<<<<< HEAD
-=======
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Draws a reactangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="x">The X coordinate on the screen.</param>
-            <param name="y">The Y coordinate on the screen.</param>
-            <param name="width">The rectangle's width.</param>
-            <param name="height">The rectangle's height.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Draws a filled or normal rectangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="x">The X coordinate on the screen.</param>
-            <param name="y">The Y coordinate on the screen.</param>
-            <param name="width">The rectangle's width.</param>
-            <param name="height">The rectangle's height.</param>
-            <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,CGUI.Area)">
-            <summary>
-            Draws a rectangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="area">The Area instance containing the location for the rectangle.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,CGUI.Area,System.Boolean)">
-            <summary>
-            Draws a filled or normal rectangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="area">The Area instance containing the location for the rectangle.</param>
-            <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawLine(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Draws a line.
-            </summary>
-            <param name="color">The color of the line.</param>
-            <param name="startx">The X starting point.</param>
-            <param name="starty">The Y starting point.</param>
-            <param name="endx">The X endpoint.</param>
-            <param name="endy">The Y endpoint.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawLine(System.Drawing.Color,Cosmos.System.Graphics.Point,Cosmos.System.Graphics.Point)">
-            <summary>
-            Draws a line based on two points.
-            </summary>
-            <param name="color">The line color.</param>
-            <param name="startPoint">The starting point of the line.</param>
-            <param name="endPoint">The ending point of the line.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.RunMouse">
-            <summary>
-            Runs the mouse.
-            </summary>
-        </member>
->>>>>>> da80c72621ccdc818b54dcb8972c0cd474a6cd46
         <member name="M:CGUI.VGADriver.RenderScreen(CGUI.Screen)">
             <summary>
             Renders a Screen.
@@ -1080,52 +1018,6 @@
         <member name="T:CGUI.Control">
             <summary>
             Internal base class for CGUI controls.
-            </summary>
-        </member>
-        <member name="T:CGUI.Mouse">
-            <summary>
-            Class for initiating a mouse.
-            </summary>
-        </member>
-        <member name="P:CGUI.Mouse.LeftClick">
-            <summary>
-            Equals true when the left button on the mouse is pressed.
-            </summary>
-        </member>
-        <member name="P:CGUI.Mouse.RightClick">
-            <summary>
-            Equals true when the right button on the mouse is pressed.
-            </summary>
-        </member>
-        <member name="P:CGUI.Mouse.Pointer">
-            <summary>
-            The mouse's pointer type.
-            </summary>
-        </member>
-        <member name="M:CGUI.Mouse.#ctor">
-            <summary>
-            Starts a new instance of the Mouse class using the default pointer (normal).
-            </summary>
-        </member>
-        <member name="M:CGUI.Mouse.SetPointer(CGUI.PointerType)">
-            <summary>
-            Changes how the pointer/mouse looks.
-            </summary>
-            <param name="type">The pointer type to change to.</param>
-        </member>
-        <member name="T:CGUI.PointerType">
-            <summary>
-            Represents a type of mouse pointer.
-            </summary>
-        </member>
-        <member name="F:CGUI.PointerType.Normal">
-            <summary>
-            Normal mouse pointer (arrow).
-            </summary>
-        </member>
-        <member name="F:CGUI.PointerType.Text">
-            <summary>
-            I-Beam shaped pointer normally shown when using a text editor.
             </summary>
         </member>
     </members>
