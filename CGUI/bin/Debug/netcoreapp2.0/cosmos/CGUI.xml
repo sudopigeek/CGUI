@@ -106,12 +106,22 @@
             The TextBox control.
             </summary>
         </member>
-        <member name="P:CGUI.TextBox.foreColor">
+        <member name="P:CGUI.TextBox.UnfocusForeColor">
+            <summary>
+            The foreground color of the textbox when it is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.UnfocusBackColor">
+            <summary>
+            The background color of the textbox when it is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.ForeColor">
             <summary>
             The text color for the textbox (including the cursor).
             </summary>
         </member>
-        <member name="P:CGUI.TextBox.backColor">
+        <member name="P:CGUI.TextBox.BackColor">
             <summary>
             The background color for the textbox.
             </summary>
@@ -124,6 +134,11 @@
         <member name="P:CGUI.TextBox.Mask">
             <summary>
             The character to draw on the screen instead of the actual character. Set this to '~' to disable.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.BeepOnLimit">
+            <summary>
+            Determines whether or not to beep when attempting to type outside of the textbox's character limit.
             </summary>
         </member>
         <member name="P:CGUI.TextBox.Text">
@@ -1016,14 +1031,14 @@
             Represents a line.
             </summary>
         </member>
+        <member name="F:CGUI.ControlType.Picture">
+            <summary>
+            Represents a picture.
+            </summary>
+        </member>
         <member name="F:CGUI.ControlType.TextBox">
             <summary>
             Represents a textbox.
-            </summary>
-        </member>
-        <member name="F:CGUI.ControlType.MaskedTextBox">
-            <summary>
-            Represents a masked textbox.
             </summary>
         </member>
         <member name="T:CGUI.Control">

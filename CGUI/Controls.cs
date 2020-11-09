@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Dynamic;
 using System.Text;
 using Cosmos.System.Graphics;
 
@@ -165,13 +167,21 @@ namespace CGUI
     public class TextBox : Control
     {
         /// <summary>
+        /// The foreground color of the textbox when it is not in focus.
+        /// </summary>
+        public Color UnfocusForeColor { get; set; } = Color.White;
+        /// <summary>
+        /// The background color of the textbox when it is not in focus.
+        /// </summary>
+        public Color UnfocusBackColor { get; set; } = Color.DarkBlue;
+        /// <summary>
         /// The text color for the textbox (including the cursor).
         /// </summary>
-        public Color foreColor { get; set; } = Color.White;
+        public Color ForeColor { get; set; } = Color.White;
         /// <summary>
         /// The background color for the textbox.
         /// </summary>
-        public Color backColor { get; set; } = Color.Black;
+        public Color BackColor { get; set; } = Color.Blue;
         /// <summary>
         /// The character(s) that are allowed in the textbox. Set this to blank ("") to disable and allow all characters.
         /// </summary>
@@ -180,6 +190,10 @@ namespace CGUI
         /// The character to draw on the screen instead of the actual character. Set this to '~' to disable.
         /// </summary>
         public char Mask { get; set; } = '~';
+        /// <summary>
+        /// Determines whether or not to beep when attempting to type outside of the textbox's character limit.
+        /// </summary>
+        public bool BeepOnLimit { get; set; } = false;
         /// <summary>
         /// The current text in the textbox.
         /// </summary>
@@ -204,7 +218,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             cLength = charLength;
-            this.foreColor = foreColor;
+            this.ForeColor = foreColor;
             X = x;
             Y = y;
         }
@@ -220,6 +234,46 @@ namespace CGUI
             cLength = charLength;
             X = x;
             Y = y;
+        }
+    }
+    /// <summary>
+    /// The Button control.
+    /// </summary>
+    public class Button : Control
+    {
+        /// <summary>
+        /// Changes to true when the enter key is pressed [IN DEVELOPMENT].
+        /// </summary>
+        public bool EnterPressed { get; set; } = false;
+        /// <summary>
+        /// The text color when the button is not in focus.
+        /// </summary>
+        public Color UnfocusTextColor { get; set; } = Color.Gray;
+        /// <summary>
+        /// The background color when the button is not in focus.
+        /// </summary>
+        public Color UnfocusBackColor { get; set; } = Color.LightGray;
+        /// <summary>
+        /// The text color.
+        /// </summary>
+        public Color TextColor { get; set; } = Color.Black;
+        /// <summary>
+        /// The background color.
+        /// </summary>
+        public Color BackColor { get; set; } = Color.White;
+        internal string txt = "";
+        /// <summary>
+        /// Starts a new instance of the Button class.
+        /// </summary>
+        /// <param name="text">The button text.</param>
+        /// <param name="x">The button's X coordinate.</param>
+        /// <param name="y">The button's Y coordinate.</param>
+        public Button(string text, int x, int y)
+        {
+            controlType = ControlType.Button;
+            txt = text;
+            X = x;
+            Y = y;            
         }
     }
 }

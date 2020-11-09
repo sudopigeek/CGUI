@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj": {}
+    "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj": {
+    "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
+        "projectUniqueName": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
         "projectName": "CGUI",
-        "projectPath": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
+        "projectPath": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
         "packagesPath": "C:\\Users\\f\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\f\\Source\\Repos\\sudopigeek\\CGUI\\CGUI\\obj\\",
+        "outputPath": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

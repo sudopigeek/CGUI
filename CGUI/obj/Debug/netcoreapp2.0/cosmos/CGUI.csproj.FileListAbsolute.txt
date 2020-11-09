@@ -8,3 +8,13 @@ C:\Users\f\source\repos\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.csproj.Cor
 C:\Users\f\source\repos\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.dll
 C:\Users\f\source\repos\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.pdb
 C:\Users\f\source\repos\CGUI\CGUI\bin\Debug\netcoreapp2.0\cosmos\CGUI.xml
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\bin\Debug\netcoreapp2.0\cosmos\CGUI.deps.json
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\bin\Debug\netcoreapp2.0\cosmos\CGUI.dll
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\bin\Debug\netcoreapp2.0\cosmos\CGUI.pdb
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\bin\Debug\netcoreapp2.0\cosmos\CGUI.xml
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.csprojAssemblyReference.cache
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.AssemblyInfoInputs.cache
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.AssemblyInfo.cs
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.csproj.CoreCompileInputs.cache
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.dll
+C:\Users\f\Source\Repos\sudopigeek\CGUI\CGUI\obj\Debug\netcoreapp2.0\cosmos\CGUI.pdb
