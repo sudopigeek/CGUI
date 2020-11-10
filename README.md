@@ -5,6 +5,6 @@
 
 ![SampleImage1](https://github.com/sudopigeek/CGUI/blob/main/png3.png?raw=true)
 
-#### Main library written by sudopigeek; SVGAII driver written by nifanfa in [Cosmos-GUI-Sample](https://github.com/nifanfa/Cosmos-GUI-Sample)
+#### SVGAII driver written by nifanfa in [Cosmos-GUI-Sample](https://github.com/nifanfa/Cosmos-GUI-Sample)
 
 
