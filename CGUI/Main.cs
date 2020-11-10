@@ -54,6 +54,9 @@ namespace CGUI
                 }
             }
             currentScreen = screen;
+            tabControls.Clear();
+            tcount = 0;
+            index = 0;
             Internal.screenColor = screen.backColor;
             driver.DoubleBuffer_DrawFillRectangle(0, 0, (uint)Internal.screenWidth, (uint)Internal.screenHeight, (uint)screen.backColor.ToArgb());
             for (int i = 0; i < screen.Controls.Count; i++)
@@ -116,7 +119,6 @@ namespace CGUI
             driver.DoubleBuffer_Update();
             driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
             driver.DoubleBuffer_Update();
-            tbox.Focus_Handler.Invoke(tbox, new EventArgs());
         }
         private void Focus(Button button)
         {
@@ -124,7 +126,6 @@ namespace CGUI
             driver.DoubleBuffer_Update();
             driver._DrawACSIIString(button.txt, (uint)button.TextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
             driver.DoubleBuffer_Update();
-            button.Focus_Handler.Invoke(button, new EventArgs());
         }
         private void Unfocus(Button button)
         {
@@ -342,7 +343,6 @@ namespace CGUI
                                         }
                                         else
                                         {
-                                            first.CharacterLimit_Handler.Invoke(first, new EventArgs());
                                             if (first.BeepOnLimit)
                                             {
                                                 Console.Beep();
@@ -373,14 +373,12 @@ namespace CGUI
                                             //Draw character entered:
                                             driver._DrawACSIIString(info.KeyChar.ToString(), (uint)first.ForeColor.ToArgb(), (uint)x - 8, (uint)y);
                                             driver.DoubleBuffer_Update();
-                                            first.KeyPress_Handler.Invoke(first, new EventArgs());
                                         }
                                         else
                                         {
                                             //Draw mask character:
                                             driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), (uint)x - 8, (uint)y);
                                             driver.DoubleBuffer_Update();
-                                            first.KeyPress_Handler.Invoke(first, new EventArgs());
                                         }
                                         
                                         first.txt.Append(info.KeyChar);
@@ -388,7 +386,6 @@ namespace CGUI
                                 }
                                 else
                                 {
-                                    first.CharacterLimit_Handler.Invoke(first, new EventArgs());
                                     if (first.BeepOnLimit)
                                     {
                                         Console.Beep();
@@ -428,12 +425,10 @@ namespace CGUI
                                             //Draw cursor one character back:
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                                             driver.DoubleBuffer_Update();
-                                            first.Backspace_Handler.Invoke(first, new EventArgs());
                                             first.txt.Remove(first.txt.Length - 1, 1);
                                         }
                                         else
                                         {
-                                            first.CharacterLimit_Handler.Invoke(first, new EventArgs());
                                             if (first.BeepOnLimit)
                                             {
                                                 Console.Beep();

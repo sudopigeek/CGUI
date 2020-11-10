@@ -50,7 +50,7 @@ namespace CGUI
         /// <summary>
         /// The label's text.
         /// </summary>
-        public string Text { get; set; }
+        public string Text { get; }
         /// <summary>
         /// The text color of the label.
         /// </summary>
@@ -103,9 +103,10 @@ namespace CGUI
             foreColor = Color.White;
         }
         /// <summary>
-        /// Updates the label.
+        /// Updates/changes the label's text.
         /// </summary>
-        public void Update()
+        /// <param name="newText">The new text to display.</param>
+        public void Update(string newText)
         {
             VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)X, (uint)Y, (uint)(prevText.Length * 8) + 4, 15, (uint)Internal.screenColor.ToArgb());
             VGADriver.driver.DoubleBuffer_Update();
@@ -204,34 +205,6 @@ namespace CGUI
             }
         }
         /// <summary>
-        /// Raised when a key is entered into the textbox.
-        /// </summary>
-        public event EventHandler OnKeyPress
-        {
-            add
-            {
-                KeyPress_Handler = value;
-            }
-            remove
-            {
-                KeyPress_Handler -= value;
-            }
-        }
-        /// <summary>
-        /// Raised when a character is deleted from the textbox.
-        /// </summary>
-        public event EventHandler OnBackspace
-        {
-            add
-            {
-                Backspace_Handler = value;
-            }
-            remove
-            {
-                Backspace_Handler -= value;
-            }
-        }
-        /// <summary>
         /// Raised when the user attempts to delete or enter characters outside of the character limit.
         /// </summary>
         public event EventHandler OnCharacterLimit
@@ -245,27 +218,10 @@ namespace CGUI
                 CharacterLimit_Handler -= value;
             }
         }
-        /// <summary>
-        /// Raised when the textbox gets focus.
-        /// </summary>
-        public event EventHandler OnFocus
-        {
-            add
-            {
-                Focus_Handler = value;
-            }
-            remove
-            {
-                Focus_Handler -= value;
-            }
-        }
         internal StringBuilder txt = new StringBuilder("");
         internal int FocusOrder;
         internal int cLength;
-        internal EventHandler KeyPress_Handler;
-        internal EventHandler Backspace_Handler;
         internal EventHandler CharacterLimit_Handler;
-        internal EventHandler Focus_Handler;
         /// <summary>
         /// Starts a new instance of the TextBox class.
         /// </summary>
@@ -301,7 +257,6 @@ namespace CGUI
     public class Button : Control
     {
         internal EventHandler OnEnter_Handler;
-        internal EventHandler Focus_Handler;
         /// <summary>
         /// Raised when the enter/return key is pressed.
         /// </summary>
@@ -314,20 +269,6 @@ namespace CGUI
             remove
             {
                 OnEnter_Handler -= value;
-            }
-        }
-        /// <summary>
-        /// Raised when the button gets focus.
-        /// </summary>
-        public event EventHandler OnFocus
-        {
-            add
-            {
-                Focus_Handler = value;
-            }
-            remove
-            {
-                Focus_Handler -= value;
             }
         }
         /// <summary>

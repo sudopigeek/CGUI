@@ -68,10 +68,11 @@
             <param name="text">The label text in the default color (white).</param>
             <param name="point">The point to place the label.</param>
         </member>
-        <member name="M:CGUI.Label.Update">
+        <member name="M:CGUI.Label.Update(System.String)">
             <summary>
-            Updates the label.
+            Updates/changes the label's text.
             </summary>
+            <param name="newText">The new text to display.</param>
         </member>
         <member name="T:CGUI.Picture">
             <summary>
@@ -146,24 +147,9 @@
             The current text in the textbox.
             </summary>
         </member>
-        <member name="E:CGUI.TextBox.OnKeyPress">
-            <summary>
-            Raised when a key is entered into the textbox.
-            </summary>
-        </member>
-        <member name="E:CGUI.TextBox.OnBackspace">
-            <summary>
-            Raised when a character is deleted from the textbox.
-            </summary>
-        </member>
         <member name="E:CGUI.TextBox.OnCharacterLimit">
             <summary>
             Raised when the user attempts to delete or enter characters outside of the character limit.
-            </summary>
-        </member>
-        <member name="E:CGUI.TextBox.OnFocus">
-            <summary>
-            Raised when the textbox gets focus.
             </summary>
         </member>
         <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Int32,System.Int32)">
@@ -191,11 +177,6 @@
         <member name="E:CGUI.Button.OnEnter">
             <summary>
             Raised when the enter/return key is pressed.
-            </summary>
-        </member>
-        <member name="E:CGUI.Button.OnFocus">
-            <summary>
-            Raised when the button gets focus.
             </summary>
         </member>
         <member name="P:CGUI.Button.UnfocusTextColor">
