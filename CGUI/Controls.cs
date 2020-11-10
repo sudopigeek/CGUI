@@ -43,6 +43,54 @@ namespace CGUI
         }
     }
     /// <summary>
+    /// The Rectangle control.
+    /// </summary>
+    public class Rectangle : Control
+    {
+        /// <summary>
+        /// The rectangle's color.
+        /// </summary>
+        public Color Color { get; set; }
+        internal int Width;
+        internal int Height;
+        internal bool Fill;
+        /// <summary>
+        /// Starts a new instance of the Rectangle class, representing a filled rectangle.
+        /// </summary>
+        /// <param name="x">The rectangle's X coordinate.</param>
+        /// <param name="y">The rectangle's Y coordinate.</param>
+        /// <param name="width">The rectangle's width.</param>
+        /// <param name="height">The rectangle's height.</param>
+        /// <param name="color">The rectangle's color.</param>
+        public Rectangle(int x, int y, int width, int height, Color color)
+        {
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+            Color = color;
+            Fill = true;
+        }
+        /// <summary>
+        /// Starts a new instance of the Rectangle class, representing a filled rectangle.
+        /// </summary>
+        /// <param name="x">The rectangle's X coordinate.</param>
+        /// <param name="y">The rectangle's Y coordinate.</param>
+        /// <param name="width">The rectangle's width.</param>
+        /// <param name="height">The rectangle's height.</param>
+        /// <param name="color">The rectangle's color.</param>
+        /// <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
+        public Rectangle(int x, int y, int width, int height, Color color, bool fill)
+        {
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+            Color = color;
+            Fill = fill;
+        }
+    }
+    /// <summary>
     /// The Label control.
     /// </summary>
     public class Label : Control

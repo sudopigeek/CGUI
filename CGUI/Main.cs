@@ -1,5 +1,4 @@
-﻿using Cosmos.System.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -47,7 +46,7 @@ namespace CGUI
             int order = 0;
             for (int i = 0; i < screen.Controls.Count; i++)
             {
-                if (screen.Controls[i].controlType == ControlType.TextBox || screen.Controls[i].controlType == ControlType.Button)
+                if (screen.Controls[i].controlType == ControlType.TextBox)
                 {
                     ((TextBox)screen.Controls[i]).FocusOrder = order;
                     order++;
@@ -59,6 +58,7 @@ namespace CGUI
             index = 0;
             Internal.screenColor = screen.backColor;
             driver.DoubleBuffer_DrawFillRectangle(0, 0, (uint)Internal.screenWidth, (uint)Internal.screenHeight, (uint)screen.backColor.ToArgb());
+
             for (int i = 0; i < screen.Controls.Count; i++)
             {
                 if (screen.Controls[i].controlType == ControlType.Label)
@@ -70,6 +70,18 @@ namespace CGUI
                 {
                     Line line = ((Line)screen.Controls[i]);
                     driver.DoubleBuffer_DrawLine((uint)line.Color.ToArgb(), line.X, line.Y, line.EndX, line.EndY);
+                }
+                else if (screen.Controls[i].controlType == ControlType.Rectangle)
+                {
+                    Rectangle rectangle = ((Rectangle)screen.Controls[i]);
+                    if (rectangle.Fill)
+                    {
+                        driver.DoubleBuffer_DrawFillRectangle((uint)rectangle.X, (uint)rectangle.Y, (uint)rectangle.Width, (uint)rectangle.Height, (uint)rectangle.Color.ToArgb());
+                    }
+                    else
+                    {
+                        driver.DoubleBuffer_DrawRectangle((uint)rectangle.Color.ToArgb(), rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                    }
                 }
                 else if (screen.Controls[i].controlType == ControlType.Picture)
                 {
@@ -105,7 +117,6 @@ namespace CGUI
         private int tcount = 0;
         private int index = 0;
         private List<Control> tabControls = new List<Control>();
-
         private void Unfocus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
@@ -596,6 +607,10 @@ namespace CGUI
         /// </summary>
         Line,
         /// <summary>
+        /// Represents a rectangle.
+        /// </summary>
+        Rectangle,
+        /// <summary>
         /// Represents a picture.
         /// </summary>
         Picture,
@@ -624,8 +639,7 @@ namespace CGUI
             }
             return -1;
         }
-    }
-    
+    }   
     /// <summary>
     /// Internal base class for CGUI controls.
     /// </summary>
