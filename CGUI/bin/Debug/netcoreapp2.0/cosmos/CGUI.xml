@@ -51,7 +51,7 @@
         </member>
         <member name="M:CGUI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean)">
             <summary>
-            Starts a new instance of the Rectangle class, representing a filled rectangle.
+            Starts a new instance of the Rectangle class, representing a filled or empty rectangle.
             </summary>
             <param name="x">The rectangle's X coordinate.</param>
             <param name="y">The rectangle's Y coordinate.</param>

@@ -72,7 +72,7 @@ namespace CGUI
             Fill = true;
         }
         /// <summary>
-        /// Starts a new instance of the Rectangle class, representing a filled rectangle.
+        /// Starts a new instance of the Rectangle class, representing a filled or empty rectangle.
         /// </summary>
         /// <param name="x">The rectangle's X coordinate.</param>
         /// <param name="y">The rectangle's Y coordinate.</param>
