@@ -114,38 +114,38 @@ namespace CGUI
             }
         }
 
-        private int tcount = 0;
-        private int index = 0;
-        private List<Control> tabControls = new List<Control>();
-        private void Unfocus(TextBox tbox)
+        internal static int tcount = 0;
+        internal static int index = 0;
+        internal static List<Control> tabControls = new List<Control>();
+        internal static void Unfocus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
             driver.DoubleBuffer_Update();
             driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
             driver.DoubleBuffer_Update();
         }
-        private void Focus(TextBox tbox)
+        internal static void Focus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.BackColor.ToArgb());
             driver.DoubleBuffer_Update();
             driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
             driver.DoubleBuffer_Update();
         }
-        private void Focus(Button button)
+        internal static void Focus(Button button)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)button.X, (uint)button.Y, ((uint)button.txt.Length * 8) + 20, 13 + 10, (uint)button.BackColor.ToArgb());
             driver.DoubleBuffer_Update();
             driver._DrawACSIIString(button.txt, (uint)button.TextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
             driver.DoubleBuffer_Update();
         }
-        private void Unfocus(Button button)
+        internal static void Unfocus(Button button)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)button.X, (uint)button.Y, ((uint)button.txt.Length * 8) + 20, 13 + 10, (uint)button.UnfocusBackColor.ToArgb());
             driver.DoubleBuffer_Update();
             driver._DrawACSIIString(button.txt, (uint)button.UnfocusTextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
             driver.DoubleBuffer_Update();
         }
-        private void Focus(List<Control> tControls, int x, int y, int tcount)
+        internal static void Focus(List<Control> tControls, int x, int y, int tcount)
         {
             if (tcount >= 1)
             {

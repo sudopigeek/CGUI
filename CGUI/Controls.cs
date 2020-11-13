@@ -98,7 +98,7 @@ namespace CGUI
         /// <summary>
         /// The label's text.
         /// </summary>
-        public string Text { get; }
+        public string Text { get; internal set; }
         /// <summary>
         /// The text color of the label.
         /// </summary>
@@ -158,7 +158,8 @@ namespace CGUI
         {
             VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)X, (uint)Y, (uint)(prevText.Length * 8) + 4, 15, (uint)Internal.screenColor.ToArgb());
             VGADriver.driver.DoubleBuffer_Update();
-            VGADriver.driver._DrawACSIIString(Text, (uint)foreColor.ToArgb(), (uint)X, (uint)Y);
+            VGADriver.driver._DrawACSIIString(newText, (uint)foreColor.ToArgb(), (uint)X, (uint)Y);
+            Text = newText;
             prevText = Text;
             VGADriver.driver.DoubleBuffer_Update();
         }
@@ -252,24 +253,9 @@ namespace CGUI
                 return txt.ToString();
             }
         }
-        /// <summary>
-        /// Raised when the user attempts to delete or enter characters outside of the character limit.
-        /// </summary>
-        public event EventHandler OnCharacterLimit
-        {
-            add
-            {
-                CharacterLimit_Handler = value;
-            }
-            remove
-            {
-                CharacterLimit_Handler -= value;
-            }
-        }
         internal StringBuilder txt = new StringBuilder("");
         internal int FocusOrder;
         internal int cLength;
-        internal EventHandler CharacterLimit_Handler;
         /// <summary>
         /// Starts a new instance of the TextBox class.
         /// </summary>

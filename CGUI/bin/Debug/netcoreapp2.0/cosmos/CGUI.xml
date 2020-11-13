@@ -29,6 +29,37 @@
             Updates the line.
             </summary>
         </member>
+        <member name="T:CGUI.Rectangle">
+            <summary>
+            The Rectangle control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Rectangle.Color">
+            <summary>
+            The rectangle's color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
+            <summary>
+            Starts a new instance of the Rectangle class, representing a filled rectangle.
+            </summary>
+            <param name="x">The rectangle's X coordinate.</param>
+            <param name="y">The rectangle's Y coordinate.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="color">The rectangle's color.</param>
+        </member>
+        <member name="M:CGUI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean)">
+            <summary>
+            Starts a new instance of the Rectangle class, representing a filled rectangle.
+            </summary>
+            <param name="x">The rectangle's X coordinate.</param>
+            <param name="y">The rectangle's Y coordinate.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="color">The rectangle's color.</param>
+            <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
+        </member>
         <member name="T:CGUI.Label">
             <summary>
             The Label control.
@@ -145,11 +176,6 @@
         <member name="P:CGUI.TextBox.Text">
             <summary>
             The current text in the textbox.
-            </summary>
-        </member>
-        <member name="E:CGUI.TextBox.OnCharacterLimit">
-            <summary>
-            Raised when the user attempts to delete or enter characters outside of the character limit.
             </summary>
         </member>
         <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Int32,System.Int32)">
@@ -1004,6 +1030,11 @@
         <member name="F:CGUI.ControlType.Line">
             <summary>
             Represents a line.
+            </summary>
+        </member>
+        <member name="F:CGUI.ControlType.Rectangle">
+            <summary>
+            Represents a rectangle.
             </summary>
         </member>
         <member name="F:CGUI.ControlType.Picture">
