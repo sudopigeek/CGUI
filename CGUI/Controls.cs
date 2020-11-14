@@ -156,12 +156,43 @@ namespace CGUI
         /// <param name="newText">The new text to display.</param>
         public void Update(string newText)
         {
-            VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)X, (uint)Y, (uint)(prevText.Length * 8) + 4, 15, (uint)Internal.screenColor.ToArgb());
-            VGADriver.driver.DoubleBuffer_Update();
-            VGADriver.driver._DrawACSIIString(newText, (uint)foreColor.ToArgb(), (uint)X, (uint)Y);
+            if (Text.Contains("\n"))
+            {
+                string[] lines = Text.Split("\n");
+                int y = Y;
+                for (int i2 = 0; i2 < lines.Length; i2++)
+                {
+                    VGADriver.driver._DrawACSIIString(lines[i2], (uint)backColor.ToArgb(), (uint)X, (uint)y);
+                    VGADriver.driver.DoubleBuffer_Update();
+                    y += 12;
+                }
+                
+            }
+            else
+            {
+                VGADriver.driver._DrawACSIIString(Text, (uint)backColor.ToArgb(), (uint)X, (uint)Y);
+                VGADriver.driver.DoubleBuffer_Update();              
+            }
+
+            if (newText.Contains("\n"))
+            {
+                string[] lines = newText.Split("\n");
+                int y = Y;
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    VGADriver.driver._DrawACSIIString(lines[i], (uint)foreColor.ToArgb(), (uint)X, (uint)y);
+                    VGADriver.driver.DoubleBuffer_Update();
+                    y += 12;
+                }
+            }
+            else
+            {
+                VGADriver.driver._DrawACSIIString(newText, (uint)foreColor.ToArgb(), (uint)X, (uint)Y);
+                VGADriver.driver.DoubleBuffer_Update();
+            }
+
             Text = newText;
             prevText = Text;
-            VGADriver.driver.DoubleBuffer_Update();
         }
     }
     /// <summary>

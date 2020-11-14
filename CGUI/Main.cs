@@ -64,7 +64,21 @@ namespace CGUI
                 if (screen.Controls[i].controlType == ControlType.Label)
                 {
                     Label label = ((Label)screen.Controls[i]);
-                    driver._DrawACSIIString(label.Text, (uint)label.foreColor.ToArgb(), (uint)label.X, (uint)label.Y);
+                    if (label.Text.Contains("\n"))
+                    {
+                        string[] lines = label.Text.Split("\n");
+                        int y = label.Y;
+                        for (int i2 = 0; i2 < lines.Length; i2++)
+                        {
+                            driver._DrawACSIIString(lines[i2], (uint)label.foreColor.ToArgb(), (uint)label.X, (uint)y);
+                            driver.DoubleBuffer_Update();
+                            y += 12;
+                        }
+                    }
+                    else
+                    {
+                        driver._DrawACSIIString(label.Text, (uint)label.foreColor.ToArgb(), (uint)label.X, (uint)label.Y);
+                    }  
                 }
                 else if (screen.Controls[i].controlType == ControlType.Line)
                 {
@@ -177,8 +191,10 @@ namespace CGUI
                                 rkey = false;
                                 break;
                             case ConsoleKey.Enter:
-                                first.OnEnter_Handler.Invoke(first, new EventArgs());
-                                //rkey = false;
+                                if (first.OnEnter_Handler != null)
+                                {
+                                    first.OnEnter_Handler.Invoke(first, new EventArgs());
+                                }
                                 break;
                             default:
                                 break;
