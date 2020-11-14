@@ -89,6 +89,21 @@ namespace CGUI
             Color = color;
             Fill = fill;
         }
+        /// <summary>
+        /// Updates the rectangle.
+        /// </summary>
+        public void Update()
+        {
+            if (Fill)
+            {
+                VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)X, (uint)Y, (uint)Width, (uint)Height, (uint)Color.ToArgb());
+            }
+            else
+            {
+                VGADriver.driver.DoubleBuffer_DrawRectangle((uint)Color.ToArgb(), X, Y, Width, Height);
+            }
+            VGADriver.driver.DoubleBuffer_Update();
+        }
     }
     /// <summary>
     /// The Label control.

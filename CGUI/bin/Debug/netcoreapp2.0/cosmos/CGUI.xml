@@ -60,6 +60,11 @@
             <param name="color">The rectangle's color.</param>
             <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
         </member>
+        <member name="M:CGUI.Rectangle.Update">
+            <summary>
+            Updates the rectangle.
+            </summary>
+        </member>
         <member name="T:CGUI.Label">
             <summary>
             The Label control.
