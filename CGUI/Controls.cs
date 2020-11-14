@@ -256,6 +256,51 @@ namespace CGUI
         internal StringBuilder txt = new StringBuilder("");
         internal int FocusOrder;
         internal int cLength;
+        internal EventHandler Limit;
+        internal EventHandler KeyPress;
+        internal EventHandler Delete;
+        /// <summary>
+        /// Raised when a character is deleted from the textbox.
+        /// </summary>
+        public event EventHandler OnDelete
+        {
+            add
+            {
+                Delete = value;
+            }
+            remove
+            {
+                Delete -= value;
+            }
+        }
+        /// <summary>
+        /// Raised when a character is entered into the textbox, and returns the character entered in the 'sender' object.
+        /// </summary>
+        public event EventHandler OnKeyPress
+        {
+            add
+            {
+                KeyPress = value;
+            }
+            remove
+            {
+                KeyPress -= value;
+            }
+        }
+        /// <summary>
+        /// Raised when the user attempts to enter or delete characters outside of the textbox's character range limit.
+        /// </summary>
+        public event EventHandler OnLimit
+        {
+            add
+            {
+                Limit = value;
+            }
+            remove
+            {
+                Limit -= value;
+            }
+        }
         /// <summary>
         /// Starts a new instance of the TextBox class.
         /// </summary>

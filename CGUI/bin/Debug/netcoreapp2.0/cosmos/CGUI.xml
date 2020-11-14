@@ -178,6 +178,21 @@
             The current text in the textbox.
             </summary>
         </member>
+        <member name="E:CGUI.TextBox.OnDelete">
+            <summary>
+            Raised when a character is deleted from the textbox.
+            </summary>
+        </member>
+        <member name="E:CGUI.TextBox.OnKeyPress">
+            <summary>
+            Raised when a character is entered into the textbox, and returns the character entered in the 'sender' object.
+            </summary>
+        </member>
+        <member name="E:CGUI.TextBox.OnLimit">
+            <summary>
+            Raised when the user attempts to enter or delete characters outside of the textbox's character range limit.
+            </summary>
+        </member>
         <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Int32,System.Int32)">
             <summary>
             Starts a new instance of the TextBox class.

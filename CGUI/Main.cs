@@ -354,10 +354,16 @@ namespace CGUI
                                         }
                                         else
                                         {
+                                            
+                                            if (first.Limit != null)
+                                            {
+                                                first.Limit.Invoke(first, new EventArgs());
+                                            }
+
                                             if (first.BeepOnLimit)
                                             {
                                                 Console.Beep();
-                                            }          
+                                            }
                                         }
                                     }
                                     else
@@ -391,12 +397,21 @@ namespace CGUI
                                             driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), (uint)x - 8, (uint)y);
                                             driver.DoubleBuffer_Update();
                                         }
-                                        
+
+                                        if (first.KeyPress != null)
+                                        {
+                                            first.KeyPress.Invoke(info.KeyChar, new EventArgs());
+                                        }
                                         first.txt.Append(info.KeyChar);
                                     }
                                 }
                                 else
                                 {
+                                    if (first.Limit != null)
+                                    {
+                                        first.Limit.Invoke(first, new EventArgs());
+                                    }
+
                                     if (first.BeepOnLimit)
                                     {
                                         Console.Beep();
@@ -437,9 +452,18 @@ namespace CGUI
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                                             driver.DoubleBuffer_Update();
                                             first.txt.Remove(first.txt.Length - 1, 1);
+                                            if (first.Delete != null)
+                                            {
+                                                first.Delete.Invoke(first, new EventArgs());
+                                            }
                                         }
                                         else
                                         {
+                                            if (first.Limit != null)
+                                            {
+                                                first.Limit.Invoke(first, new EventArgs());
+                                            }
+
                                             if (first.BeepOnLimit)
                                             {
                                                 Console.Beep();
