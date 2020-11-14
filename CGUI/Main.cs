@@ -100,7 +100,7 @@ namespace CGUI
                 else if (screen.Controls[i].controlType == ControlType.Picture)
                 {
                     Picture picture = ((Picture)screen.Controls[i]);
-                    driver.DoubleBuffer_DrawImage(picture.Image, (uint)picture.X, (uint)picture.Y);
+                    picture.Update();
                 }
                 else if (screen.Controls[i].controlType == ControlType.TextBox)
                 {

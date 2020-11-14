@@ -232,6 +232,7 @@ namespace CGUI
         /// <param name="y">The picture's Y coordinate.</param>
         public Picture(Image image, int x, int y)
         {
+            controlType = ControlType.Picture;
             Image = image;
             prevImage = image;
             X = x;
