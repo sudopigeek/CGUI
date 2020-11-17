@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 
 namespace CGUI
 {
@@ -123,8 +124,17 @@ namespace CGUI
 
             if (tcount >= 1)
             {
-                TextBox first = ((TextBox)screen.Controls[Internal.GetFirstTextBox(screen.Controls)]);
-                Focus(tabControls, first.X + 1, first.Y, tcount);
+                Control c = screen.Controls[Internal.GetFirstTabControl(screen.Controls)];              
+                if (c.controlType == ControlType.Button)
+                {
+                    Button first = (Button)c;
+                    Focus(tabControls, first.X + 1, first.Y, tcount);
+                }
+                else if (c.controlType == ControlType.TextBox)
+                {
+                    TextBox first = (TextBox)c;
+                    Focus(tabControls, first.X + 1, first.Y, tcount);
+                }               
             }
         }
 
@@ -135,14 +145,38 @@ namespace CGUI
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
             driver.DoubleBuffer_Update();
-            driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            if (tbox.Mask != '~')
+            {
+                StringBuilder b = new StringBuilder("");
+                for (int i = 0; i < tbox.txt.Length; i++)
+                {
+                    b.Append(tbox.Mask);
+                }
+                driver._DrawACSIIString(b.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            }
+            else
+            {
+                driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            }
             driver.DoubleBuffer_Update();
         }
         internal static void Focus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.BackColor.ToArgb());
             driver.DoubleBuffer_Update();
-            driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            if (tbox.Mask != '~')
+            {
+                StringBuilder b = new StringBuilder("");
+                for (int i = 0; i < tbox.txt.Length; i++)
+                {
+                    b.Append(tbox.Mask);
+                }
+                driver._DrawACSIIString(b.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            }
+            else
+            {
+                driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            }
             driver.DoubleBuffer_Update();
         }
         internal static void Focus(Button button)
@@ -668,11 +702,15 @@ namespace CGUI
         public static Color screenColor;
         public static int screenWidth;
         public static int screenHeight;
-        public static int GetFirstTextBox(List<Control> controls)
+        public static int GetFirstTabControl(List<Control> controls)
         {
             for (int i = 0; i < controls.Count; i++)
             {
                 if (controls[i].controlType == ControlType.TextBox)
+                {
+                    return i;
+                }
+                else if (controls[i].controlType == ControlType.Button)
                 {
                     return i;
                 }
