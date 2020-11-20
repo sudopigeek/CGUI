@@ -124,17 +124,29 @@ namespace CGUI
 
             if (tcount >= 1)
             {
-                Control c = screen.Controls[Internal.GetFirstTabControl(screen.Controls)];              
-                if (c.controlType == ControlType.Button)
+                int f = Internal.GetFirstTabControl(screen.Controls);
+                if (f > -1)
                 {
-                    Button first = (Button)c;
-                    Focus(tabControls, first.X + 1, first.Y, tcount);
+                    Control c = screen.Controls[f];
+                    if (c.controlType == ControlType.Button)
+                    {
+                        Button first = (Button)c;
+                        Focus(tabControls, first.X + 1, first.Y, tcount);
+                    }
+                    else if (c.controlType == ControlType.TextBox)
+                    {
+                        TextBox first = (TextBox)c;
+                        Focus(tabControls, first.X + 1, first.Y, tcount);
+                    }
                 }
-                else if (c.controlType == ControlType.TextBox)
-                {
-                    TextBox first = (TextBox)c;
-                    Focus(tabControls, first.X + 1, first.Y, tcount);
-                }               
+                //else
+                //{
+                //    bool wait = true;
+                //    while (wait)
+                //    {
+                //        Console.ReadKey(true);
+                //    }
+                //}
             }
         }
 

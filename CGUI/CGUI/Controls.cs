@@ -205,9 +205,8 @@ namespace CGUI
                 VGADriver.driver._DrawACSIIString(newText, (uint)foreColor.ToArgb(), (uint)X, (uint)Y);
                 VGADriver.driver.DoubleBuffer_Update();
             }
-
-            Text = newText;
             prevText = Text;
+            Text = newText; 
         }
     }
     /// <summary>
