@@ -367,6 +367,36 @@
             <param name="x">The button's X coordinate.</param>
             <param name="y">The button's Y coordinate.</param>
         </member>
+        <member name="T:CGUI.Status">
+            <summary>
+            Represents a controls' status.
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.Null">
+            <summary>
+            For internal purposes only.
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.OK">
+            <summary>
+            Status for a control that is all good (not out of bounds).
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.OriginOutOfBounds">
+            <summary>
+            Status for a control whose origin (X,Y location) is out of bounds.
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.ControlOutOfBounds">
+            <summary>
+            Status for a control that is partially or completely out of bounds.
+            </summary>
+        </member>
+        <member name="T:CGUI.ControlStatus">
+            <summary>
+            Represents and contains info about that controls status.
+            </summary>
+        </member>
         <member name="T:CGUI.DoubleBufferedVMWareSVGAII.Register">
             <summary>
             Register values.
@@ -1130,7 +1160,7 @@
             Represents a screen containing controls.
             </summary>
         </member>
-        <member name="F:CGUI.Screen.Controls">
+        <member name="P:CGUI.Screen.Controls">
             <summary>
             The controls contained in this Screen instance.
             </summary>

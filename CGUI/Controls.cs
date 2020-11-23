@@ -427,5 +427,181 @@ namespace CGUI
             Y = y;            
         }
     }
+
+    #region ControlChecks
+    /// <summary>
+    /// Represents a controls' status.
+    /// </summary>
+    public enum Status
+    {
+        /// <summary>
+        /// For internal purposes only.
+        /// </summary>
+        Null,
+        /// <summary>
+        /// Status for a control that is all good (not out of bounds).
+        /// </summary>
+        OK,
+        /// <summary>
+        /// Status for a control whose origin (X,Y location) is out of bounds.
+        /// </summary>
+        OriginOutOfBounds,
+        /// <summary>
+        /// Status for a control that is partially or completely out of bounds.
+        /// </summary>
+        ControlOutOfBounds
+    }
+    /// <summary>
+    /// Represents and contains info about that controls status.
+    /// </summary>
+    internal class ControlStatus
+    {
+        internal static Status GetStatus(Control c)
+        {
+            Status Status = Status.Null;
+            if (c.controlType == ControlType.Button)
+            {
+                Button btn = (Button)c;
+                // check if origin is out of bounds:
+                if (btn.X >= Internal.screenWidth || btn.Y >= Internal.screenHeight || btn.X < 0 || btn.Y < 0)
+                {
+                    Status = Status.OriginOutOfBounds;
+                }
+
+                if (Status == Status.Null)
+                {
+                    // check if any part of the control is out of bounds:
+                    if (((btn.txt.Length * 8) + 20 + btn.X) > Internal.screenWidth || (btn.Y + 23) > Internal.screenHeight)
+                    {
+                        Status = Status.ControlOutOfBounds;
+                    }
+                }
+
+                if (Status == Status.Null)
+                {
+                    Status = Status.OK;
+                }
+            }
+            else if (c.controlType == ControlType.Label)
+            {
+                Label lbl = (Label)c;
+                // check if origin is out of bounds:
+                if (lbl.X >= Internal.screenWidth || lbl.Y >= Internal.screenHeight || lbl.X < 0 || lbl.Y < 0)
+                {
+                    Status = Status.OriginOutOfBounds;
+                }
+
+                if (Status == Status.Null)
+                {
+                    // check if any part of the control is out of bounds:
+                    if (((lbl.Text.Length * 8) + lbl.X) > Internal.screenWidth || (lbl.Y + 13) > Internal.screenHeight)
+                    {
+                        Status = Status.ControlOutOfBounds;
+                    }
+                }
+
+                if (Status == Status.Null)
+                {
+                    Status = Status.OK;
+                }
+            }
+            else if (c.controlType == ControlType.Line)
+            {
+                Line line = (Line)c;
+                // check if origin is out of bounds:
+                if (line.X >= Internal.screenWidth || line.Y >= Internal.screenHeight || line.X < 0 || line.Y < 0)
+                {
+                    Status = Status.OriginOutOfBounds;
+                }
+
+                if (Status == Status.Null)
+                {
+                    // check if any part of the control is out of bounds:
+                    if (line.EndX > Internal.screenWidth || line.EndY > Internal.screenHeight)
+                    {
+                        Status = Status.ControlOutOfBounds;
+                    }
+                }
+
+                if (Status == Status.Null)
+                {
+                    Status = Status.OK;
+                }
+
+            }
+            else if (c.controlType == ControlType.Picture)
+            {
+                Picture picture = (Picture)c;
+                // check if origin is out of bounds:
+                if (picture.X >= Internal.screenWidth || picture.Y >= Internal.screenHeight || picture.X < 0 || picture.Y < 0)
+                {
+                    Status = Status.OriginOutOfBounds;
+                }
+
+                if (Status == Status.Null)
+                {
+                    // check if any part of the control is out of bounds:
+                    if ((picture.Image.Width + picture.X) > Internal.screenWidth || (picture.Image.Height + picture.Y) > Internal.screenHeight)
+                    {
+                        Status = Status.ControlOutOfBounds;
+                    }
+                }
+
+                if (Status == Status.Null)
+                {
+                    Status = Status.OK;
+                }
+            }
+            else if (c.controlType == ControlType.Rectangle)
+            {
+                Rectangle rectangle = (Rectangle)c;
+                // check if origin is out of bounds:
+                if (rectangle.X >= Internal.screenWidth || rectangle.Y >= Internal.screenHeight || rectangle.X < 0 || rectangle.Y < 0)
+                {
+                    Status = Status.OriginOutOfBounds;
+                }
+
+                if (Status == Status.Null)
+                {
+                    // check if any part of the control is out of bounds:
+                    if ((rectangle.X + rectangle.Width) > Internal.screenWidth || (rectangle.Y + rectangle.Height) > Internal.screenHeight)
+                    {
+                        Status = Status.ControlOutOfBounds;
+                    }
+                }
+
+                if (Status == Status.Null)
+                {
+                    Status = Status.OK;
+                }
+            }
+            else if (c.controlType == ControlType.TextBox)
+            {
+                TextBox tbox = (TextBox)c;
+                // check if origin is out of bounds:
+                if (tbox.X >= Internal.screenWidth || tbox.Y >= Internal.screenHeight || tbox.X < 0 || tbox.Y < 0)
+                {
+                    Status = Status.OriginOutOfBounds;
+                }
+
+                if (Status == Status.Null)
+                {
+                    // check if any part of the control is out of bounds:
+                    if (((tbox.cLength * 8) + 4 + tbox.X) > Internal.screenWidth || (tbox.Y + 15) > Internal.screenHeight)
+                    {
+                        Status = Status.ControlOutOfBounds;
+                    }
+                }
+
+                if (Status == Status.Null)
+                {
+                    Status = Status.OK;
+                }
+            }
+
+            return Status;
+        }
+    }
+    #endregion
 }
 

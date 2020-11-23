@@ -101,6 +101,7 @@ namespace CGUI.CommandLine
         public CommandLine(VGADriver driver)
         {
             charLength = Internal.screenWidth / 8;
+            charHeight = Internal.screenHeight / 12;
             driver.ClearScreen();
             tColor = (uint)Color.White.ToArgb();
             bColor = (uint)Color.Black.ToArgb();
@@ -116,6 +117,7 @@ namespace CGUI.CommandLine
         public CommandLine(VGADriver driver, Color backColor, Color textColor)
         {
             charLength = Internal.screenWidth / 8;
+            charHeight = Internal.screenHeight / 12;
             driver.ClearScreen(backColor);
             tColor = (uint)textColor.ToArgb();
             bColor = (uint)backColor.ToArgb();
@@ -424,9 +426,11 @@ namespace CGUI.CommandLine
                                 }
                                 break;
                             case ConsoleKey.Enter:
-                                if (ScreenInput.Count % 39 == 0)
+                                if (ScreenInput.Count % charHeight == 0 && LocY > 30)
                                 {
-
+                                    Console.Beep();
+                                    // move all lines up one:
+                                    ScrollDown();
                                 }
 
                                 if (txt.Length > 0)
@@ -487,6 +491,22 @@ namespace CGUI.CommandLine
             }
             
         }
+        internal void ScrollUp()
+        {
+
+        }
+        internal void ScrollDown()
+        {
+            VGADriver.driver.DoubleBuffer_Clear(bColor);
+            VGADriver.driver.DoubleBuffer_Update();
+            if ((EndLine - charHeight) > -1)
+            {
+                for (int i = (EndLine - charHeight); i < EndLine; i++)
+                {
+                    WriteLine(ScreenInput[i]);
+                }
+            }           
+        }
         internal void SaveToMemory()
         {
             SaveLineToMemory(currentDirectory + ">" + txt.ToString());
@@ -502,6 +522,7 @@ namespace CGUI.CommandLine
         }
         internal void Prompt()
         {
+
             // Draw prompt string:
             VGADriver.driver._DrawACSIIString(currentDirectory + ">", tColor, PromptLocX, PromptLocY);
             VGADriver.driver.DoubleBuffer_Update();
@@ -531,13 +552,15 @@ namespace CGUI.CommandLine
         internal EventHandler InvalidCMD_Handler;
         internal EventHandler Backspace_Handler;
         internal EventHandler KeyPress_Handler;
-        internal int charLength; 
+        internal int charLength;
+        internal int charHeight;
         internal uint PromptLocX;
         internal uint PromptLocY;
         internal int LocX;
         internal int LocY = -12;
         internal int LLocX;
         internal int LLocY;
+        internal int EndLine;
     }
     /// <summary>
     /// Represents a command.

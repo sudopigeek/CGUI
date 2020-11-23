@@ -44,6 +44,21 @@ namespace CGUI
         /// <param name="screen">The Screen to render.</param>
         public void RenderScreen(Screen screen)
         {
+            invalidControls.Clear();
+            foreach (Control c in screen.Controls)
+            {
+                Status status = ControlStatus.GetStatus(c);
+                if (status == Status.ControlOutOfBounds || status == Status.OriginOutOfBounds)
+                {
+                    invalidControls.Add(c);
+                }
+            }
+
+            if (invalidControls.Count > 0)
+            {
+                ErrorScreen();
+            }
+
             int order = 0;
             for (int i = 0; i < screen.Controls.Count; i++)
             {
@@ -59,7 +74,6 @@ namespace CGUI
             index = 0;
             Internal.screenColor = screen.backColor;
             driver.DoubleBuffer_DrawFillRectangle(0, 0, (uint)Internal.screenWidth, (uint)Internal.screenHeight, (uint)screen.backColor.ToArgb());
-
             for (int i = 0; i < screen.Controls.Count; i++)
             {
                 if (screen.Controls[i].controlType == ControlType.Label)
@@ -138,21 +152,71 @@ namespace CGUI
                         TextBox first = (TextBox)c;
                         Focus(tabControls, first.X + 1, first.Y, tcount);
                     }
+                }   
+            }
+            else
+            {
+                bool wait = true;
+                while (wait)
+                {
+                    Console.ReadKey(true);
                 }
-                //else
-                //{
-                //    bool wait = true;
-                //    while (wait)
-                //    {
-                //        Console.ReadKey(true);
-                //    }
-                //}
             }
         }
 
         internal static int tcount = 0;
         internal static int index = 0;
         internal static List<Control> tabControls = new List<Control>();
+        internal static List<Control> invalidControls = new List<Control>();
+        internal void ErrorScreen()
+        {
+            driver.DoubleBuffer_Clear((uint)Color.Red.ToArgb());
+            driver.DoubleBuffer_Update();
+            uint y = 12;
+            driver._DrawACSIIString("The following control(s) are partially or entirely out of bounds:", (uint)Color.White.ToArgb(), 20, 0);
+            driver.DoubleBuffer_Update();
+            foreach (Control c in invalidControls)
+            {
+                switch (c.controlType)
+                {
+                    case ControlType.Button:
+                        driver._DrawACSIIString("Button at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                        driver.DoubleBuffer_Update();
+                        y += 12;
+                        break;
+                    case ControlType.Label:
+                        driver._DrawACSIIString("Label at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                        driver.DoubleBuffer_Update();
+                        y += 12;
+                        break;
+                    case ControlType.Line:
+                        driver._DrawACSIIString("Line at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                        driver.DoubleBuffer_Update();
+                        y += 12;
+                        break;
+                    case ControlType.Picture:
+                        driver._DrawACSIIString("Picture at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                        driver.DoubleBuffer_Update();
+                        y += 12;
+                        break;
+                    case ControlType.Rectangle:
+                        driver._DrawACSIIString("Rectangle at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                        driver.DoubleBuffer_Update();
+                        y += 12;
+                        break;
+                    case ControlType.TextBox:
+                        driver._DrawACSIIString("TextBox at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                        driver.DoubleBuffer_Update();
+                        y += 12;
+                        break;
+                }
+            }
+            bool wait = true;
+            while (wait)
+            {
+                Console.ReadKey(true);
+            }
+        }
         internal static void Unfocus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
@@ -656,7 +720,7 @@ namespace CGUI
         /// <summary>
         /// The controls contained in this Screen instance.
         /// </summary>
-        public List<Control> Controls;
+        public List<Control> Controls { get; set; }
         /// <summary>
         /// The screen's background color.
         /// </summary>
