@@ -1,4 +1,5 @@
-# CGUI (Cosmos Graphical User Interface)
+![CGUI_Image](https://github.com/sudopigeek/CGUI/blob/main/cgui.jpg?raw=true)
+
 ### CGUI is a Cosmos-based library for graphical controls and visual I/O. 
 
 ### If you use or distribute please mention me.
