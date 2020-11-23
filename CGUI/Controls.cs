@@ -64,6 +64,7 @@ namespace CGUI
         /// <param name="color">The rectangle's color.</param>
         public Rectangle(int x, int y, int width, int height, Color color)
         {
+            controlType = ControlType.Rectangle;
             X = x;
             Y = y;
             Width = width;
@@ -82,6 +83,7 @@ namespace CGUI
         /// <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
         public Rectangle(int x, int y, int width, int height, Color color, bool fill)
         {
+            controlType = ControlType.Rectangle;
             X = x;
             Y = y;
             Width = width;
