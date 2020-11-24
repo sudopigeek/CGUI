@@ -168,6 +168,21 @@ namespace CGUI
             foreColor = Color.White;
         }
         /// <summary>
+        /// Starts a new instance of the Label class.
+        /// </summary>
+        /// <param name="text">The label text in the default color (white).</param>
+        /// <param name="foreColor">The text color.</param>
+        /// <param name="point">The point to place the label.</param>
+        public Label(string text, Color foreColor, Cosmos.System.Graphics.Point point)
+        {
+            controlType = ControlType.Label;
+            X = point.X;
+            Y = point.Y;
+            Text = text;
+            prevText = text;
+            this.foreColor = foreColor;
+        }
+        /// <summary>
         /// Updates/changes the label's text.
         /// </summary>
         /// <param name="newText">The new text to display.</param>

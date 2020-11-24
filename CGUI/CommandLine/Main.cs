@@ -6,7 +6,7 @@ using System.Text;
 namespace CGUI.CommandLine
 {
     /// <summary>
-    /// Custom event class used for passing command info to the user.
+    /// Custom event class used for passing command info to the user. [IN DEVELOPMENT]
     /// </summary>
     public class CommandArgs : EventArgs
     {
@@ -20,7 +20,7 @@ namespace CGUI.CommandLine
         }
     }
     /// <summary>
-    /// The main class for the CGUI command line interface.
+    /// The main class for the CGUI command line interface. [IN DEVELOPMENT]
     /// </summary>
     public class CommandLine
     {
@@ -563,7 +563,7 @@ namespace CGUI.CommandLine
         internal int EndLine;
     }
     /// <summary>
-    /// Represents a command.
+    /// Represents a command. [IN DEVELOPMENT]
     /// </summary>
     public class Command
     {

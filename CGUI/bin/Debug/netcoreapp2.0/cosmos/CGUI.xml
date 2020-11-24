@@ -6,7 +6,7 @@
     <members>
         <member name="T:CGUI.CommandLine.CommandArgs">
             <summary>
-            Custom event class used for passing command info to the user.
+            Custom event class used for passing command info to the user. [IN DEVELOPMENT]
             </summary>
         </member>
         <member name="P:CGUI.CommandLine.CommandArgs.Arguments">
@@ -16,7 +16,7 @@
         </member>
         <member name="T:CGUI.CommandLine.CommandLine">
             <summary>
-            The main class for the CGUI command line interface.
+            The main class for the CGUI command line interface. [IN DEVELOPMENT]
             </summary>
         </member>
         <member name="P:CGUI.CommandLine.CommandLine.currentDirectory">
@@ -88,7 +88,7 @@
         </member>
         <member name="T:CGUI.CommandLine.Command">
             <summary>
-            Represents a command.
+            Represents a command. [IN DEVELOPMENT]
             </summary>
         </member>
         <member name="P:CGUI.CommandLine.Command.CommandText">
@@ -216,6 +216,14 @@
             Starts a new instance of the Label class.
             </summary>
             <param name="text">The label text in the default color (white).</param>
+            <param name="point">The point to place the label.</param>
+        </member>
+        <member name="M:CGUI.Label.#ctor(System.String,System.Drawing.Color,Cosmos.System.Graphics.Point)">
+            <summary>
+            Starts a new instance of the Label class.
+            </summary>
+            <param name="text">The label text in the default color (white).</param>
+            <param name="foreColor">The text color.</param>
             <param name="point">The point to place the label.</param>
         </member>
         <member name="M:CGUI.Label.Update(System.String)">
