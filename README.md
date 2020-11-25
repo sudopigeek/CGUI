@@ -6,7 +6,7 @@
 
 ### Check out the [wiki](https://github.com/sudopigeek/CGUI/wiki) for using and building CGUI!
 
-![SampleImage1](https://github.com/sudopigeek/CGUI/blob/main/png3.png?raw=true)
+![SampleImage1](http://github.ferrelltechnology.com/cgui/showcase1.png)
 
 #### SVGAII driver written by nifanfa in [Cosmos-GUI-Sample](https://github.com/nifanfa/Cosmos-GUI-Sample)
 
