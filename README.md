@@ -1,4 +1,4 @@
-![CGUI_Image](https://github.com/sudopigeek/CGUI/blob/main/cgui.jpg?raw=true)
+![CGUI_Image](http://github.ferrelltechnology.com/cgui/cgui.jpg)
 
 ### CGUI is a Cosmos-based library for graphical controls and visual I/O. 
 
