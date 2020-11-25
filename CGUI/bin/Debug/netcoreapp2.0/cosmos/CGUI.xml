@@ -357,6 +357,11 @@
             The background color when the button is not in focus.
             </summary>
         </member>
+        <member name="P:CGUI.Button.TriggerKey">
+            <summary>
+            The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.
+            </summary>
+        </member>
         <member name="P:CGUI.Button.TextColor">
             <summary>
             The text color.
@@ -372,6 +377,15 @@
             Starts a new instance of the Button class.
             </summary>
             <param name="text">The button text.</param>
+            <param name="x">The button's X coordinate.</param>
+            <param name="y">The button's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Button.#ctor(System.String,System.ConsoleKey,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Button class.
+            </summary>
+            <param name="text">The button text.</param>
+            <param name="triggerKey">The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.</param>
             <param name="x">The button's X coordinate.</param>
             <param name="y">The button's Y coordinate.</param>
         </member>

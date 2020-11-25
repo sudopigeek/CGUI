@@ -283,31 +283,31 @@ namespace CGUI
                     while (rkey)
                     {
                         ConsoleKeyInfo info = Console.ReadKey(true);
-                        switch (info.Key)
+                        if (info.Key == ConsoleKey.Tab)
                         {
-                            case ConsoleKey.Tab:
-                                //Move to next control (if one exists):
-                                if (tcount > index)
-                                {
-                                    Unfocus(first);
-                                    Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
-                                }
-                                else
-                                {
-                                    index = 0;
-                                    Unfocus(first);
-                                    Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
-                                }
-                                rkey = false;
-                                break;
-                            case ConsoleKey.Enter:
+                            //Move to next control (if one exists):
+                            if (tcount > index)
+                            {
+                                Unfocus(first);
+                                Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
+                            }
+                            else
+                            {
+                                index = 0;
+                                Unfocus(first);
+                                Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
+                            }
+                            rkey = false;
+                        }
+                        else
+                        {
+                            if (info.Key == first.TriggerKey)
+                            {
                                 if (first.OnEnter_Handler != null)
                                 {
                                     first.OnEnter_Handler.Invoke(first, new EventArgs());
                                 }
-                                break;
-                            default:
-                                break;
+                            }
                         }
                     }
                 }

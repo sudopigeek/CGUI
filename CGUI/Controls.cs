@@ -422,6 +422,10 @@ namespace CGUI
         /// </summary>
         public Color UnfocusBackColor { get; set; } = Color.LightGray;
         /// <summary>
+        /// The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.
+        /// </summary>
+        public ConsoleKey TriggerKey { get; set; } = ConsoleKey.Enter;
+        /// <summary>
         /// The text color.
         /// </summary>
         public Color TextColor { get; set; } = Color.Black;
@@ -442,6 +446,21 @@ namespace CGUI
             txt = text;
             X = x;
             Y = y;            
+        }
+        /// <summary>
+        /// Starts a new instance of the Button class.
+        /// </summary>
+        /// <param name="text">The button text.</param>
+        /// <param name="triggerKey">The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.</param>
+        /// <param name="x">The button's X coordinate.</param>
+        /// <param name="y">The button's Y coordinate.</param>
+        public Button(string text, ConsoleKey triggerKey, int x, int y)
+        {
+            controlType = ControlType.Button;
+            txt = text;
+            TriggerKey = triggerKey;
+            X = x;
+            Y = y;
         }
     }
 
