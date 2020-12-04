@@ -308,6 +308,22 @@ namespace CGUI
                                     first.OnEnter_Handler.Invoke(first, new EventArgs());
                                 }
                             }
+                            else
+                            {
+                                if (first.KeyPresses.Count > 0)
+                                {
+                                    KeyPress p = first.KeyPresses[0];
+                                    //Console.Beep();
+                                    if (p.OnPress_Handler != null)
+                                    {
+                                        // Invoke keypress method:
+                                        //index = first.KeyPresses.keys.IndexOf(info.Key);
+                                        //Console.Beep();
+                                        p.OnPress_Handler.Invoke(info.Key, new EventArgs());
+                                    }
+                                }
+                                
+                            }
                         }
                     }
                 }
@@ -526,7 +542,7 @@ namespace CGUI
 
                                         if (first.KeyPress != null)
                                         {
-                                            first.KeyPress.Invoke(info.KeyChar, new EventArgs());
+                                            first.KeyPress.Invoke("KEYPRESS", info);
                                         }
                                         first.txt.Append(info.KeyChar);
                                     }

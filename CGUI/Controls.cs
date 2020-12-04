@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using Cosmos.System.Graphics;
@@ -320,7 +321,7 @@ namespace CGUI
         internal int FocusOrder;
         internal int cLength;
         internal EventHandler Limit;
-        internal EventHandler KeyPress;
+        internal EventHandler<ConsoleKeyInfo> KeyPress;
         internal EventHandler Delete;
         /// <summary>
         /// Raised when a character is deleted from the textbox.
@@ -337,9 +338,9 @@ namespace CGUI
             }
         }
         /// <summary>
-        /// Raised when a character is entered into the textbox, and returns the character entered in the 'sender' object.
+        /// Raised when a character is entered into the textbox, and returns the ConsoleKeyInfo instance.
         /// </summary>
-        public event EventHandler OnKeyPress
+        public event EventHandler<ConsoleKeyInfo> OnKeyPress
         {
             add
             {
@@ -399,8 +400,9 @@ namespace CGUI
     public class Button : Control
     {
         internal EventHandler OnEnter_Handler;
+        public List<KeyPress> KeyPresses { get; set; }
         /// <summary>
-        /// Raised when the enter/return key is pressed.
+        /// Raised when the TriggerKey is pressed.
         /// </summary>
         public event EventHandler OnEnter
         {
@@ -443,6 +445,7 @@ namespace CGUI
         public Button(string text, int x, int y)
         {
             controlType = ControlType.Button;
+            KeyPresses = new List<KeyPress>();
             txt = text;
             X = x;
             Y = y;            
@@ -457,10 +460,86 @@ namespace CGUI
         public Button(string text, ConsoleKey triggerKey, int x, int y)
         {
             controlType = ControlType.Button;
+            KeyPresses = new List<KeyPress>();
             txt = text;
             TriggerKey = triggerKey;
             X = x;
             Y = y;
+        }
+    }
+
+    public class KeyPresses
+    {
+        internal List<ConsoleKey> keys;
+        internal List<KeyPress> presses;
+        //public KeyPress this[ConsoleKey key]
+        //{
+        //    get
+        //    {
+        //        if (keys.Contains(key))
+        //        {
+        //            return presses[keys.IndexOf(key)];
+        //        }
+        //        return null;
+        //    }
+        //    set
+        //    {
+        //        if (!keys.Contains(key))
+        //        {
+        //            RegisterKey(key);
+        //        }
+        //    }
+        //}
+        internal KeyPresses()
+        {
+            keys = new List<ConsoleKey>();
+            presses = new List<KeyPress>();
+        }
+        internal KeyPress GetKeyPress(ConsoleKey key)
+        {
+            foreach(ConsoleKey k in keys)
+            {
+                if (k == key)
+                {
+                    return presses[keys.IndexOf(k)];
+                }
+            }
+            return null;
+        }
+
+        public KeyPress RegisterKey(ConsoleKey key)
+        {
+            keys.Add(key);
+            KeyPress p = new KeyPress(key);
+            presses.Add(p);
+            return p;
+        }
+        public void RemoveKey(ConsoleKey key)
+        {
+            int index = keys.IndexOf(key);
+            keys.RemoveAt(index);
+            presses.RemoveAt(index);
+        }
+    }
+
+    public class KeyPress
+    {
+        internal EventHandler OnPress_Handler;
+        public ConsoleKey Key { get; }
+        public event EventHandler OnPress
+        {
+            add
+            {
+                OnPress_Handler = value;
+            }
+            remove
+            {
+                OnPress_Handler -= value;
+            }
+        }
+        public KeyPress(ConsoleKey key)
+        {
+            Key = key;
         }
     }
 

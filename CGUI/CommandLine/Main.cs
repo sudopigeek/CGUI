@@ -25,7 +25,7 @@ namespace CGUI.CommandLine
     public class CommandLine
     {
         /// <summary>
-        /// The current directory that is displayed at the prompt (e.g. 0:\>)
+        /// The current directory that is displayed at the prompt (default is 0:\>)
         /// </summary>
         public string currentDirectory { get; set; } = @"0:\";
         /// <summary>
@@ -151,29 +151,29 @@ namespace CGUI.CommandLine
                 LocX = (currentDirectory.Length + text.Length) * 8;
                 DrawCursor(LocX, LocY);
             }
-            else
-            {
-                //Erase cursor:
-                VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
-                VGADriver.driver.DoubleBuffer_Update();
-                string first = text.Substring(0, charLength - currentDirectory.Length - 1);
-                // Draw string:
-                VGADriver.driver._DrawACSIIString(first, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
-                VGADriver.driver.DoubleBuffer_Update();
-                string rest = text.Substring(charLength - currentDirectory.Length - 1);
-                //Save last coordinates:
-                LLocX = LocX + ((first.Length) * 8) - 8;
-                LLocY = LocY;
-                // Go to next line:
-                LocX = 0;
-                LocY += 14;
-                // Draw string:
-                VGADriver.driver._DrawACSIIString(rest, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
-                VGADriver.driver.DoubleBuffer_Update();
-                txt.Append(text);
-                LocX = (rest.Length) * 8;
-                DrawCursor(LocX, LocY);
-            }
+            //else
+            //{
+            //    //Erase cursor:
+            //    VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
+            //    VGADriver.driver.DoubleBuffer_Update();
+            //    string first = text.Substring(0, charLength - currentDirectory.Length - 1);
+            //    // Draw string:
+            //    VGADriver.driver._DrawACSIIString(first, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+            //    VGADriver.driver.DoubleBuffer_Update();
+            //    string rest = text.Substring(charLength - currentDirectory.Length - 1);
+            //    //Save last coordinates:
+            //    LLocX = LocX + ((first.Length) * 8) - 8;
+            //    LLocY = LocY;
+            //    // Go to next line:
+            //    LocX = 0;
+            //    LocY += 12;
+            //    // Draw string:
+            //    VGADriver.driver._DrawACSIIString(rest, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+            //    VGADriver.driver.DoubleBuffer_Update();
+            //    txt.Append(text);
+            //    LocX = (rest.Length) * 8;
+            //    DrawCursor(LocX, LocY);
+            //}
         }
         /// <summary>
         /// Writes the specified string and moves the cursor to the next line.
@@ -189,10 +189,12 @@ namespace CGUI.CommandLine
                 // Go to next line:
                 LocX = 0;
                 LocY += 12;
-                // Draw string:
-                VGADriver.driver._DrawACSIIString(text, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
-                VGADriver.driver.DoubleBuffer_Update();
                 txt.Append(text);
+                ScreenInput.Add(text);
+                EndLine += 1;
+                // Draw string:
+                VGADriver.driver._DrawACSIIString(EndLine.ToString() + ", " + charHeight.ToString() + ", " + ScreenInput.Count.ToString(), (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+                VGADriver.driver.DoubleBuffer_Update();        
                 // Go to next line:
                 //LocX = 0;
                 //LocY += 14;
@@ -200,37 +202,40 @@ namespace CGUI.CommandLine
                 PromptLocX = 0;
                 PromptLocY += 12;
             }
-            else
-            {
-                //Erase cursor:
-                VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
-                VGADriver.driver.DoubleBuffer_Update();
-                string first = text.Substring(0, charLength - 1);
-                // Go to next line:
-                LocX = 0;
-                LocY += 12;
-                // Draw string:
-                VGADriver.driver._DrawACSIIString(first, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
-                VGADriver.driver.DoubleBuffer_Update();
-                string rest = text.Substring(charLength - 1);
-                //Save last coordinates:
-                LLocX = LocX + ((first.Length) * 8) - 8;
-                LLocY = LocY;
-                // Go to next line:
-                LocX = 0;
-                LocY += 12;
-                // Draw string:
-                VGADriver.driver._DrawACSIIString(rest, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
-                VGADriver.driver.DoubleBuffer_Update();
-                txt.Append(text);
-                LocX = (rest.Length) * 8;
-                //// Go to next line:
-                //LocX = 0;
-                //LocY += 12;
-                PromptLocX = 0;
-                PromptLocY += 24;
+            //else
+            //{
+            //    //Erase cursor:
+            //    VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
+            //    VGADriver.driver.DoubleBuffer_Update();
+            //    string first = text.Substring(0, charLength - 1);
+            //    // Go to next line:
+            //    LocX = 0;
+            //    LocY += 12;
+            //    // Draw string:
+            //    VGADriver.driver._DrawACSIIString(first, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+            //    VGADriver.driver.DoubleBuffer_Update();
+            //    ScreenInput.Add(first);
+            //    string rest = text.Substring(charLength - 1);
+            //    //Save last coordinates:
+            //    LLocX = LocX + ((first.Length) * 8) - 8;
+            //    LLocY = LocY;
+            //    // Go to next line:
+            //    LocX = 0;
+            //    LocY += 12;
+            //    // Draw string:
+            //    VGADriver.driver._DrawACSIIString(rest, (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+            //    VGADriver.driver.DoubleBuffer_Update();
+            //    txt.Append(text);
+            //    ScreenInput.Add(rest);
+            //    LocX = (rest.Length) * 8;
+            //    EndLine += 2;
+            //    //// Go to next line:
+            //    //LocX = 0;
+            //    //LocY += 12;
+            //    PromptLocX = 0;
+            //    PromptLocY += 24;
 
-            }
+            //}
         }
 
         /// <summary>
@@ -347,30 +352,34 @@ namespace CGUI.CommandLine
                         VGADriver.driver.DoubleBuffer_Update();
                         if ((currentDirectory + ">" + txt.ToString()).Length % 79 == 0)
                         {
-                            //Draw character entered:
-                            VGADriver.driver._DrawACSIIString(info.KeyChar.ToString(), tColor, (uint)LocX, (uint)LocY);
-                            VGADriver.driver.DoubleBuffer_Update();
-                            //Save last coordinates:
-                            LLocX = LocX;
-                            LLocY = LocY;
-                            // Go to next line:
-                            LocX = 0;
-                            LocY += 14;
-                            //Draw cursor up one character:
-                            VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, tColor);
-                            VGADriver.driver.DoubleBuffer_Update();
+                            ////Draw character entered:
+                            //VGADriver.driver._DrawACSIIString(info.KeyChar.ToString(), tColor, (uint)LocX, (uint)LocY);
+                            //VGADriver.driver.DoubleBuffer_Update();
+                            ////Save last coordinates:
+                            //LLocX = LocX;
+                            //LLocY = LocY;
+                            //// Go to next line:
+                            //LocX = 0;
+                            //LocY += 12;
+                            ////Draw cursor up one character:
+                            //VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, tColor);
+                            //VGADriver.driver.DoubleBuffer_Update();
                         }
                         else
                         {
-                            LocX += 8;
-                            //Draw cursor up one character:
-                            VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, tColor);
-                            VGADriver.driver.DoubleBuffer_Update();
-                            //Draw character entered:
-                            VGADriver.driver._DrawACSIIString(info.KeyChar.ToString(), tColor, (uint)LocX - 8, (uint)LocY);
-                            VGADriver.driver.DoubleBuffer_Update();
-                        }                        
-                        
+                            if ((LocX + 8) <= charLength)
+                            {
+                                LocX += 8;
+                                //Draw cursor up one character:
+                                VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, tColor);
+                                VGADriver.driver.DoubleBuffer_Update();
+                                //Draw character entered:
+                                VGADriver.driver._DrawACSIIString(info.KeyChar.ToString(), tColor, (uint)LocX - 8, (uint)LocY);
+                                VGADriver.driver.DoubleBuffer_Update();
+                            }
+                            
+                        }
+
                         if (KeyPress_Handler != null)
                         {
                             KeyPress_Handler.Invoke(info.KeyChar, new EventArgs());
@@ -385,18 +394,18 @@ namespace CGUI.CommandLine
                                 {
                                     if (LocX == 0)
                                     {
-                                        // Erase last character:
-                                        VGADriver.driver._DrawACSIIString(txt[txt.Length - 1].ToString(), bColor, (uint)LLocX, (uint)LLocY);                                        
-                                        //Erase cursor:
-                                        VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
-                                        VGADriver.driver.DoubleBuffer_Update();
-                                        LocX = LLocX;
-                                        LocY = LLocY;
-                                        //LocX -= 8;
-                                        //Draw cursor one character back:
-                                        VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, tColor);
-                                        VGADriver.driver.DoubleBuffer_Update();
-                                        txt.Remove(txt.Length - 1, 1);
+                                        //// Erase last character:
+                                        //VGADriver.driver._DrawACSIIString(txt[txt.Length - 1].ToString(), bColor, (uint)LLocX, (uint)LLocY);                                        
+                                        ////Erase cursor:
+                                        //VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
+                                        //VGADriver.driver.DoubleBuffer_Update();
+                                        //LocX = LLocX;
+                                        //LocY = LLocY;
+                                        ////LocX -= 8;
+                                        ////Draw cursor one character back:
+                                        //VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, tColor);
+                                        //VGADriver.driver.DoubleBuffer_Update();
+                                        //txt.Remove(txt.Length - 1, 1);
                                     }
                                     else
                                     {
@@ -426,7 +435,8 @@ namespace CGUI.CommandLine
                                 }
                                 break;
                             case ConsoleKey.Enter:
-                                if (ScreenInput.Count % charHeight == 0 && LocY > 30)
+                                EndLine += 1;
+                                if (EndLine == (charHeight - 2))
                                 {
                                     Console.Beep();
                                     // move all lines up one:
@@ -499,26 +509,21 @@ namespace CGUI.CommandLine
         {
             VGADriver.driver.DoubleBuffer_Clear(bColor);
             VGADriver.driver.DoubleBuffer_Update();
-            if ((EndLine - charHeight) > -1)
+            for (int i = (ScreenInput.Count - 1) - EndLine; i < EndLine; i++)
             {
-                for (int i = (EndLine - charHeight); i < EndLine; i++)
-                {
-                    WriteLine(ScreenInput[i]);
-                }
-            }           
+                WriteLine(ScreenInput[i]);
+            }
+            SaveToMemory();
         }
         internal void SaveToMemory()
         {
-            SaveLineToMemory(currentDirectory + ">" + txt.ToString());
+            ScreenInput.Add(currentDirectory + ">" + txt.ToString());
             txt.Clear();
+            EndLine += 1;
             //Erase cursor:
             VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
             VGADriver.driver.DoubleBuffer_Update();
             Prompt();
-        }
-        internal void SaveLineToMemory(string line)
-        {
-            ScreenInput.Add(line);
         }
         internal void Prompt()
         {

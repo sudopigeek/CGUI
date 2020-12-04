@@ -21,7 +21,7 @@
         </member>
         <member name="P:CGUI.CommandLine.CommandLine.currentDirectory">
             <summary>
-            The current directory that is displayed at the prompt (e.g. 0:\>)
+            The current directory that is displayed at the prompt (default is 0:\>)
             </summary>
         </member>
         <member name="P:CGUI.CommandLine.CommandLine.Text">
@@ -312,7 +312,7 @@
         </member>
         <member name="E:CGUI.TextBox.OnKeyPress">
             <summary>
-            Raised when a character is entered into the textbox, and returns the character entered in the 'sender' object.
+            Raised when a character is entered into the textbox, and returns the ConsoleKeyInfo instance.
             </summary>
         </member>
         <member name="E:CGUI.TextBox.OnLimit">
@@ -344,7 +344,7 @@
         </member>
         <member name="E:CGUI.Button.OnEnter">
             <summary>
-            Raised when the enter/return key is pressed.
+            Raised when the TriggerKey is pressed.
             </summary>
         </member>
         <member name="P:CGUI.Button.UnfocusTextColor">
