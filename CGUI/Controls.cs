@@ -321,7 +321,7 @@ namespace CGUI
         internal int FocusOrder;
         internal int cLength;
         internal EventHandler Limit;
-        internal EventHandler<ConsoleKeyInfo> KeyPress;
+        internal EventHandler<System.ConsoleKeyInfo> KeyPress;
         internal EventHandler Delete;
         /// <summary>
         /// Raised when a character is deleted from the textbox.
@@ -340,7 +340,7 @@ namespace CGUI
         /// <summary>
         /// Raised when a character is entered into the textbox, and returns the ConsoleKeyInfo instance.
         /// </summary>
-        public event EventHandler<ConsoleKeyInfo> OnKeyPress
+        public event EventHandler<System.ConsoleKeyInfo> OnKeyPress
         {
             add
             {
@@ -400,6 +400,9 @@ namespace CGUI
     public class Button : Control
     {
         internal EventHandler OnEnter_Handler;
+        /// <summary>
+        /// The list of KeyPress instances representing extra/custom keys to listen for when the button has focus.
+        /// </summary>
         public List<KeyPress> KeyPresses { get; set; }
         /// <summary>
         /// Raised when the TriggerKey is pressed.
@@ -467,66 +470,20 @@ namespace CGUI
             Y = y;
         }
     }
-
-    public class KeyPresses
-    {
-        internal List<ConsoleKey> keys;
-        internal List<KeyPress> presses;
-        //public KeyPress this[ConsoleKey key]
-        //{
-        //    get
-        //    {
-        //        if (keys.Contains(key))
-        //        {
-        //            return presses[keys.IndexOf(key)];
-        //        }
-        //        return null;
-        //    }
-        //    set
-        //    {
-        //        if (!keys.Contains(key))
-        //        {
-        //            RegisterKey(key);
-        //        }
-        //    }
-        //}
-        internal KeyPresses()
-        {
-            keys = new List<ConsoleKey>();
-            presses = new List<KeyPress>();
-        }
-        internal KeyPress GetKeyPress(ConsoleKey key)
-        {
-            foreach(ConsoleKey k in keys)
-            {
-                if (k == key)
-                {
-                    return presses[keys.IndexOf(k)];
-                }
-            }
-            return null;
-        }
-
-        public KeyPress RegisterKey(ConsoleKey key)
-        {
-            keys.Add(key);
-            KeyPress p = new KeyPress(key);
-            presses.Add(p);
-            return p;
-        }
-        public void RemoveKey(ConsoleKey key)
-        {
-            int index = keys.IndexOf(key);
-            keys.RemoveAt(index);
-            presses.RemoveAt(index);
-        }
-    }
-
+    /// <summary>
+    /// Represents a keypress.
+    /// </summary>
     public class KeyPress
     {
-        internal EventHandler OnPress_Handler;
-        public ConsoleKey Key { get; }
-        public event EventHandler OnPress
+        internal EventHandler<ConsoleKeyInfo> OnPress_Handler;
+        /// <summary>
+        /// The ConsoleKeyInfo instance representing the key with its modifiers, if any.
+        /// </summary>
+        public ConsoleKeyInfo ConsoleKeyInfo { get; }
+        /// <summary>
+        /// Raised when the key and any modifiers associated with it is pressed.
+        /// </summary>
+        public event EventHandler<ConsoleKeyInfo> OnPress
         {
             add
             {
@@ -537,9 +494,96 @@ namespace CGUI
                 OnPress_Handler -= value;
             }
         }
+        /// <summary>
+        /// Starts a new instance of the KeyPress class using the specified key and modifiers.
+        /// </summary>
+        /// <param name="key">The ConsoleKey to use.</param>
+        /// <param name="modifiers">The key's modifiers.</param>
+        public KeyPress(ConsoleKey key, ConsoleModifiers modifiers)
+        {
+            ConsoleKeyInfo = new ConsoleKeyInfo(key, modifiers);
+        }
+        /// <summary>
+        /// Starts a new instance of the KeyPress class using the specified key.
+        /// </summary>
+        /// <param name="key">The ConsoleKey to use.</param>
         public KeyPress(ConsoleKey key)
         {
+            ConsoleKeyInfo = new ConsoleKeyInfo(key);
+        }
+    }
+    /// <summary>
+    /// Represents info about a key and its modifiers.
+    /// </summary>
+    public class ConsoleKeyInfo
+    {
+        /// <summary>
+        /// The ConsoleKey represented in this instance.
+        /// </summary>
+        public ConsoleKey Key { get; }
+        /// <summary>
+        /// The key's modifiers, if any. If there is none, this equals zero.
+        /// </summary>
+        public ConsoleModifiers Modifiers { get; }
+        /// <summary>
+        /// The character represented by the ConsoleKey. If the ConsoleKey is longer than one character, then this is null and KeyString is used.
+        /// </summary>
+        public char ?KeyChar { get; }
+        /// <summary>
+        /// The string represented by the ConsoleKey. If the ConsoleKey is only one character long, then both KeyString and KeyChar are used.
+        /// </summary>
+        public string KeyString { get; }
+        /// <summary>
+        /// Starts a new instance of the ConsoleKeyInfo class using the specified key and modifiers.
+        /// </summary>
+        /// <param name="key">The ConsoleKey to use.</param>
+        /// <param name="modifiers">The modifiers to use.</param>
+        public ConsoleKeyInfo(ConsoleKey key, ConsoleModifiers modifiers)
+        {
             Key = key;
+            Modifiers = modifiers;
+            string value = Extensions.ConvertToString(key);
+            if (value.Length > 1)
+            {
+                // use KeyString only:
+                KeyChar = null;
+                KeyString = value;
+            }
+            else
+            {
+                // use both:
+                KeyChar = Convert.ToChar(value);
+                KeyString = value;
+            }
+        }
+        /// <summary>
+        /// Starts a new instance of the ConsolekeyInfo class using the specified key.
+        /// </summary>
+        /// <param name="key">The ConsoleKey to use.</param>
+        public ConsoleKeyInfo(ConsoleKey key)
+        {
+            Key = key;
+            Modifiers = 0;
+            string value = Extensions.ConvertToString(key);
+            if (value.Length > 1)
+            {
+                // use KeyString only:
+                KeyChar = null;
+                KeyString = value;
+            }
+            else
+            {
+                // use both:
+                KeyChar = Convert.ToChar(value);
+                KeyString = value;
+            }
+        }
+        internal ConsoleKeyInfo(System.ConsoleKeyInfo info)
+        {
+            Key = info.Key;
+            Modifiers = info.Modifiers;
+            KeyChar = info.KeyChar;
+            KeyString = Extensions.ConvertToString(info.Key);
         }
     }
 

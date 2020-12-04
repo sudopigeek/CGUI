@@ -177,39 +177,9 @@ namespace CGUI
             driver.DoubleBuffer_Update();
             foreach (Control c in invalidControls)
             {
-                switch (c.controlType)
-                {
-                    case ControlType.Button:
-                        driver._DrawACSIIString("Button at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
-                        driver.DoubleBuffer_Update();
-                        y += 12;
-                        break;
-                    case ControlType.Label:
-                        driver._DrawACSIIString("Label at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
-                        driver.DoubleBuffer_Update();
-                        y += 12;
-                        break;
-                    case ControlType.Line:
-                        driver._DrawACSIIString("Line at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
-                        driver.DoubleBuffer_Update();
-                        y += 12;
-                        break;
-                    case ControlType.Picture:
-                        driver._DrawACSIIString("Picture at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
-                        driver.DoubleBuffer_Update();
-                        y += 12;
-                        break;
-                    case ControlType.Rectangle:
-                        driver._DrawACSIIString("Rectangle at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
-                        driver.DoubleBuffer_Update();
-                        y += 12;
-                        break;
-                    case ControlType.TextBox:
-                        driver._DrawACSIIString("TextBox at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
-                        driver.DoubleBuffer_Update();
-                        y += 12;
-                        break;
-                }
+                driver._DrawACSIIString(Extensions.ConvertToString(c.controlType) + " at X=" + c.X + ", Y=" + c.Y, (uint)Color.White.ToArgb(), 10, y);
+                driver.DoubleBuffer_Update();
+                y += 12;
             }
             bool wait = true;
             while (wait)
@@ -282,7 +252,7 @@ namespace CGUI
                     bool rkey = true;
                     while (rkey)
                     {
-                        ConsoleKeyInfo info = Console.ReadKey(true);
+                        System.ConsoleKeyInfo info = Console.ReadKey(true);
                         if (info.Key == ConsoleKey.Tab)
                         {
                             //Move to next control (if one exists):
@@ -312,17 +282,15 @@ namespace CGUI
                             {
                                 if (first.KeyPresses.Count > 0)
                                 {
-                                    KeyPress p = first.KeyPresses[0];
-                                    //Console.Beep();
-                                    if (p.OnPress_Handler != null)
+                                    KeyPress p = GetKeyPress(first.KeyPresses, info.Key, info.Modifiers);
+                                    if (p != null)
                                     {
-                                        // Invoke keypress method:
-                                        //index = first.KeyPresses.keys.IndexOf(info.Key);
-                                        //Console.Beep();
-                                        p.OnPress_Handler.Invoke(info.Key, new EventArgs());
-                                    }
-                                }
-                                
+                                        if (p.OnPress_Handler != null)
+                                        {
+                                            p.OnPress_Handler.Invoke(Extensions.ConvertToString(info.Key), new ConsoleKeyInfo(info));
+                                        }
+                                    }   
+                                }                               
                             }
                         }
                     }
@@ -356,7 +324,7 @@ namespace CGUI
                     bool rkey = true;
                     while (rkey)
                     {
-                        ConsoleKeyInfo info = Console.ReadKey(true);
+                        System.ConsoleKeyInfo info = Console.ReadKey(true);
                         switch (info.KeyChar)
                         {
                             #region Letters&Numbers
@@ -663,13 +631,24 @@ namespace CGUI
                 }
             }
         }
+        internal static KeyPress GetKeyPress(List<KeyPress> list, ConsoleKey key, ConsoleModifiers modifiers)
+        {
+            foreach (KeyPress p in list)
+            {
+                if (p.ConsoleKeyInfo.Key == key && p.ConsoleKeyInfo.Modifiers == modifiers)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Updates the screen.
         /// </summary>
         public void UpdateScreen()
         {
-            driver.DoubleBuffer_Clear((uint)Color.Black.ToArgb());
+            driver.DoubleBuffer_Clear((uint)currentScreen.backColor.ToArgb());
             RenderScreen(currentScreen);
         }
         /// <summary>

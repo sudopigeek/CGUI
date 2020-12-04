@@ -247,7 +247,7 @@ namespace CGUI.CommandLine
             bool rkey = true;
             while (rkey)
             {
-                ConsoleKeyInfo info = Console.ReadKey(true);
+                System.ConsoleKeyInfo info = Console.ReadKey(true);
                 switch (info.KeyChar)
                 {
                     #region Letters&Numbers

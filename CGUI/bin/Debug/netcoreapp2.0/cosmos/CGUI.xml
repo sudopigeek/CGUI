@@ -342,6 +342,11 @@
             The Button control.
             </summary>
         </member>
+        <member name="P:CGUI.Button.KeyPresses">
+            <summary>
+            The list of KeyPress instances representing extra/custom keys to listen for when the button has focus.
+            </summary>
+        </member>
         <member name="E:CGUI.Button.OnEnter">
             <summary>
             Raised when the TriggerKey is pressed.
@@ -388,6 +393,72 @@
             <param name="triggerKey">The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.</param>
             <param name="x">The button's X coordinate.</param>
             <param name="y">The button's Y coordinate.</param>
+        </member>
+        <member name="T:CGUI.KeyPress">
+            <summary>
+            Represents a keypress.
+            </summary>
+        </member>
+        <member name="P:CGUI.KeyPress.ConsoleKeyInfo">
+            <summary>
+            The ConsoleKeyInfo instance representing the key with its modifiers, if any.
+            </summary>
+        </member>
+        <member name="E:CGUI.KeyPress.OnPress">
+            <summary>
+            Raised when the key and any modifiers associated with it is pressed.
+            </summary>
+        </member>
+        <member name="M:CGUI.KeyPress.#ctor(System.ConsoleKey,System.ConsoleModifiers)">
+            <summary>
+            Starts a new instance of the KeyPress class using the specified key and modifiers.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+            <param name="modifiers">The key's modifiers.</param>
+        </member>
+        <member name="M:CGUI.KeyPress.#ctor(System.ConsoleKey)">
+            <summary>
+            Starts a new instance of the KeyPress class using the specified key.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+        </member>
+        <member name="T:CGUI.ConsoleKeyInfo">
+            <summary>
+            Represents info about a key and its modifiers.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.Key">
+            <summary>
+            The ConsoleKey represented in this instance.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.Modifiers">
+            <summary>
+            The key's modifiers, if any. If there is none, this equals zero.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.KeyChar">
+            <summary>
+            The character represented by the ConsoleKey. If the ConsoleKey is longer than one character, then this is null and KeyString is used.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.KeyString">
+            <summary>
+            The string represented by the ConsoleKey. If the ConsoleKey is only one character long, then both KeyString and KeyChar are used.
+            </summary>
+        </member>
+        <member name="M:CGUI.ConsoleKeyInfo.#ctor(System.ConsoleKey,System.ConsoleModifiers)">
+            <summary>
+            Starts a new instance of the ConsoleKeyInfo class using the specified key and modifiers.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+            <param name="modifiers">The modifiers to use.</param>
+        </member>
+        <member name="M:CGUI.ConsoleKeyInfo.#ctor(System.ConsoleKey)">
+            <summary>
+            Starts a new instance of the ConsolekeyInfo class using the specified key.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
         </member>
         <member name="T:CGUI.Status">
             <summary>
@@ -1103,6 +1174,25 @@
             <summary>
             Create new inctanse of the VMWareSVGAII class.
             </summary>
+        </member>
+        <member name="T:CGUI.Extensions">
+            <summary>
+            CGUI Extension class.
+            </summary>
+        </member>
+        <member name="M:CGUI.Extensions.ConvertToString(System.ConsoleKey)">
+            <summary>
+            Converts a ConsoleKey instance value into a string.
+            </summary>
+            <param name="key">The ConsoleKey instance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.Extensions.ConvertToString(CGUI.ControlType)">
+            <summary>
+            Converts a ControlType instance value into a string.
+            </summary>
+            <param name="cType">The ControlType instance.</param>
+            <returns></returns>
         </member>
         <member name="T:CGUI.VGADriver">
             <summary>
