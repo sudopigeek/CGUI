@@ -204,6 +204,11 @@
             The TextBox control.
             </summary>
         </member>
+        <member name="P:CGUI.TextBox.KeyPresses">
+            <summary>
+            The list of KeyPress instances representing extra/custom keys to listen for when the textbox has focus.
+            </summary>
+        </member>
         <member name="P:CGUI.TextBox.UnfocusForeColor">
             <summary>
             The foreground color of the textbox when it is not in focus.

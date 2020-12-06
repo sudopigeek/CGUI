@@ -425,6 +425,21 @@ namespace CGUI
                             case '~':
                             case '`':
                                 #endregion
+                                if (info.Key != ConsoleKey.Tab)
+                                {
+                                    if (first.KeyPresses.Count > 0)
+                                    {
+                                        KeyPress p = GetKeyPress(first.KeyPresses, info.Key, info.Modifiers);
+                                        if (p != null)
+                                        {
+                                            if (p.OnPress_Handler != null)
+                                            {
+                                                p.OnPress_Handler.Invoke(Extensions.ConvertToString(info.Key), new ConsoleKeyInfo(info));
+                                            }
+                                        }
+                                    }
+                                }
+
                                 if (first.txt.Length < first.cLength)
                                 {
                                     if (first.Filter != "")

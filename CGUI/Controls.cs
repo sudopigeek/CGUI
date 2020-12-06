@@ -178,6 +178,10 @@ namespace CGUI
     public class TextBox : Control
     {
         /// <summary>
+        /// The list of KeyPress instances representing extra/custom keys to listen for when the textbox has focus.
+        /// </summary>
+        public List<KeyPress> KeyPresses { get; set; }
+        /// <summary>
         /// The foreground color of the textbox when it is not in focus.
         /// </summary>
         public Color UnfocusForeColor { get; set; } = Color.White;
@@ -273,6 +277,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, int x, int y)
         {
             controlType = ControlType.TextBox;
+            KeyPresses = new List<KeyPress>();
             cLength = charLength;
             this.ForeColor = foreColor;
             X = x;
@@ -287,6 +292,7 @@ namespace CGUI
         public TextBox(int charLength, int x, int y)
         {
             controlType = ControlType.TextBox;
+            KeyPresses = new List<KeyPress>();
             cLength = charLength;
             X = x;
             Y = y;
