@@ -297,6 +297,16 @@ namespace CGUI
             X = x;
             Y = y;
         }
+        /// <summary>
+        /// Sets focus to the textbox.
+        /// </summary>
+        public void Focus()
+        {
+            if (VGADriver.driver != null)
+            {
+                VGADriver.FocusControl(this);
+            }
+        }
     }
     /// <summary>
     /// The Button control.
@@ -372,6 +382,16 @@ namespace CGUI
             TriggerKey = triggerKey;
             X = x;
             Y = y;
+        }
+        /// <summary>
+        /// Sets focus to the button.
+        /// </summary>
+        public void Focus()
+        {
+            if (VGADriver.driver != null)
+            {
+                VGADriver.FocusControl(this);
+            }
         }
     }
     /// <summary>

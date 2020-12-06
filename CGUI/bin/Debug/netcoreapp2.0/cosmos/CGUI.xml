@@ -281,6 +281,11 @@
             <param name="x">The textbox's X coordinate.</param>
             <param name="y">The textbox's Y coordinate.</param>
         </member>
+        <member name="M:CGUI.TextBox.Focus">
+            <summary>
+            Sets focus to the textbox.
+            </summary>
+        </member>
         <member name="T:CGUI.Button">
             <summary>
             The Button control.
@@ -337,6 +342,11 @@
             <param name="triggerKey">The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.</param>
             <param name="x">The button's X coordinate.</param>
             <param name="y">The button's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Button.Focus">
+            <summary>
+            Sets focus to the button.
+            </summary>
         </member>
         <member name="T:CGUI.KeyPress">
             <summary>

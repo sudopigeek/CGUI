@@ -12,7 +12,8 @@ namespace CGUI
     public class VGADriver
     {
         internal static DoubleBufferedVMWareSVGAII driver;
-        private Screen currentScreen;
+        internal static Screen currentScreen;
+        internal static Control currentControl;
         /// <summary>
         /// Starts a new instance of the VGADriver class using the default screen size (640x480).
         /// </summary>
@@ -70,6 +71,7 @@ namespace CGUI
                 }
             }
             currentScreen = screen;
+            currentControl = null;
             tabControls.Clear();
             tcount = 0;
             index = 0;
@@ -143,16 +145,7 @@ namespace CGUI
                 if (f > -1)
                 {
                     Control c = screen.Controls[f];
-                    if (c.controlType == ControlType.Button)
-                    {
-                        Button first = (Button)c;
-                        Focus(tabControls, first.X + 1, first.Y, tcount);
-                    }
-                    else if (c.controlType == ControlType.TextBox)
-                    {
-                        TextBox first = (TextBox)c;
-                        Focus(tabControls, first.X + 1, first.Y, tcount);
-                    }
+                    Focus(tabControls, c, c.X + 1, c.Y, tcount);
                 }   
             }
             else
@@ -240,14 +233,20 @@ namespace CGUI
             driver._DrawACSIIString(button.txt, (uint)button.UnfocusTextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
             driver.DoubleBuffer_Update();
         }
-        internal static void Focus(List<Control> tControls, int x, int y, int tcount)
+        internal static void Focus(List<Control> tControls, Control control, int x, int y, int tcount)
         {
             if (tcount >= 1)
             {
-                Control frst = tControls[index];
+                Control frst;
+                if (control == null)
+                    frst = tControls[index];
+                else
+                    frst = control;
+                
                 if (frst.controlType == ControlType.Button)
                 {
                     Button first = (Button)frst;
+                    currentControl = first;
                     Focus(first);
                     index++;
                     bool rkey = true;
@@ -260,13 +259,13 @@ namespace CGUI
                             if (tcount > index)
                             {
                                 Unfocus(first);
-                                Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
+                                Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
                             }
                             else
                             {
                                 index = 0;
                                 Unfocus(first);
-                                Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
+                                Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
                             }
                             rkey = false;
                         }
@@ -299,6 +298,7 @@ namespace CGUI
                 else if (frst.controlType == ControlType.TextBox)
                 {
                     TextBox first = (TextBox)frst;
+                    currentControl = first;
                     Focus(first);
                     index++;
                     if (first.txt.ToString() == "")
@@ -615,7 +615,7 @@ namespace CGUI
                                             }
                                             //Loop back through:
                                             Unfocus(first);
-                                            Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
+                                            Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
                                         }
                                         else
                                         {
@@ -635,7 +635,7 @@ namespace CGUI
                                             //Move back to the first one:
                                             index = 0;
                                             Unfocus(first);
-                                            Focus(tControls, tControls[index].X + 1, tControls[index].Y, tcount);
+                                            Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
                                         }
                                         break;
                                     default:
@@ -658,6 +658,51 @@ namespace CGUI
             }
             return null;
         }
+        internal static void FocusControl(TextBox tbox)
+        {
+            // unfocus current control:
+            if (currentControl.controlType == ControlType.Button)
+            {
+                Unfocus((Button)currentControl);
+            }
+            else if (currentControl.controlType == ControlType.TextBox)
+            {
+                int x = tbox.X + 1 + (tbox.txt.Length * 8);
+                //Erase cursor:
+                if (tbox.txt.Length == tbox.cLength)
+                {
+                    //Erase vertical cursor:
+                    driver.DoubleBuffer_DrawFillRectangle((uint)x + 1, (uint)tbox.Y, 2, 15, (uint)tbox.BackColor.ToArgb());
+                    driver.DoubleBuffer_Update();
+                }
+                else
+                {
+                    //Erase cursor:     
+                    driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)tbox.Y + 13, 8, 2, (uint)tbox.BackColor.ToArgb());
+                    driver.DoubleBuffer_Update();
+                }
+                Unfocus((TextBox)currentControl);
+            }
+
+            // focus specified control:
+            //index = GetIndex(currentScreen, tbox);
+            Focus(tabControls, tbox, tbox.X + 1, tbox.Y, tcount);
+        }
+        internal static void FocusControl(Button btn)
+        {
+            // unfocus current control:
+            if (currentControl.controlType == ControlType.Button)
+            {
+                Unfocus((Button)currentControl);
+            }
+            else if (currentControl.controlType == ControlType.TextBox) 
+            {
+                Unfocus((TextBox)currentControl);
+            }
+
+            // focus specified control:
+            Focus(tabControls, btn, btn.X + 1, btn.Y, tcount);
+        }
 
         /// <summary>
         /// Updates the screen.
@@ -673,6 +718,7 @@ namespace CGUI
         public void ClearScreen()
         {
             currentScreen = null;
+            currentControl = null;
             driver.DoubleBuffer_Clear((uint)Color.Black.ToArgb());
             driver.DoubleBuffer_Update();
         }
@@ -683,6 +729,7 @@ namespace CGUI
         public void ClearScreen(Color color)
         {
             currentScreen = null;
+            currentControl = null;
             driver.DoubleBuffer_Clear((uint)color.ToArgb());
             driver.DoubleBuffer_Update();
         }
