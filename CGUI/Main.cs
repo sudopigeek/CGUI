@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using CGUI.Shapes;
 
 namespace CGUI
 {
@@ -102,7 +103,7 @@ namespace CGUI
                 }
                 else if (screen.Controls[i].controlType == ControlType.Rectangle)
                 {
-                    Rectangle rectangle = ((Rectangle)screen.Controls[i]);
+                    CGUI.Shapes.Rectangle rectangle = ((CGUI.Shapes.Rectangle)screen.Controls[i]);
                     if (rectangle.Fill)
                     {
                         driver.DoubleBuffer_DrawFillRectangle((uint)rectangle.X, (uint)rectangle.Y, (uint)rectangle.Width, (uint)rectangle.Height, (uint)rectangle.Color.ToArgb());

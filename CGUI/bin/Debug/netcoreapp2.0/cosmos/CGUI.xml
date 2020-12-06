@@ -118,67 +118,6 @@
             <param name="command">The actual command (e.g. cd)</param>
             <param name="about">The string that summarizes/describes the command.</param>
         </member>
-        <member name="T:CGUI.Line">
-            <summary>
-            The Line control.
-            </summary>
-        </member>
-        <member name="P:CGUI.Line.Color">
-            <summary>
-            The line's color.
-            </summary>
-        </member>
-        <member name="M:CGUI.Line.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Starts a new instance of the Line class.
-            </summary>
-            <param name="color">The color of the line.</param>
-            <param name="startx">The start X coordinate.</param>
-            <param name="starty">The start Y coordinate.</param>
-            <param name="endx">The ending X coordinate.</param>
-            <param name="endy">The ending Y coordinate.</param>
-        </member>
-        <member name="M:CGUI.Line.Update">
-            <summary>
-            Updates the line.
-            </summary>
-        </member>
-        <member name="T:CGUI.Rectangle">
-            <summary>
-            The Rectangle control.
-            </summary>
-        </member>
-        <member name="P:CGUI.Rectangle.Color">
-            <summary>
-            The rectangle's color.
-            </summary>
-        </member>
-        <member name="M:CGUI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
-            <summary>
-            Starts a new instance of the Rectangle class, representing a filled rectangle.
-            </summary>
-            <param name="x">The rectangle's X coordinate.</param>
-            <param name="y">The rectangle's Y coordinate.</param>
-            <param name="width">The rectangle's width.</param>
-            <param name="height">The rectangle's height.</param>
-            <param name="color">The rectangle's color.</param>
-        </member>
-        <member name="M:CGUI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean)">
-            <summary>
-            Starts a new instance of the Rectangle class, representing a filled or empty rectangle.
-            </summary>
-            <param name="x">The rectangle's X coordinate.</param>
-            <param name="y">The rectangle's Y coordinate.</param>
-            <param name="width">The rectangle's width.</param>
-            <param name="height">The rectangle's height.</param>
-            <param name="color">The rectangle's color.</param>
-            <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
-        </member>
-        <member name="M:CGUI.Rectangle.Update">
-            <summary>
-            Updates the rectangle.
-            </summary>
-        </member>
         <member name="T:CGUI.Label">
             <summary>
             The Label control.
@@ -1331,6 +1270,67 @@
         <member name="T:CGUI.Control">
             <summary>
             Internal base class for CGUI controls.
+            </summary>
+        </member>
+        <member name="T:CGUI.Shapes.Line">
+            <summary>
+            The Line control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Shapes.Line.Color">
+            <summary>
+            The line's color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Shapes.Line.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Line class.
+            </summary>
+            <param name="color">The color of the line.</param>
+            <param name="startx">The start X coordinate.</param>
+            <param name="starty">The start Y coordinate.</param>
+            <param name="endx">The ending X coordinate.</param>
+            <param name="endy">The ending Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Shapes.Line.Update">
+            <summary>
+            Updates the line.
+            </summary>
+        </member>
+        <member name="T:CGUI.Shapes.Rectangle">
+            <summary>
+            The Rectangle control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Shapes.Rectangle.Color">
+            <summary>
+            The rectangle's color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Shapes.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
+            <summary>
+            Starts a new instance of the Rectangle class, representing a filled rectangle.
+            </summary>
+            <param name="x">The rectangle's X coordinate.</param>
+            <param name="y">The rectangle's Y coordinate.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="color">The rectangle's color.</param>
+        </member>
+        <member name="M:CGUI.Shapes.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean)">
+            <summary>
+            Starts a new instance of the Rectangle class, representing a filled or empty rectangle.
+            </summary>
+            <param name="x">The rectangle's X coordinate.</param>
+            <param name="y">The rectangle's Y coordinate.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="color">The rectangle's color.</param>
+            <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
+        </member>
+        <member name="M:CGUI.Shapes.Rectangle.Update">
+            <summary>
+            Updates the rectangle.
             </summary>
         </member>
     </members>
