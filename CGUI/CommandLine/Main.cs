@@ -435,12 +435,46 @@ namespace CGUI.CommandLine
                                 }
                                 break;
                             case ConsoleKey.Enter:
-                                EndLine += 1;
-                                if (EndLine == (charHeight - 2))
+                                //EndLine += 1;
+                                if (Internal.screenHeight <= (PromptLocY + 12))
                                 {
-                                    Console.Beep();
-                                    // move all lines up one:
-                                    ScrollDown();
+                                    //Erase cursor:
+                                    VGADriver.driver.DoubleBuffer_DrawFillRectangle((uint)LocX, (uint)LocY + 13, 8, 2, bColor);
+                                    VGADriver.driver.DoubleBuffer_Update();
+                                    // Go to next line:
+                                    LocX = 0;
+                                    LocY += 12;
+                                    EndLine += 1;
+                                    // Draw string:
+                                    //VGADriver.driver._DrawACSIIString(EndLine.ToString() + ", " + charHeight.ToString() + ", " + ScreenInput.Count.ToString(), (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+                                    //VGADriver.driver.DoubleBuffer_Update();
+                                    // Go to next line:
+                                    //LocX = 0;
+                                    //LocY += 14;
+                                    //DrawCursor(LocX, LocY);
+                                    PromptLocX = 0;
+                                    PromptLocY += 12;
+
+                                    VGADriver.driver.DoubleBuffer_Clear(bColor);
+                                    VGADriver.driver.DoubleBuffer_Update();
+                                    int range;
+                                    if ((ScreenInput.Count - charHeight) <= -1)
+                                    {
+                                        range = ScreenInput.Count;
+                                    }
+                                    else
+                                    {
+                                        range = ScreenInput.Count - charHeight;
+                                    }
+
+                                    for (int i = 0; i < range; i++)
+                                    {
+                                        VGADriver.driver._DrawACSIIString(ScreenInput[i], (uint)Color.White.ToArgb(), (uint)LocX, (uint)LocY);
+                                        VGADriver.driver.DoubleBuffer_Update();
+                                        LocY += 12;
+                                    }
+
+                                    PromptLocY = (uint)charHeight - 12;
                                 }
 
                                 if (txt.Length > 0)
@@ -509,7 +543,7 @@ namespace CGUI.CommandLine
         {
             VGADriver.driver.DoubleBuffer_Clear(bColor);
             VGADriver.driver.DoubleBuffer_Update();
-            for (int i = (ScreenInput.Count - 1) - EndLine; i < EndLine; i++)
+            for (int i = (ScreenInput.Count - 1) - charHeight; i < ScreenInput.Count; i++)
             {
                 WriteLine(ScreenInput[i]);
             }
@@ -559,13 +593,11 @@ namespace CGUI.CommandLine
         internal EventHandler KeyPress_Handler;
         internal int charLength;
         internal int charHeight;
-        internal uint PromptLocX;
-        internal uint PromptLocY;
-        internal int LocX;
+        internal uint PromptLocX = 0;
+        internal uint PromptLocY = 0;
+        internal int LocX = 0;
         internal int LocY = -12;
-        internal int LLocX;
-        internal int LLocY;
-        internal int EndLine;
+        internal int EndLine = 0;
     }
     /// <summary>
     /// Represents a command. [IN DEVELOPMENT]
