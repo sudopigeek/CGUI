@@ -487,7 +487,7 @@ namespace CGUI
                                             driver.DoubleBuffer_Update();
                                             if (first.KeyPress != null)
                                             {
-                                                first.KeyPress.Invoke("KEYPRESS", info);
+                                                first.KeyPress.Invoke(first, info);
                                             }
                                             pointer++;
                                         }
@@ -544,7 +544,7 @@ namespace CGUI
                                         
                                         if (first.KeyPress != null)
                                         {
-                                            first.KeyPress.Invoke("KEYPRESS", info);
+                                            first.KeyPress.Invoke(first, info);
                                         }
                                         pointer++;
                                     }                                   
@@ -674,6 +674,62 @@ namespace CGUI
                                             }
                                         }
                                         break;
+                                    case ConsoleKey.Delete:
+                                        if (pointer < first.txt.Length)
+                                        {
+                                            // Get current text:
+                                            string prevText = "";
+                                            if (first.Mask != '~')
+                                            {
+                                                for (int i2 = 0; i2 < first.txt.Length; i2++)
+                                                {
+                                                    prevText += first.Mask;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                prevText = first.txt.ToString();
+                                            }
+                                            // Remove character from internal string:
+                                            first.txt = first.txt.Remove(pointer, 1);
+                                            // Clear text in textbox:
+                                            driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                            driver.DoubleBuffer_Update();
+                                            // Draw new string:
+                                            if (first.Mask != '~')
+                                            {
+                                                uint i = (uint)first.X + 1;
+                                                for (int i2 = 0; i2 < first.txt.Length; i2++)
+                                                {
+                                                    driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), i, (uint)first.Y);
+                                                    driver.DoubleBuffer_Update();
+                                                    i += 8;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                                driver.DoubleBuffer_Update();
+                                            }
+
+                                            if (first.Delete != null)
+                                            {
+                                                first.Delete.Invoke(first, new EventArgs());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (first.Limit != null)
+                                            {
+                                                first.Limit.Invoke(first, new EventArgs());
+                                            }
+
+                                            if (first.BeepOnLimit)
+                                            {
+                                                Console.Beep();
+                                            }
+                                        }
+                                        break;
                                     case ConsoleKey.Tab:
                                         //Move to next textbox (if one exists):
                                         if (tcount > index)
@@ -734,9 +790,15 @@ namespace CGUI
                                             {
                                                 //Erase cursor:
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                x -= 8;
+                                                driver.DoubleBuffer_Update();          
+                                                if (pointer < first.txt.Length)
+                                                {
+                                                    //Redraw previously selected character:
+                                                    driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
+                                                    driver.DoubleBuffer_Update();
+                                                }                                                
                                                 //Draw cursor one character back:
+                                                x -= 8;
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                                                 driver.DoubleBuffer_Update();
                                                 pointer--;
@@ -751,8 +813,11 @@ namespace CGUI
                                                 //Erase cursor:
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
                                                 driver.DoubleBuffer_Update();
-                                                x += 8;
+                                                //Redraw previously selected character:
+                                                driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
+                                                driver.DoubleBuffer_Update();
                                                 //Draw cursor up one character in vertical state:
+                                                x += 8;
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.ForeColor.ToArgb());
                                                 driver.DoubleBuffer_Update();
                                                 pointer++;
@@ -762,8 +827,11 @@ namespace CGUI
                                                 //Erase cursor:
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
                                                 driver.DoubleBuffer_Update();
-                                                x += 8;
+                                                //Redraw previously selected character:
+                                                driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
+                                                driver.DoubleBuffer_Update();
                                                 //Draw cursor up one character:
+                                                x += 8;
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                                                 driver.DoubleBuffer_Update();
                                                 pointer++;

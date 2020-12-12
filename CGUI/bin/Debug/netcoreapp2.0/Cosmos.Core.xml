@@ -1,0 +1,1195 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cosmos.Core</name>
+    </assembly>
+    <members>
+        <member name="M:Cosmos.Core.ACPI.Shutdown">
+            <summary>
+            Shutdown the ACPI.
+            </summary>
+            <exception cref="T:System.IO.IOException">Thrown on IO error.</exception>
+        </member>
+        <member name="M:Cosmos.Core.ACPI.Reboot">
+            <summary>
+            Reboot ACPI.
+            Not implemented.
+            </summary>
+            <exception cref="T:System.NotImplementedException">Thrown always.</exception>
+        </member>
+        <member name="T:Cosmos.Core.BaseIOGroups">
+            <summary>
+            Base IO Groups. Used to easily access IO devices.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.PS2Controller">
+            <summary>
+            PS/2 controller.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.PCSpeaker">
+            <summary>
+            PC speaker.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.PIT">
+            <summary>
+            PIT.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.TextScreen">
+            <summary>
+            Text screen.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.ATA1">
+            <summary>
+            Primary ATA.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.ATA2">
+            <summary>
+            Secondary ATA.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.RTC">
+            <summary>
+            Real time clock.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.BaseIOGroups.VBE">
+            <summary>
+            VBE.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.CPU">
+            <summary>
+            CPU class. Non hardware class, only used by core and hardware drivers for ports etc.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.GetAmountOfRAM">
+            <summary>
+            Get amount of RAM in MB's. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.GetEndOfKernel">
+            <summary>
+            Get end of the kernel. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.UpdateIDT(System.Boolean)">
+            <summary>
+            Update IDT. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.InitFloat">
+            <summary>
+            Init float. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.InitSSE">
+            <summary>
+            Init SSE. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.ZeroFill(System.UInt32,System.UInt32)">
+            <summary>
+            Zero fill. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.Halt">
+            <summary>
+            Hult the CPU. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.Reboot">
+            <summary>
+            Reboot the CPU.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.DoEnableInterrupts">
+            <summary>
+            Enable interrupts. Plugged.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.DoDisableInterrupts">
+            <summary>
+            Disable interrupts. Plugged.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.CPU.mInterruptsEnabled">
+            <summary>
+            Check if interrupts enabled.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.EnableInterrupts">
+            <summary>
+            Enable interrupts.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.CPU.DisableInterrupts">
+            <summary>
+            Returns if the interrupts were actually enabled.
+            </summary>
+            <returns>bool value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.GCImplementation.IncRefCount(System.UInt32)">
+            <summary>
+            This function gets the pointer to the memory location of where it's stored.
+            </summary>
+            <param name="aObject"></param>
+        </member>
+        <member name="M:Cosmos.Core.GCImplementation.DecRefCount(System.UInt32)">
+            <summary>
+            This function gets the pointer to the memory location of where it's stored.
+            </summary>
+            <param name="aObject"></param>
+        </member>
+        <member name="F:Cosmos.Core.Global.mDebugger">
+            <summary>
+            Core ring debugger instance, with the Global tag.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.Global.BaseIOGroups">
+            <summary>
+            Base IO gruops.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.Global.PIC">
+            <summary>
+            Get PIC.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.Global.CPU">
+            <summary>
+            Get CPU.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.Global.Init">
+            <summary>
+            Init <see cref="T:Cosmos.Core.Global"/> inctanse.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.ATA">
+            <summary>
+            IOGruop ATA.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.Data">
+            <summary>
+            Data IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.SectorCount">
+            <summary>
+            Sector count IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.LBA0">
+            <summary>
+            LBA0 IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.LBA1">
+            <summary>
+            LBA1 IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.LBA2">
+            <summary>
+            LBA2 IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.DeviceSelect">
+            <summary>
+            Device select IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.Command">
+            <summary>
+            Command IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.Status">
+            <summary>
+            Status IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.ATA.Control">
+            <summary>
+            Control IOPort.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.IOGroup.ATA.#ctor(System.Boolean)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.IOGroup.ATA"/> class.
+            </summary>
+            <param name="aSecondary">True if secondary ATA.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOGroup.ATA.GetBAR1(System.Boolean)">
+            <summary>
+            Get control base address.
+            </summary>
+            <param name="aSecondary">True if secondary ATA.</param>
+            <returns>ushort value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.IOGroup.ATA.GetBAR0(System.Boolean)">
+            <summary>
+            Get command base address.
+            </summary>
+            <param name="aSecondary">True if secondary ATA.</param>
+            <returns>ushort value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.IOGroup.COM.#ctor(System.Byte)">
+            <summary>
+            Initializes a new set of IOPorts for the specified COM port number.
+            </summary>
+            <param name="comPortNumber">Can be either 1,2,3, or 4.</param>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.PCSpeaker">
+            <summary>
+            PC Speaker.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PCSpeaker.Gate">
+            <summary>
+            Gate IO port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PCSpeaker.CommandRegister">
+            <summary>
+            Command register IO port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PCSpeaker.Channel2Data">
+            <summary>
+            Channel to data IO port.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.PIC">
+            <summary>
+            PIC class. Represent PIC.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PIC.Cmd">
+            <summary>
+            Command port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PIC.Data">
+            <summary>
+            Data port.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.IOGroup.PIC.#ctor(System.Boolean)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.IOGroup.PIC"/> class.
+            </summary>
+            <param name="aSlave">True if slave.</param>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.PS2Controller">
+            <summary>
+            PS/2 controller.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PS2Controller.Data">
+            <summary>
+            Data IO port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PS2Controller.Status">
+            <summary>
+            Status IO port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.PS2Controller.Command">
+            <summary>
+            Command IO port.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.RTC">
+            <summary>
+            Real time clock class.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.RTC.Address">
+            <summary>
+            Address IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.RTC.Data">
+            <summary>
+            Data IOPort.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.TextScreen">
+            <summary>
+            IOGroup text screen.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Memory">
+            <summary>
+            Memory.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.MiscOutput">
+            <summary>
+            Misc. output.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Idx1">
+            <summary>
+            First IOPort index.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Data1">
+            <summary>
+            First IOPort data.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Idx2">
+            <summary>
+            Second IOPort index.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Data2">
+            <summary>
+            Second IOPort data.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Idx3">
+            <summary>
+            Third IOPort index.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.TextScreen.Data3">
+            <summary>
+            Third IOPort data.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOGroup.VBEIOGroup">
+            <summary>
+            VBE class.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.VBEIOGroup.VbeIndex">
+            <summary>
+            Index IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.VBEIOGroup.VbeData">
+            <summary>
+            Data IOPort.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.VBEIOGroup.LinearFrameBuffer">
+            <summary>
+            Frame buffer memory block.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.VGA.VGAMemoryBlock">
+            <summary>
+            128KB at 0xA0000
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.VGA.MonochromeTextMemoryBlock">
+            <summary>
+            32KB at 0xB0000
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOGroup.VGA.CGATextMemoryBlock">
+            <summary>
+            32KB at 0xB8000
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOPortBase">
+            <summary>
+            IOPortBase abstract class.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.IOPortBase.Port">
+            <summary>
+            Port.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.#ctor(System.UInt16)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.IOPortBase"/> class.
+            </summary>
+            <param name="aPort">A port.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.#ctor(System.UInt16,System.UInt16)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.IOPortBase"/> class.
+            </summary>
+            <param name="aBase">A base port.</param>
+            <param name="aOffset">A offset from the base port.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Write8(System.UInt16,System.Byte)">
+            <summary>
+            Write byte to port.
+            Plugged.
+            </summary>
+            <param name="aPort">A port to write to.</param>
+            <param name="aData">A data.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Write16(System.UInt16,System.UInt16)">
+            <summary>
+            Write Word to port.
+            Plugged.
+            </summary>
+            <param name="aPort">A port to write to.</param>
+            <param name="aData">A data.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Write32(System.UInt16,System.UInt32)">
+            <summary>
+            Write DWord to port.
+            Plugged.
+            </summary>
+            <param name="aPort">A port to write to.</param>
+            <param name="aData">A data.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Read8(System.UInt16)">
+            <summary>
+            Read byte from port.
+            Plugged.
+            </summary>
+            <param name="aPort">A port to read from.</param>
+            <returns>byte value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Read16(System.UInt16)">
+            <summary>
+            Read Word from port.
+            Plugged.
+            </summary>
+            <param name="aPort">A port to read from.</param>
+            <returns>ushort value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Read32(System.UInt16)">
+            <summary>
+            Read DWord from port.
+            Plugged.
+            </summary>
+            <param name="aPort">A port to read from.</param>
+            <returns>uint value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Read8(System.Byte[])">
+            <summary>
+            Read byte from base port.
+            </summary>
+            <param name="aData">Output data array.</param>
+            <exception cref="T:System.OverflowException">Thrown if aData lenght is greater than Int32.MaxValue.</exception>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Read16(System.UInt16[])">
+            <summary>
+            Read Word from base port.
+            </summary>
+            <param name="aData">Output data array.</param>
+            <exception cref="T:System.OverflowException">Thrown if aData lenght is greater than Int32.MaxValue.</exception>
+        </member>
+        <member name="M:Cosmos.Core.IOPortBase.Read32(System.UInt32[])">
+            <summary>
+            Read DWord from base port.
+            </summary>
+            <param name="aData">Output data array.</param>
+            <exception cref="T:System.OverflowException">Thrown if aData lenght is greater than Int32.MaxValue.</exception>
+        </member>
+        <member name="T:Cosmos.Core.IOPort">
+            <summary>
+            IOPort class. Used to read and write to IO port.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.IOPort.#ctor(System.UInt16)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.IOPort"/> class.
+            </summary>
+            <param name="aPort">A port.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPort.#ctor(System.UInt16,System.UInt16)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.IOPort"/> class.
+            </summary>
+            <param name="aBase">A base port.</param>
+            <param name="aOffset">Offset from the base port.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPort.Wait">
+            <summary>
+            Wait for the previous IO read/write to complete.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPort.Byte">
+            <summary>
+            Get and set Byte value in IO port.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPort.Word">
+            <summary>
+            Get and set Word value in IO port.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPort.DWord">
+            <summary>
+            Get and set DWord value in IO port.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOPortRead">
+            <summary>
+            IOPortRead class. Used to read to IO port. See also: <seealso cref="T:Cosmos.Core.IOPortBase"/>.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.IOPortRead.#ctor(System.UInt16)">
+            <summary>
+            Create new instance of <see cref="T:Cosmos.Core.IOPortRead"/> class.
+            </summary>
+            <param name="aPort">A port.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortRead.#ctor(System.UInt16,System.UInt16)">
+            <summary>
+            Create new instance of <see cref="T:Cosmos.Core.IOPortRead"/> class.
+            </summary>
+            <param name="aBase">A base port address.</param>
+            <param name="aOffset">Offset of the base port.</param>
+        </member>
+        <member name="P:Cosmos.Core.IOPortRead.Byte">
+            <summary>
+            Read byte to the port.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPortRead.Word">
+            <summary>
+            Read Word to the port.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPortRead.DWord">
+            <summary>
+            Read DWord to the port.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.IOPortWrite">
+            <summary>
+            IOPortWrite class. Used to write to IO port. See also: <seealso cref="T:Cosmos.Core.IOPortBase"/>.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.IOPortWrite.#ctor(System.UInt16)">
+            <summary>
+            Create new instance of <see cref="T:Cosmos.Core.IOPortWrite"/> class.
+            </summary>
+            <param name="aPort">A port.</param>
+        </member>
+        <member name="M:Cosmos.Core.IOPortWrite.#ctor(System.UInt16,System.UInt16)">
+            <summary>
+            Create new instance of <see cref="T:Cosmos.Core.IOPortWrite"/> class.
+            </summary>
+            <param name="aBase">A base port address.</param>
+            <param name="aOffset">Offset of the base port.</param>
+        </member>
+        <member name="P:Cosmos.Core.IOPortWrite.Byte">
+            <summary>
+            Write byte to the port.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPortWrite.Word">
+            <summary>
+            Write Word to the port.
+            </summary>
+        </member>
+        <member name="P:Cosmos.Core.IOPortWrite.DWord">
+            <summary>
+            Write DWord to the port.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.ManagedMemoryBlock">
+            <summary>
+            ManagedMemoryBlock class. Used to read and write a managed memory block.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.ManagedMemoryBlock.Offset">
+            <summary>
+            Offset.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.ManagedMemoryBlock.Size">
+            <summary>
+            Size.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.#ctor(System.UInt32)">
+            <summary>
+            Create a new buffer with the given size, not aligned
+            </summary>
+            <param name="size">Size of buffer</param>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.#ctor(System.UInt32,System.Byte)">
+            <summary>
+            Create a new buffer with the given size, aligned on the byte boundary specified
+            </summary>
+            <param name="size">Size of buffer</param>
+            <param name="alignment">Byte Boundary alignment</param>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.#ctor(System.UInt32,System.Byte,System.Boolean)">
+            <summary>
+            Create a new buffer with the given size, and aligned on the byte boundary if align is true
+            </summary>
+            <param name="size">Size of buffer</param>
+            <param name="alignment">Byte Boundary alignment</param>
+            <param name="align">true if buffer should be aligned, false otherwise</param>
+        </member>
+        <member name="P:Cosmos.Core.ManagedMemoryBlock.Item(System.UInt32)">
+            <summary>
+            Get or set the byte at the given offset
+            </summary>
+            <param name="offset">Address Offset</param>
+            <returns>Byte value at given offset</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown on invalid offset.</exception>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Fill(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Fill memory block.
+            </summary>
+            <param name="aStart">A start.</param>
+            <param name="aCount">A count.</param>
+            <param name="aData">A data.</param>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Fill(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fill data to memory block.
+            </summary>
+            <param name="aStart">A starting position in the memory block.</param>
+            <param name="aCount">Data size.</param>
+            <param name="aData">A data to fill memory block with.</param>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Fill(System.UInt32)">
+            <summary>
+            Fill memory block.
+            </summary>
+            <param name="aData">A data to fill.</param>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Copy(Cosmos.Core.MemoryBlock)">
+            <summary>
+            Copy MemoryBlock into ManagedMemoryBlock
+            </summary>
+            <param name="block">MemoryBlock to copy.</param>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Read16(System.UInt32)">
+            <summary>
+            Read 16-bit from the memory block.
+            </summary>
+            <param name="offset">Data offset.</param>
+            <returns>UInt16 value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if offset if bigger than memory block size.</exception>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Write16(System.UInt32,System.UInt16)">
+            <summary>
+            Write 16-bit to the memory block.
+            </summary>
+            <param name="offset">Data offset.</param>
+            <param name="value">Value to write.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if offset if bigger than memory block size or smaller than 0.</exception>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Read32(System.UInt32)">
+            <summary>
+            Read 32-bit from the memory block.
+            </summary>
+            <param name="offset">Data offset.</param>
+            <returns>UInt32 value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if offset if bigger than memory block size.</exception>
+        </member>
+        <member name="M:Cosmos.Core.ManagedMemoryBlock.Write32(System.UInt32,System.UInt32)">
+            <summary>
+            Write 32-bit to the memory block.
+            </summary>
+            <param name="offset">Data offset.</param>
+            <param name="value">Value to write.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if offset if bigger than memory block size or smaller than 0.</exception>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            Create new inctanse of the <see cref="T:Cosmos.Core.MemoryBlock"/> class.
+            </summary>
+            <param name="aBase">A base.</param>
+            <param name="aSize">A size.</param>
+        </member>
+        <member name="P:Cosmos.Core.MemoryBlock.Item(System.UInt32)">
+            <summary>
+            Get and set memory block.
+            </summary>
+            <param name="aByteOffset">A byte offset.</param>
+            <returns>uint value.</returns>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.UInt32)">
+            <summary>
+            Fill memory block.
+            </summary>
+            <param name="aData">A data to fill.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Fill memory block.
+            </summary>
+            <param name="aStart">A start.</param>
+            <param name="aCount">A count.</param>
+            <param name="aData">A data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fill data to memory block.
+            </summary>
+            <param name="aStart">A starting position in the memory block.</param>
+            <param name="aCount">Data size.</param>
+            <param name="aData">A data to fill memory block with.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.Byte)">
+            <summary>
+            Fill data to memory block.
+            </summary>
+            <param name="aData">Data to fill the memory block with.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.UInt16)">
+            <summary>
+            Fill data to memory block.
+            </summary>
+            <param name="aData">Data to fill the memory block with.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.UInt32,System.UInt32,System.UInt16)">
+            <summary>
+            Fill data to memory block.
+            </summary>
+            <param name="aStart">A starting position in the memory block.</param>
+            <param name="aCount">Data size.</param>
+            <param name="aData">A data to fill memory block with.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Fill(System.UInt32,System.UInt32,System.Byte)">
+            <summary>
+            Fill data to memory block.
+            </summary>
+            <param name="aStart">A starting position in the memory block.</param>
+            <param name="aCount">Data size.</param>
+            <param name="aData">A data to fill memory block with.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.Copy(Cosmos.Core.ManagedMemoryBlock)">
+            <summary>
+            Copy ManagedMemoryBlock into MemoryBlock
+            </summary>
+            <param name="block">ManagedMemoryBlock to copy.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock.MoveDown(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Move bytes array down the memory block.
+            </summary>
+            <param name="aDest">Destination location.</param>
+            <param name="aSrc">Sourcs location.</param>
+            <param name="aCount">Number of bytes to move.</param>
+        </member>
+        <member name="T:Cosmos.Core.MemoryBlock08">
+            <summary>
+            MemoryBlock08 class.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.MemoryBlock08.Base">
+            <summary>
+            Base.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.MemoryBlock08.Size">
+            <summary>
+            Size.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock08.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            Create new inctanse of the <see cref="T:Cosmos.Core.MemoryBlock08"/> class.
+            </summary>
+            <param name="aBase">A base.</param>
+            <param name="aSize">A size.</param>
+        </member>
+        <member name="P:Cosmos.Core.MemoryBlock08.Item(System.UInt32)">
+            <summary>
+            Get and set memory block.
+            </summary>
+            <param name="aByteOffset">A byte offset.</param>
+            <returns>byte value.</returns>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="T:Cosmos.Core.MemoryBlock16">
+            <summary>
+            MemoryBlock16 class.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.MemoryBlock16.Base">
+            <summary>
+            Base.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.MemoryBlock16.Size">
+            <summary>
+            Size.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock16.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            Create new inctanse of the <see cref="T:Cosmos.Core.MemoryBlock16"/> class.
+            </summary>
+            <param name="aBase">A base.</param>
+            <param name="aSize">A size.</param>
+        </member>
+        <member name="P:Cosmos.Core.MemoryBlock16.Item(System.UInt32)">
+            <summary>
+            Get and set memory block.
+            </summary>
+            <param name="aByteOffset">A byte offset.</param>
+            <returns>ushort value.</returns>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="T:Cosmos.Core.MemoryBlock32">
+            <summary>
+            MemoryBlock32 class.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.MemoryBlock32.Base">
+            <summary>
+            Base.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.MemoryBlock32.Size">
+            <summary>
+            Size.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.MemoryBlock32.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            Create new inctanse of the <see cref="T:Cosmos.Core.MemoryBlock32"/> class.
+            </summary>
+            <param name="aBase">A base.</param>
+            <param name="aSize">A size.</param>
+        </member>
+        <member name="P:Cosmos.Core.MemoryBlock32.Item(System.UInt32)">
+            <summary>
+            Get and set memory block.
+            </summary>
+            <param name="aByteOffset">A byte offset.</param>
+            <returns>uint value.</returns>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="T:Cosmos.Core.MemoryOperations">
+            <summary>
+            MemoryOperations class. Used to do operations on the memory.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Byte*,System.Int32,System.Int32)">
+            <summary>
+            Fill memory block. Plugged.
+            </summary>
+            <param name="dest">A destination.</param>
+            <param name="value">A data value.</param>
+            <param name="size">A data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.UInt32*,System.UInt32,System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+            <param name="size">Data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Int32*,System.Int32,System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+            <param name="size">Data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.UInt32[],System.UInt32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Int32[],System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.UInt16*,System.UInt16,System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+            <param name="size">Data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Int16*,System.Int16,System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+            <param name="size">Data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.UInt16[],System.UInt16)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Int16[],System.Int16)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Byte*,System.Byte,System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+            <param name="size">Data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.SByte*,System.SByte,System.Int32)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+            <param name="size">Data size.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.Byte[],System.Byte)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.SByte[],System.SByte)">
+            <summary>
+            Fill data to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Data value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.Byte*,System.Byte*,System.Int32)">
+            <summary>
+            Copy source to destination.
+            plugged.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+            <param name="size">Size of data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.UInt32*,System.UInt32*,System.Int32)">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+            <param name="size">Size of data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.Int32*,System.Int32*,System.Int32)">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+            <param name="size">Size of data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.UInt32[],System.UInt32[])">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.Int32[],System.Int32[])">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.UInt16*,System.UInt16*,System.Int32)">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+            <param name="size">Size of data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.Int16*,System.Int16*,System.Int32)">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+            <param name="size">Size of data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.UInt16[],System.UInt16[])">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.Int16[],System.Int16)">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.SByte*,System.SByte*,System.Int32)">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+            <param name="size">Size of data.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Copy(System.Byte[],System.Byte[])">
+            <summary>
+            Copy source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+        </member>
+        <member name="M:Cosmos.Core.MemoryOperations.Fill(System.SByte[],System.SByte[])">
+            <summary>
+            Fill source to destination.
+            </summary>
+            <param name="dest">Destination.</param>
+            <param name="src">Source.</param>
+        </member>
+        <member name="T:Cosmos.Core.Multiboot">
+            <summary>
+            Used for Multiboot parsing
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.Multiboot.GetMBIAddress">
+            /// <summary>
+            Get Multiboot address. Plugged.
+            </summary>
+            <returns>The Multiboot Address</returns>
+        </member>
+        <member name="M:Cosmos.Core.VBE.IsAvailable">
+            /// <summary>
+            Check in Multiboot if VBE is available
+            </summary>
+            <returns>True if is available, false if not</returns>
+        </member>
+        <member name="M:Cosmos.Core.VBE.getModeInfo">
+            /// <summary>
+            Get VBE Modeinfo structure
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.VBE.getLfbOffset">
+            /// <summary>
+            Get the linear frame buffer address from VBE ModeInfo structure
+            </summary>
+            <returns>the offset in an uint</returns>
+        </member>
+        <member name="T:Cosmos.Core.PIC">
+            <summary>
+            PIC class. Used to manage PIC interrupts.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.PIC.Master">
+            <summary>
+            Master PIC.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.PIC.Slave">
+            <summary>
+            Slave PIC.
+            </summary>
+        </member>
+        <member name="T:Cosmos.Core.PIC.Cmd">
+            <summary>
+            Commands.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.PIC.Cmd.Init">
+            <summary>
+            Initialize.
+            </summary>
+        </member>
+        <member name="F:Cosmos.Core.PIC.Cmd.EOI">
+            <summary>
+            End of interrupt.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.PIC.EoiMaster">
+            <summary>
+            Master end of interrupt.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.PIC.EoiSlave">
+            <summary>
+            Slave end of interrupt.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.PIC.#ctor">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.Core.PIC"/> class.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.PIC.Remap(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Remap master and slave relationship.
+            </summary>
+            <param name="masterStart">Master start.</param>
+            <param name="masterMask">Master mask.</param>
+            <param name="slaveStart">Slave start.</param>
+            <param name="slaveMask">Slave mask.</param>
+        </member>
+        <member name="M:Cosmos.Core.PIC.Init(Cosmos.Core.IOGroup.PIC,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initialize PIC.
+            </summary>
+            <param name="aPIC">A PIC.</param>
+            <param name="aBase">A base data port.</param>
+            <param name="aIDunno">Slave relationship message.</param>
+            <param name="aMask">A mask.</param>
+        </member>
+        <member name="T:Cosmos.Core.ProcessorInformation">
+            <summary>
+            ProcessorInformation class. Used to get vendor information from the CPU.
+            </summary>
+        </member>
+        <member name="M:Cosmos.Core.ProcessorInformation.GetVendorName">
+            <summary>
+            Returns the Processor's vendor name
+            </summary>
+            <returns>CPU Vendor name</returns>
+        </member>
+        <member name="M:Cosmos.Core.ProcessorInformation.CanReadCPUID">
+            <summary>
+            Check if can read CPU ID.
+            </summary>
+            <returns>int value.</returns>
+        </member>
+        <member name="M:Cosmos.Core.ProcessorInformation.FetchCPUVendor(System.Int32*)">
+            <summary>
+            Fetch CPU vendor.
+            </summary>
+            <param name="target">pointer to target.</param>
+        </member>
+        <member name="M:Cosmos.Core.ProcessorInformation.GetCycleCount">
+            <summary>
+            Returns the number of CPU cycles since startup of the current CPU core
+            </summary>
+            <returns>Number of CPU cycles since startup</returns>
+        </member>
+        <member name="M:Cosmos.Core.ProcessorInformation.GetCycleRate">
+            <summary>
+            Returns the number of CPU cycles per seconds
+            </summary>
+            <returns>Number of CPU cycles per seconds</returns>
+        </member>
+    </members>
+</doc>

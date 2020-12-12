@@ -1,53 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netcoreapp2.0</TargetFramework>
-        <RuntimeIdentifier>cosmos</RuntimeIdentifier>
-        <SelfContained>True</SelfContained>
-        <BinFormat>ELF</BinFormat>
-        <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
-        <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
-        <Deployment>ISO</Deployment>
-        <DebugEnabled>True</DebugEnabled>
-        <DebugMode>Source</DebugMode>
-        <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
-        <VMware_StackCorruptionDetectionEnabled>True</VMware_StackCorruptionDetectionEnabled>
-        <VMware_StackCorruptionDetectionLevel>MethodFooters</VMware_StackCorruptionDetectionLevel>
-        <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
-        <VMware_Deployment>ISO</VMware_Deployment>
-        <VMware_Launch>VMware</VMware_Launch>
-        <VMware_DebugEnabled>True</VMware_DebugEnabled>
-        <VMware_DebugMode>Source</VMware_DebugMode>
-        <VMware_IgnoreDebugStubAttribute>False</VMware_IgnoreDebugStubAttribute>
-        <VMware_CosmosDebugPort>Serial: COM1</VMware_CosmosDebugPort>
-        <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
-        <VMware_PxeInterface>192.168.0.8</VMware_PxeInterface>
-        <VMware_EnableGDB>False</VMware_EnableGDB>
-        <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <EnableGDB>False</EnableGDB>
-        <StartCosmosGDB>False</StartCosmosGDB>
-        <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
-        <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>None</Launch>
-        <Profile>ISO</Profile>
-        <Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</Description>
-        <PxeInterface>192.168.0.8</PxeInterface>
-        <AssemblyVersion>1.1.0.0</AssemblyVersion>
-        <FileVersion>1.1.0.0</FileVersion>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\f\source\repos\sudopigeek\CGUI\CGUI\CGUI.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DebugEnabled>False</DebugEnabled>
-      <DocumentationFile>C:\Users\f\source\repos\CGUI\CGUI\CGUI.xml</DocumentationFile>
-    </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="4.1.0" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-    </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cosmos.HAL2">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+    </Reference>
+    <Reference Include="Cosmos.System2">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

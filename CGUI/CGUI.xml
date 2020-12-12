@@ -4,30 +4,119 @@
         <name>CGUI</name>
     </assembly>
     <members>
-        <member name="T:CGUI.Line">
+        <member name="T:CGUI.CommandLine.CommandArgs">
             <summary>
-            The Line control.
+            Custom event class used for passing command info to the user. [IN DEVELOPMENT]
             </summary>
         </member>
-        <member name="P:CGUI.Line.Color">
+        <member name="P:CGUI.CommandLine.CommandArgs.Arguments">
             <summary>
-            The line's color.
+            The command's arguments.
             </summary>
         </member>
-        <member name="M:CGUI.Line.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="T:CGUI.CommandLine.CommandLine">
             <summary>
-            Starts a new instance of the Line class.
+            The main class for the CGUI command line interface. [IN DEVELOPMENT]
             </summary>
-            <param name="color">The color of the line.</param>
-            <param name="startx">The start X coordinate.</param>
-            <param name="starty">The start Y coordinate.</param>
-            <param name="endx">The ending X coordinate.</param>
-            <param name="endy">The ending Y coordinate.</param>
         </member>
-        <member name="M:CGUI.Line.Update">
+        <member name="P:CGUI.CommandLine.CommandLine.currentDirectory">
             <summary>
-            Updates the line.
+            The current directory that is displayed at the prompt (default is 0:\>)
             </summary>
+        </member>
+        <member name="P:CGUI.CommandLine.CommandLine.Text">
+            <summary>
+            The text entered at the prompt.
+            </summary>
+        </member>
+        <member name="E:CGUI.CommandLine.CommandLine.OnPrompt">
+            <summary>
+            Raised every time the prompt renders.
+            </summary>
+        </member>
+        <member name="E:CGUI.CommandLine.CommandLine.UnknownCommand">
+            <summary>
+            Raised when the user enters a command that is not registered.
+            </summary>
+        </member>
+        <member name="E:CGUI.CommandLine.CommandLine.OnBackspace">
+            <summary>
+            Raised when the user hits the Backspace key.
+            </summary>
+        </member>
+        <member name="E:CGUI.CommandLine.CommandLine.OnKeyPress">
+            <summary>
+            Raised when the user presses a key.
+            </summary>
+        </member>
+        <member name="M:CGUI.CommandLine.CommandLine.#ctor(CGUI.VGADriver)">
+            <summary>
+            Starts a new instance of the CommandLine class using the default colors (black background and white foreground).
+            </summary>
+            <param name="driver">The underlying VGADriver class instance.</param>
+        </member>
+        <member name="M:CGUI.CommandLine.CommandLine.#ctor(CGUI.VGADriver,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Starts a new instance of the CommandLine class using the specified colors.
+            </summary>
+            <param name="driver">The underlying VGADriver class instance.</param>
+            <param name="backColor">The prompt's background color.</param>
+            <param name="textColor">The prompt's foreground color.</param>
+        </member>
+        <member name="M:CGUI.CommandLine.CommandLine.RegisterCommand(CGUI.CommandLine.Command)">
+            <summary>
+            Registers a command.
+            </summary>
+            <param name="command">The Command class instance representing the command to register.</param>
+        </member>
+        <member name="M:CGUI.CommandLine.CommandLine.WriteToPrompt(System.String)">
+            <summary>
+            Writes the specified text to the prompt.
+            </summary>
+            <param name="text">The text to write.</param>
+        </member>
+        <member name="M:CGUI.CommandLine.CommandLine.WriteLine(System.String)">
+            <summary>
+            Writes the specified string and moves the cursor to the next line.
+            </summary>
+            <param name="text">The string to write.</param>
+        </member>
+        <member name="M:CGUI.CommandLine.CommandLine.Run">
+            <summary>
+            Runs the prompt.
+            </summary>
+        </member>
+        <member name="T:CGUI.CommandLine.Command">
+            <summary>
+            Represents a command. [IN DEVELOPMENT]
+            </summary>
+        </member>
+        <member name="P:CGUI.CommandLine.Command.CommandText">
+            <summary>
+            The actual command name (e.g. cd).
+            </summary>
+        </member>
+        <member name="P:CGUI.CommandLine.Command.About">
+            <summary>
+            The command summary.
+            </summary>
+        </member>
+        <member name="P:CGUI.CommandLine.Command.Flags">
+            <summary>
+            The command's flags; the keys are the actual flags (e.g. -a) and their corresponding values are the flags' summary (e.g. Summary sentence).
+            </summary>
+        </member>
+        <member name="E:CGUI.CommandLine.Command.OnExecute">
+            <summary>
+            Raised when the command is called/executed.
+            </summary>
+        </member>
+        <member name="M:CGUI.CommandLine.Command.#ctor(System.String,System.String)">
+            <summary>
+            Starts a new instance of the Command class.
+            </summary>
+            <param name="command">The actual command (e.g. cd)</param>
+            <param name="about">The string that summarizes/describes the command.</param>
         </member>
         <member name="T:CGUI.Label">
             <summary>
@@ -68,10 +157,19 @@
             <param name="text">The label text in the default color (white).</param>
             <param name="point">The point to place the label.</param>
         </member>
-        <member name="M:CGUI.Label.Update">
+        <member name="M:CGUI.Label.#ctor(System.String,System.Drawing.Color,Cosmos.System.Graphics.Point)">
             <summary>
-            Updates the label.
+            Starts a new instance of the Label class.
             </summary>
+            <param name="text">The label text in the default color (white).</param>
+            <param name="foreColor">The text color.</param>
+            <param name="point">The point to place the label.</param>
+        </member>
+        <member name="M:CGUI.Label.Update(System.String)">
+            <summary>
+            Updates/changes the label's text.
+            </summary>
+            <param name="newText">The new text to display.</param>
         </member>
         <member name="T:CGUI.Picture">
             <summary>
@@ -106,12 +204,27 @@
             The TextBox control.
             </summary>
         </member>
-        <member name="P:CGUI.TextBox.foreColor">
+        <member name="P:CGUI.TextBox.KeyPresses">
+            <summary>
+            The list of KeyPress instances representing extra/custom keys to listen for when the textbox has focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.UnfocusForeColor">
+            <summary>
+            The foreground color of the textbox when it is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.UnfocusBackColor">
+            <summary>
+            The background color of the textbox when it is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.TextBox.ForeColor">
             <summary>
             The text color for the textbox (including the cursor).
             </summary>
         </member>
-        <member name="P:CGUI.TextBox.backColor">
+        <member name="P:CGUI.TextBox.BackColor">
             <summary>
             The background color for the textbox.
             </summary>
@@ -126,9 +239,29 @@
             The character to draw on the screen instead of the actual character. Set this to '~' to disable.
             </summary>
         </member>
+        <member name="P:CGUI.TextBox.BeepOnLimit">
+            <summary>
+            Determines whether or not to beep when attempting to type outside of the textbox's character limit.
+            </summary>
+        </member>
         <member name="P:CGUI.TextBox.Text">
             <summary>
             The current text in the textbox.
+            </summary>
+        </member>
+        <member name="E:CGUI.TextBox.OnDelete">
+            <summary>
+            Raised when a character is deleted from the textbox.
+            </summary>
+        </member>
+        <member name="E:CGUI.TextBox.OnKeyPress">
+            <summary>
+            Raised when a character is entered into the textbox, and returns the ConsoleKeyInfo instance.
+            </summary>
+        </member>
+        <member name="E:CGUI.TextBox.OnLimit">
+            <summary>
+            Raised when the user attempts to enter or delete characters outside of the textbox's character range limit.
             </summary>
         </member>
         <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Int32,System.Int32)">
@@ -147,6 +280,169 @@
             <param name="charLength">The number of characters allowed in the textbox.</param>
             <param name="x">The textbox's X coordinate.</param>
             <param name="y">The textbox's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.TextBox.Focus">
+            <summary>
+            Sets focus to the textbox.
+            </summary>
+        </member>
+        <member name="T:CGUI.Button">
+            <summary>
+            The Button control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.KeyPresses">
+            <summary>
+            The list of KeyPress instances representing extra/custom keys to listen for when the button has focus.
+            </summary>
+        </member>
+        <member name="E:CGUI.Button.OnEnter">
+            <summary>
+            Raised when the TriggerKey is pressed.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.UnfocusTextColor">
+            <summary>
+            The text color when the button is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.UnfocusBackColor">
+            <summary>
+            The background color when the button is not in focus.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.TriggerKey">
+            <summary>
+            The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.TextColor">
+            <summary>
+            The text color.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.BackColor">
+            <summary>
+            The background color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Button.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Button class.
+            </summary>
+            <param name="text">The button text.</param>
+            <param name="x">The button's X coordinate.</param>
+            <param name="y">The button's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Button.#ctor(System.String,System.ConsoleKey,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Button class.
+            </summary>
+            <param name="text">The button text.</param>
+            <param name="triggerKey">The key that the button listens for (default is Enter/Return). When the key is pressed, the OnEnter event is raised.</param>
+            <param name="x">The button's X coordinate.</param>
+            <param name="y">The button's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Button.Focus">
+            <summary>
+            Sets focus to the button.
+            </summary>
+        </member>
+        <member name="T:CGUI.KeyPress">
+            <summary>
+            Represents a keypress.
+            </summary>
+        </member>
+        <member name="P:CGUI.KeyPress.ConsoleKeyInfo">
+            <summary>
+            The ConsoleKeyInfo instance representing the key with its modifiers, if any.
+            </summary>
+        </member>
+        <member name="E:CGUI.KeyPress.OnPress">
+            <summary>
+            Raised when the key and any modifiers associated with it is pressed.
+            </summary>
+        </member>
+        <member name="M:CGUI.KeyPress.#ctor(System.ConsoleKey,System.ConsoleModifiers)">
+            <summary>
+            Starts a new instance of the KeyPress class using the specified key and modifiers.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+            <param name="modifiers">The key's modifiers.</param>
+        </member>
+        <member name="M:CGUI.KeyPress.#ctor(System.ConsoleKey)">
+            <summary>
+            Starts a new instance of the KeyPress class using the specified key.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+        </member>
+        <member name="T:CGUI.ConsoleKeyInfo">
+            <summary>
+            Represents info about a key and its modifiers.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.Key">
+            <summary>
+            The ConsoleKey represented in this instance.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.Modifiers">
+            <summary>
+            The key's modifiers, if any. If there is none, this equals zero.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.KeyChar">
+            <summary>
+            The character represented by the ConsoleKey. If the ConsoleKey is longer than one character, then this is null and KeyString is used.
+            </summary>
+        </member>
+        <member name="P:CGUI.ConsoleKeyInfo.KeyString">
+            <summary>
+            The string represented by the ConsoleKey. If the ConsoleKey is only one character long, then both KeyString and KeyChar are used.
+            </summary>
+        </member>
+        <member name="M:CGUI.ConsoleKeyInfo.#ctor(System.ConsoleKey,System.ConsoleModifiers)">
+            <summary>
+            Starts a new instance of the ConsoleKeyInfo class using the specified key and modifiers.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+            <param name="modifiers">The modifiers to use.</param>
+        </member>
+        <member name="M:CGUI.ConsoleKeyInfo.#ctor(System.ConsoleKey)">
+            <summary>
+            Starts a new instance of the ConsolekeyInfo class using the specified key.
+            </summary>
+            <param name="key">The ConsoleKey to use.</param>
+        </member>
+        <member name="T:CGUI.Status">
+            <summary>
+            Represents a controls' status.
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.Null">
+            <summary>
+            For internal purposes only.
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.OK">
+            <summary>
+            Status for a control that is all good (not out of bounds).
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.OriginOutOfBounds">
+            <summary>
+            Status for a control whose origin (X,Y location) is out of bounds.
+            </summary>
+        </member>
+        <member name="F:CGUI.Status.ControlOutOfBounds">
+            <summary>
+            Status for a control that is partially or completely out of bounds.
+            </summary>
+        </member>
+        <member name="T:CGUI.ControlStatus">
+            <summary>
+            Represents and contains info about that controls status.
+            </summary>
         </member>
         <member name="T:CGUI.DoubleBufferedVMWareSVGAII.Register">
             <summary>
@@ -833,6 +1129,25 @@
             Create new inctanse of the VMWareSVGAII class.
             </summary>
         </member>
+        <member name="T:CGUI.Extensions">
+            <summary>
+            CGUI Extension class.
+            </summary>
+        </member>
+        <member name="M:CGUI.Extensions.ConvertToString(System.ConsoleKey)">
+            <summary>
+            Converts a ConsoleKey instance value into a string.
+            </summary>
+            <param name="key">The ConsoleKey instance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.Extensions.ConvertToString(CGUI.ControlType)">
+            <summary>
+            Converts a ControlType instance value into a string.
+            </summary>
+            <param name="cType">The ControlType instance.</param>
+            <returns></returns>
+        </member>
         <member name="T:CGUI.VGADriver">
             <summary>
             Double-Buffered SVGAII Video Driver
@@ -849,75 +1164,6 @@
             </summary>
             <param name="screenWidth">The screen width, in pixels.</param>
             <param name="screenHeight">The screen height, in pixels.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Draws a reactangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="x">The X coordinate on the screen.</param>
-            <param name="y">The Y coordinate on the screen.</param>
-            <param name="width">The rectangle's width.</param>
-            <param name="height">The rectangle's height.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Draws a filled or normal rectangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="x">The X coordinate on the screen.</param>
-            <param name="y">The Y coordinate on the screen.</param>
-            <param name="width">The rectangle's width.</param>
-            <param name="height">The rectangle's height.</param>
-            <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,CGUI.Area)">
-            <summary>
-            Draws a rectangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="area">The Area instance containing the location for the rectangle.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawRectangle(System.Drawing.Color,CGUI.Area,System.Boolean)">
-            <summary>
-            Draws a filled or normal rectangle.
-            </summary>
-            <param name="color">The rectangle color.</param>
-            <param name="area">The Area instance containing the location for the rectangle.</param>
-            <param name="fill">Determines whether the rectangle should be filled or outlined (normal).</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawLine(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Draws a line.
-            </summary>
-            <param name="color">The color of the line.</param>
-            <param name="startx">The X starting point.</param>
-            <param name="starty">The Y starting point.</param>
-            <param name="endx">The X endpoint.</param>
-            <param name="endy">The Y endpoint.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawLine(System.Drawing.Color,Cosmos.System.Graphics.Point,Cosmos.System.Graphics.Point)">
-            <summary>
-            Draws a line based on two points.
-            </summary>
-            <param name="color">The line color.</param>
-            <param name="startPoint">The starting point of the line.</param>
-            <param name="endPoint">The ending point of the line.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawImage(Cosmos.System.Graphics.Image,System.Int32,System.Int32)">
-            <summary>
-            Draws an image.
-            </summary>
-            <param name="image">The image to draw.</param>
-            <param name="x">The X coordinate.</param>
-            <param name="y">The Y coordinate.</param>
-        </member>
-        <member name="M:CGUI.VGADriver.DrawImage(Cosmos.System.Graphics.Image,Cosmos.System.Graphics.Point)">
-            <summary>
-            Draws an image.
-            </summary>
-            <param name="image">The image to draw.</param>
-            <param name="point">The point to draw from.</param>
         </member>
         <member name="M:CGUI.VGADriver.RenderScreen(CGUI.Screen)">
             <summary>
@@ -980,7 +1226,7 @@
             Represents a screen containing controls.
             </summary>
         </member>
-        <member name="F:CGUI.Screen.Controls">
+        <member name="P:CGUI.Screen.Controls">
             <summary>
             The controls contained in this Screen instance.
             </summary>
@@ -1016,19 +1262,90 @@
             Represents a line.
             </summary>
         </member>
+        <member name="F:CGUI.ControlType.Rectangle">
+            <summary>
+            Represents a rectangle.
+            </summary>
+        </member>
+        <member name="F:CGUI.ControlType.Picture">
+            <summary>
+            Represents a picture.
+            </summary>
+        </member>
         <member name="F:CGUI.ControlType.TextBox">
             <summary>
             Represents a textbox.
             </summary>
         </member>
-        <member name="F:CGUI.ControlType.MaskedTextBox">
+        <member name="F:CGUI.ControlType.Button">
             <summary>
-            Represents a masked textbox.
+            Represents a button.
             </summary>
         </member>
         <member name="T:CGUI.Control">
             <summary>
             Internal base class for CGUI controls.
+            </summary>
+        </member>
+        <member name="T:CGUI.Shapes.Line">
+            <summary>
+            The Line control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Shapes.Line.Color">
+            <summary>
+            The line's color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Shapes.Line.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the Line class.
+            </summary>
+            <param name="color">The color of the line.</param>
+            <param name="startx">The start X coordinate.</param>
+            <param name="starty">The start Y coordinate.</param>
+            <param name="endx">The ending X coordinate.</param>
+            <param name="endy">The ending Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.Shapes.Line.Update">
+            <summary>
+            Updates the line.
+            </summary>
+        </member>
+        <member name="T:CGUI.Shapes.Rectangle">
+            <summary>
+            The Rectangle control.
+            </summary>
+        </member>
+        <member name="P:CGUI.Shapes.Rectangle.Color">
+            <summary>
+            The rectangle's color.
+            </summary>
+        </member>
+        <member name="M:CGUI.Shapes.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
+            <summary>
+            Starts a new instance of the Rectangle class, representing a filled rectangle.
+            </summary>
+            <param name="x">The rectangle's X coordinate.</param>
+            <param name="y">The rectangle's Y coordinate.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="color">The rectangle's color.</param>
+        </member>
+        <member name="M:CGUI.Shapes.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean)">
+            <summary>
+            Starts a new instance of the Rectangle class, representing a filled or empty rectangle.
+            </summary>
+            <param name="x">The rectangle's X coordinate.</param>
+            <param name="y">The rectangle's Y coordinate.</param>
+            <param name="width">The rectangle's width.</param>
+            <param name="height">The rectangle's height.</param>
+            <param name="color">The rectangle's color.</param>
+            <param name="fill">Set to true if the rectangle should be filled; otherwise, false.</param>
+        </member>
+        <member name="M:CGUI.Shapes.Rectangle.Update">
+            <summary>
+            Updates the rectangle.
             </summary>
         </member>
     </members>

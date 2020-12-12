@@ -1,0 +1,1596 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cosmos.HAL2</name>
+    </assembly>
+    <members>
+        <member name="T:Cosmos.HAL.BlockDevice.BlockDevice">
+            <summary>
+            BlockDevice abstract class. See also: <seealso cref="T:Cosmos.HAL.Device"/>.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.BlockDevice.BlockDevice.Devices">
+            <summary>
+            Devices list.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.BlockDevice.NewBlockArray(System.UInt32)">
+            <summary>
+            Create new block array.
+            </summary>
+            <param name="aBlockCount">Number of blocks to alloc.</param>
+            <returns>byte array.</returns>
+        </member>
+        <member name="F:Cosmos.HAL.BlockDevice.BlockDevice.mBlockCount">
+            <summary>
+            Block count.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.BlockDevice.BlockDevice.BlockCount">
+            <summary>
+            Get block count.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.BlockDevice.BlockDevice.mBlockSize">
+            <summary>
+            Block size.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.BlockDevice.BlockDevice.BlockSize">
+            <summary>
+            Get block size.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.BlockDevice.ReadBlock(System.UInt64,System.UInt64,System.Byte[]@)">
+            <summary>
+            Read block from partition.
+            </summary>
+            <param name="aBlockNo">A block to read from.</param>
+            <param name="aBlockCount">A number of blocks in the partition.</param>
+            <param name="aData">A data that been read.</param>
+            <exception cref="T:System.OverflowException">Thrown when data lenght is greater then Int32.MaxValue.</exception>
+            <exception cref="T:System.Exception">Thrown when data size invalid.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.BlockDevice.WriteBlock(System.UInt64,System.UInt64,System.Byte[]@)">
+            <summary>
+            Write block to partition.
+            </summary>
+            <param name="aBlockNo">A block number to write to.</param>
+            <param name="aBlockCount">A number of blocks in the partition.</param>
+            <param name="aData">A data to write.</param>
+            <exception cref="T:System.OverflowException">Thrown when data lenght is greater then Int32.MaxValue.</exception>
+            <exception cref="T:System.Exception">Thrown when data size invalid.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.BlockDevice.CheckDataSize(System.Byte[],System.UInt64)">
+            <summary>
+            Check data size.
+            </summary>
+            <param name="aData">A data to check the size of.</param>
+            <param name="aBlockCount">Number of blocks used to store the data.</param>
+            <exception cref="T:System.OverflowException">Thrown when data lenght is greater then Int32.MaxValue.</exception>
+            <exception cref="T:System.Exception">Thrown when data size invalid.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.BlockDevice.CheckBlockNo(System.UInt64,System.UInt64)">
+            <summary>
+            Check block number.
+            Not implemented.
+            </summary>
+            <param name="aBlockNo">A block number to be checked.</param>
+            <param name="aBlockCount">A block count.</param>
+        </member>
+        <member name="T:Cosmos.HAL.BlockDevice.Partition">
+            <summary>
+            Partition class. Used to read and write blocks of data.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.BlockDevice.Partition.mHost">
+            <summary>
+            Hosting device.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.BlockDevice.Partition.mStartingSector">
+            <summary>
+            Starting sector.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.Partition.#ctor(Cosmos.HAL.BlockDevice.BlockDevice,System.UInt64,System.UInt64)">
+            <summary>
+            Create new inctanse of the <see cref="T:Cosmos.HAL.BlockDevice.Partition"/> class.
+            </summary>
+            <param name="aHost">A hosting device.</param>
+            <param name="aStartingSector">A starting sector.</param>
+            <param name="aSectorCount">A sector count.</param>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.Partition.ReadBlock(System.UInt64,System.UInt64,System.Byte[]@)">
+            <summary>
+            Read block from partition.
+            </summary>
+            <param name="aBlockNo">A block to read from.</param>
+            <param name="aBlockCount">A number of blocks in the partition.</param>
+            <param name="aData">A data that been read.</param>
+            <exception cref="T:System.OverflowException">Thrown when data lenght is greater then Int32.MaxValue.</exception>
+            <exception cref="T:System.Exception">Thrown when data size invalid.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.Partition.WriteBlock(System.UInt64,System.UInt64,System.Byte[]@)">
+            <summary>
+            Write block to partition.
+            </summary>
+            <param name="aBlockNo">A block number to write to.</param>
+            <param name="aBlockCount">A number of blocks in the partition.</param>
+            <param name="aData">A data to write.</param>
+            <exception cref="T:System.OverflowException">Thrown when data lenght is greater then Int32.MaxValue.</exception>
+            <exception cref="T:System.Exception">Thrown when data size invalid.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.BlockDevice.Partition.ToString">
+            <summary>
+            To string.
+            </summary>
+            <returns>string value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Network.AMDPCNetII.FindAll">
+            <summary>
+            Retrieve all AMD PCNetII network cards found on computer.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Network.AMDPCNetII.QueueBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Add bytes to the transmit buffer queue.
+            </summary>
+            <param name="buffer">bytes array to queue.</param>
+            <param name="offset">Offset of the data in the buffer.</param>
+            <param name="length">Data length.</param>
+            <returns>TRUE on success.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown on memory error.</exception>
+            <exception cref="T:System.OverflowException">Thrown if length is bigger than Int32.MaxValue.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Network.AMDPCNetII.SendBytes(System.Byte[]@)">
+            <summary>
+            Send bytes to memory block.
+            </summary>
+            <param name="aData">A data to send.</param>
+            <returns>TRUE on success.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown on memory error.</exception>
+            <exception cref="T:System.OverflowException">Thrown if aData length is bigger than Int32.MaxValue.</exception>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII">
+            <summary>
+            VMWareSVGAII class.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register">
+            <summary>
+            Register values.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.ID">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Enable">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Width">
+            <summary>
+            Width.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Height">
+            <summary>
+            Height.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.MaxWidth">
+            <summary>
+            Max width.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.MaxHeight">
+            <summary>
+            Max height.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Depth">
+            <summary>
+            Depth.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.BitsPerPixel">
+            <summary>
+            Bits per pixel.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.PseudoColor">
+            <summary>
+            Pseudo color.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.RedMask">
+            <summary>
+            Red mask.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.GreenMask">
+            <summary>
+            Green mask.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.BlueMask">
+            <summary>
+            Blue mask.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.BytesPerLine">
+            <summary>
+            Bytes per line.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.FrameBufferStart">
+            <summary>
+            Frame buffer start.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.FrameBufferOffset">
+            <summary>
+            Frame buffer offset.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.VRamSize">
+            <summary>
+            VRAM size.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.FrameBufferSize">
+            <summary>
+            Frame buffer size.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Capabilities">
+            <summary>
+            Capabilities.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.MemStart">
+            <summary>
+            Memory start.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.MemSize">
+            <summary>
+            Memory size.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.ConfigDone">
+            <summary>
+            Config done.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Sync">
+            <summary>
+            Sync.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.Busy">
+            <summary>
+            Busy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.GuestID">
+            <summary>
+            Guest ID.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.CursorID">
+            <summary>
+            Cursor ID.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.CursorX">
+            <summary>
+            Cursor X.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.CursorY">
+            <summary>
+            Cursor Y.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.CursorOn">
+            <summary>
+            Cursor on.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.HostBitsPerPixel">
+            <summary>
+            Host bits per pixel.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.ScratchSize">
+            <summary>
+            Scratch size.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.MemRegs">
+            <summary>
+            Memory registers.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.NumDisplays">
+            <summary>
+            Number of displays.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.PitchLock">
+            <summary>
+            Pitch lock.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register.FifoNumRegisters">
+            <summary>
+            Indicates maximum size of FIFO Registers.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ID">
+            <summary>
+            ID values.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ID.Magic">
+            <summary>
+            Magic starting point.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ID.V0">
+            <summary>
+            V0.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ID.V1">
+            <summary>
+            V1.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ID.V2">
+            <summary>
+            V2.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ID.Invalid">
+            <summary>
+            Invalid
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO">
+            <summary>
+            FIFO values.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO.Min">
+            <summary>
+            Min.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO.Max">
+            <summary>
+            Max.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO.NextCmd">
+            <summary>
+            Next command.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO.Stop">
+            <summary>
+            Stop.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand">
+            <summary>
+            FIFO command values.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.Update">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_FILL">
+            <summary>
+            Rectange fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_COPY">
+            <summary>
+            Rectange copy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DEFINE_BITMAP">
+            <summary>
+            Define bitmap.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DEFINE_BITMAP_SCANLINE">
+            <summary>
+            Define bitmap scanline.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DEFINE_PIXMAP">
+            <summary>
+            Define pixmap.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DEFINE_PIXMAP_SCANLINE">
+            <summary>
+            Define pixmap scanline.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_BITMAP_FILL">
+            <summary>
+            Rectange bitmap fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_PIXMAP_FILL">
+            <summary>
+            Rectange pixmap fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_BITMAP_COPY">
+            <summary>
+            Rectange bitmap copy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_PIXMAP_COPY">
+            <summary>
+            Rectange pixmap fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.FREE_OBJECT">
+            <summary>
+            Free object.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_ROP_FILL">
+            <summary>
+            Rectangle raster operation fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_ROP_COPY">
+            <summary>
+            Rectangle raster operation copy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_ROP_BITMAP_FILL">
+            <summary>
+            Rectangle raster operation bitmap fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_ROP_PIXMAP_FILL">
+            <summary>
+            Rectangle raster operation pixmap fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_ROP_BITMAP_COPY">
+            <summary>
+            Rectangle raster operation bitmap copy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.RECT_ROP_PIXMAP_COPY">
+            <summary>
+            Rectangle raster operation pixmap copy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DEFINE_CURSOR">
+            <summary>
+            Define cursor.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DISPLAY_CURSOR">
+            <summary>
+            Display cursor.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.MOVE_CURSOR">
+            <summary>
+            Move cursor.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFOCommand.DEFINE_ALPHA_CURSOR">
+            <summary>
+            Define alpha cursor.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IOPortOffset">
+            <summary>
+            IO port offset.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IOPortOffset.Index">
+            <summary>
+            Index.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IOPortOffset.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IOPortOffset.Bios">
+            <summary>
+            BIOS.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IOPortOffset.IRQ">
+            <summary>
+            IRQ.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability">
+            <summary>
+            Capability values.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.RectFill">
+            <summary>
+            Rectangle fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.RectCopy">
+            <summary>
+            Rectangle copy.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.RectPatFill">
+            <summary>
+            Rectangle pattern fill.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.LecacyOffscreen">
+            <summary>
+            Lecacy off screen.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.RasterOp">
+            <summary>
+            Raster operation.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.Cursor">
+            <summary>
+            Cruser.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.CursorByPass">
+            <summary>
+            Cursor bypass.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.CursorByPass2">
+            <summary>
+            Cursor bypass2.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.EigthBitEmulation">
+            <summary>
+            Eigth bit emulation.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.AlphaCursor">
+            <summary>
+            Alpha cursor.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.Glyph">
+            <summary>
+            Glyph.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.GlyphClipping">
+            <summary>
+            Glyph clipping.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.Offscreen1">
+            <summary>
+            Offscreen.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.AlphaBlend">
+            <summary>
+            Alpha blend.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.ThreeD">
+            <summary>
+            Three D.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.ExtendedFifo">
+            <summary>
+            Extended FIFO.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.MultiMon">
+            <summary>
+            Multi monitors.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.PitchLock">
+            <summary>
+            Pitch lock.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.IrqMask">
+            <summary>
+            IRQ mask.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.DisplayTopology">
+            <summary>
+            Display topology.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.Gmr">
+            <summary>
+            GMR.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.Traces">
+            <summary>
+            Traces.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.Gmr2">
+            <summary>
+            GMR2.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Capability.ScreenObject2">
+            <summary>
+            Screen objects.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IndexPort">
+            <summary>
+            Index port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ValuePort">
+            <summary>
+            Value port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.BiosPort">
+            <summary>
+            BIOS port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.IRQPort">
+            <summary>
+            IRQ port.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Video_Memory">
+            <summary>
+            Video memory block.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO_Memory">
+            <summary>
+            FIFO memory block.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.device">
+            <summary>
+            PCI device.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.height">
+            <summary>
+            Height.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.width">
+            <summary>
+            Width.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.depth">
+            <summary>
+            Depth.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.capabilities">
+            <summary>
+            Capabilities.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.#ctor">
+            <summary>
+            Create new inctanse of the <see cref="T:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII"/> class.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.InitializeFIFO">
+            <summary>
+            Initialize FIFO.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.SetMode(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set video mode.
+            </summary>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <param name="depth">Depth.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.WriteRegister(Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register,System.UInt32)">
+            <summary>
+            Write register.
+            </summary>
+            <param name="register">A register.</param>
+            <param name="value">A value.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.ReadRegister(Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Register)">
+            <summary>
+            Read register.
+            </summary>
+            <param name="register">A register.</param>
+            <returns>uint value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.GetFIFO(Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO)">
+            <summary>
+            Get FIFO.
+            </summary>
+            <param name="cmd">FIFO command.</param>
+            <returns>uint value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.SetFIFO(Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.FIFO,System.UInt32)">
+            <summary>
+            Set FIFO.
+            </summary>
+            <param name="cmd">Command.</param>
+            <param name="value">Value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.WaitForFifo">
+            <summary>
+            Wait for FIFO.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.WriteToFifo(System.UInt32)">
+            <summary>
+            Write to FIFO.
+            </summary>
+            <param name="value">Value to write.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Update(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Update FIFO.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.SetPixel(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set pixel.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="color">Color.</param>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.GetPixel(System.UInt32,System.UInt32)">
+            <summary>
+            Get pixel.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <returns>uint value.</returns>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Clear(System.UInt32)">
+            <summary>
+            Clear screen to specified color.
+            </summary>
+            <param name="color">Color.</param>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+            <exception cref="T:System.NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Copy(System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Copy rectangle.
+            </summary>
+            <param name="x">Source X coordinate.</param>
+            <param name="y">Source Y coordinate.</param>
+            <param name="newX">Destination X coordinate.</param>
+            <param name="newY">Destination Y coordinate.</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <exception cref="T:System.NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.Fill(System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Fill rectangle.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <param name="color">Color.</param>
+            <exception cref="T:System.Exception">Thrown on memory access violation.</exception>
+            <exception cref="T:System.NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.DefineCursor">
+            <summary>
+            Define cursor.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII.SetCursor(System.Boolean,System.UInt32,System.UInt32)">
+            <summary>
+            Set cursor.
+            </summary>
+            <param name="visible">Visible.</param>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.VBEDriver">
+            <summary>
+            VBEDriver class. Used to directly write registers values to the port.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.VBEDriver.RegisterIndex">
+            <summary>
+            Register index.
+            <para>
+            Avilable indexs:
+            <list type="bullet">
+            <item>DisplayID.</item>
+            <item>DisplayXResolution.</item>
+            <item>DisplayYResolution.</item>
+            <item>DisplayBPP.</item>
+            <item>DisplayEnable.</item>
+            <item>DisplayBankMode.</item>
+            <item>DisplayVirtualWidth.</item>
+            <item>DisplayVirtualHeight.</item>
+            <item>DisplayXOffset.</item>
+            <item>DisplayYOffset.</item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Drivers.VBEDriver.EnableValues">
+            <summary>
+            Enable values.
+            <para>
+            Avilable values:
+            <list type="bullet">
+            <item>Disabled.</item>
+            <item>Enabled.</item>
+            <item>UseLinearFrameBuffer.</item>
+            <item>NoClearMemory.</item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.#ctor(System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Create new instance of the <see cref="T:Cosmos.HAL.Drivers.VBEDriver"/> class.
+            </summary>
+            <param name="xres">X resolution.</param>
+            <param name="yres">Y resolution.</param>
+            <param name="bpp">BPP (color depth).</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.VBEWrite(Cosmos.HAL.Drivers.VBEDriver.RegisterIndex,System.UInt16)">
+            <summary>
+            Write value to VBE index.
+            </summary>
+            <param name="index">Register index.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.DisableDisplay">
+            <summary>
+            Disable display.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.SetXResolution(System.UInt16)">
+            <summary>
+            Set X resolution.
+            </summary>
+            <param name="xres">X resolution.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.SetYResolution(System.UInt16)">
+            <summary>
+            Set Y resolution.
+            </summary>
+            <param name="yres">Y resolution.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.SetDisplayBPP(System.UInt16)">
+            <summary>
+            Set BPP.
+            </summary>
+            <param name="bpp">BPP (color depth).</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.EnableDisplay(Cosmos.HAL.Drivers.VBEDriver.EnableValues)">
+            <summary>
+            Enable display.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.VBESet(System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Set VBE values.
+            </summary>
+            <param name="xres">X resolution.</param>
+            <param name="yres">Y resolution.</param>
+            <param name="bpp">BPP (color depth).</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.SetVRAM(System.UInt32,System.Byte)">
+            <summary>
+            Set VRAM.
+            </summary>
+            <param name="index">Index to set.</param>
+            <param name="value">Value to set.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.SetVRAM(System.UInt32,System.UInt16)">
+            <summary>
+            Set VRAM.
+            </summary>
+            <param name="index">Index to set.</param>
+            <param name="value">Value to set.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.SetVRAM(System.UInt32,System.UInt32)">
+            <summary>
+            Set VRAM.
+            </summary>
+            <param name="index">Index to set.</param>
+            <param name="value">Value to set.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.GetVRAM(System.UInt32)">
+            <summary>
+            Get VRAM.
+            </summary>
+            <param name="index">Index to get.</param>
+            <returns>byte value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.ClearVRAM(System.UInt32)">
+            <summary>
+            Clear VRAM.
+            </summary>
+            <param name="value">Value of fill with.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.ClearVRAM(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Clear VRAM.
+            </summary>
+            <param name="aStart">A start.</param>
+            <param name="aCount">A count.</param>
+            <param name="value">A volum.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.CopyVRAM(System.Int32,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Copy VRAM.
+            </summary>
+            <param name="aStart">A start.</param>
+            <param name="aData">A data.</param>
+            <param name="aIndex">A index.</param>
+            <param name="aCount">A count.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Drivers.VBEDriver.Swap">
+            <summary>
+            Swap back buffer to video memory
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.SetPlane(System.Byte)">
+            <summary>
+            Set plane.
+            </summary>
+            <param name="p">p to set.</param>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.GetFramebufferSegment">
+            <summary>
+            Get frame buffer segment.
+            </summary>
+            <returns>MemoryBlock08 value.</returns>
+            <exception cref="T:System.Exception">Thrown when unable to determine memory segment.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.WriteFont(System.Byte[],System.Byte)">
+            <summary>
+            Write font.
+            </summary>
+            <param name="font">Font.</param>
+            <param name="font_height">Font height.</param>
+            <exception cref="T:System.Exception">Thrown when unable to determine memory segment.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.SetPixel(System.UInt32,System.UInt32,System.Drawing.Color)">
+            <summary>
+            The closest color in the palette will be found to be drawn
+            This is quite slow, so whenever possible use the index of the color
+            </summary>
+            <param name="aX"></param>
+            <param name="aY"></param>
+            <param name="aColor"></param>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.SetPixel(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="aX"></param>
+            <param name="aY"></param>
+            <param name="aColor">The index of the color in the palette</param>
+        </member>
+        <member name="F:Cosmos.HAL.VGADriver.ScreenSize.Size640x480">
+            <summary>
+            640x480 graphics mode  - 2 and 4 bit color depth available
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.VGADriver.ScreenSize.Size720x480">
+            <summary>
+            720x480 graphics mode  - 16 bit color depth available
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.VGADriver.ScreenSize.Size320x200">
+            <summary>
+            320x200 graphics mode  - 4 and 8 bit color depth available
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.SetTextMode(Cosmos.HAL.VGADriver.TextSize)">
+            <summary>
+            Set text size.
+            </summary>
+            <param name="aSize">A size to set.</param>
+            <exception cref="T:System.Exception">Thrown when text size invalid / unable to determine memory segment.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.SetGraphicsMode(Cosmos.HAL.VGADriver.ScreenSize,Cosmos.HAL.VGADriver.ColorDepth)">
+            <summary>
+            Set graphics mode.
+            </summary>
+            <param name="aSize">A screen size.</param>
+            <param name="aDepth">A color depth.</param>
+            <exception cref="T:System.Exception">Thrown when aDepth not supported for the aSize / unknown screen size.</exception>
+        </member>
+        <member name="P:Cosmos.HAL.VGADriver.PixelWidth">
+            <summary>
+            Get and set pixel width.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.VGADriver.PixelHeight">
+            <summary>
+            Get and set pixel height.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.VGADriver.Colors">
+            <summary>
+            Get and set colors.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.DrawFilledRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.UInt32)">
+            <summary>
+            Draw Filled Rectangle
+            </summary>
+            <param name="aX">X Position.</param>
+            <param name="aY">Y Position.</param>
+            <param name="aW">Rectangle width</param>
+            <param name="aH">Rectangle height</param>
+            <param name="aColor">Rectangle color.</param>
+            <exception cref="T:System.Exception">Thrown when Textmode enabled.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.VGADriver.SetPaletteEntry(System.Int32,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Set palette entry.
+            </summary>
+            <param name="aIndex">Index.</param>
+            <param name="aR">Red.</param>
+            <param name="aG">Green.</param>
+            <param name="aB">Blue.</param>
+        </member>
+        <member name="M:Cosmos.HAL.Global.Init(Cosmos.HAL.TextScreenBase)">
+            <summary>
+            Init <see cref="T:Cosmos.HAL.Global"/> inctanse.
+            </summary>
+            <param name="textScreen">Text screen.</param>
+            <exception cref="T:System.IO.IOException">Thrown on IO error.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Global.EnableInterrupts">
+            <summary>
+            Enable interrupts.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.Global.InterruptsEnabled">
+            <summary>
+            Check if CPU interrupts are enabled.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Global.GetKeyboardDevices">
+            <summary>
+            Get keyboard devices.
+            </summary>
+            <returns>IEnumerable{KeyboardBase} value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.Global.GetMouseDevices">
+            <summary>
+            Get mouse devices.
+            </summary>
+            <returns>IEnumerable{MouseBase} value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.KeyboardBase.Initialize">
+            <summary>
+            Initialize the device. Happens before the interrupt is registered, ie before the class is being used.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.KeyboardBase.UpdateLeds">
+            <summary>
+            Update keyboard LEDs.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.KeyboardBase.WaitForKey">
+            <summary>
+            Wait for key to be pressed.
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.MouseBase">
+            <summary>
+            The base class for mouse implementations.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.NetworkDevice.QueueBytes(System.Byte[])">
+            <summary>
+            Add bytes to the transmit buffer queue.
+            </summary>
+            <param name="buffer">bytes array to queue.</param>
+            <returns>TRUE on success.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown on memory error.</exception>
+            <exception cref="T:System.OverflowException">Thrown if buffer length is bigger than Int32.MaxValue.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.NetworkDevice.QueueBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Add bytes to the transmit buffer queue.
+            </summary>
+            <param name="buffer">bytes array to queue.</param>
+            <param name="offset">Offset of the data in the buffer.</param>
+            <param name="length">Data length.</param>
+            <returns>TRUE on success.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown on memory error.</exception>
+            <exception cref="T:System.OverflowException">Thrown if length is bigger than Int32.MaxValue.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Network.MACAddress.#ctor(System.Byte[],System.Int32)">
+            <summary>
+            Create a MAC address from a byte buffer starting at the specified offset
+            </summary>
+            <param name="buffer">byte buffer</param>
+            <param name="offset">offset in buffer to start from</param>
+        </member>
+        <member name="M:Cosmos.HAL.PCI.CheckBus(System.UInt16)">
+            <summary>
+            Check bus.
+            </summary>
+            <param name="xBus">A bus to check.</param>
+        </member>
+        <member name="M:Cosmos.HAL.PCI.GetDevice(Cosmos.HAL.VendorID,Cosmos.HAL.DeviceID)">
+            <summary>
+            Get device.
+            </summary>
+            <param name="aVendorID">A vendor ID.</param>
+            <param name="aDeviceID">A device ID.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Cosmos.HAL.PCIDevice.Claimed">
+            <summary>
+            Has this device been claimed by a driver
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.GetHeaderType(System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Get header type.
+            </summary>
+            <param name="Bus">A bus.</param>
+            <param name="Slot">A slot.</param>
+            <param name="Function">A function.</param>
+            <returns>ushort value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.GetVendorID(System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Get vendor ID.
+            </summary>
+            <param name="Bus">A bus.</param>
+            <param name="Slot">A slot.</param>
+            <param name="Function">A function.</param>
+            <returns>UInt16 value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.ReadRegister8(System.Byte)">
+            <summary>
+            Read register - 8-bit.
+            </summary>
+            <param name="aRegister">A register to read.</param>
+            <returns>byte value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.ReadRegister16(System.Byte)">
+            <summary>
+            Read register 16.
+            </summary>
+            <param name="aRegister">A register.</param>
+            <returns>UInt16 value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.WriteRegister16(System.Byte,System.UInt16)">
+            <summary>
+            Write register 16.
+            </summary>
+            <param name="aRegister">A register.</param>
+            <param name="value">A value.</param>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.GetAddressBase(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Get address base.
+            </summary>
+            <param name="aBus">A bus.</param>
+            <param name="aSlot">A slot.</param>
+            <param name="aFunction">A function.</param>
+            <returns>UInt32 value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PCIDevice.EnableMemory(System.Boolean)">
+            <summary>
+            Enable memory.
+            </summary>
+            <param name="enable">bool value.</param>
+        </member>
+        <member name="M:Cosmos.HAL.PCSpeaker.EnableSound">
+            <summary>
+            Enable sound.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PCSpeaker.DisableSound">
+            <summary>
+            Disable sound.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PCSpeaker.Beep(System.UInt32)">
+            <summary>
+            Play beep sound, at a specified frequency for a specified duration.
+            </summary>
+            <param name="frequency">Audio frequency in Hz, must be between 37 and 32767Hz.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if frequency is invalid.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.PCSpeaker.Beep(System.UInt32,System.UInt32)">
+            <summary>
+            Play beep sound, at a specified frequency for a specified duration.
+            </summary>
+            <param name="frequency">Audio frequency in Hz, must be between 37 and 32767Hz.</param>
+            <param name="duration">Beep duration, must be > 0.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if duration or frequency invalid.</exception>
+        </member>
+        <member name="T:Cosmos.HAL.PIT">
+            <summary>
+            Programmable Interval Timer
+            with 1,193181818... MHz
+            </summary>
+        </member>
+        <member name="T:Cosmos.HAL.Power">
+            <summary>
+            Power class. Used to reboot and shutdown the PC.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Power.CPUReboot">
+            <summary>
+            Reboot the CPU.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.Power.ACPIReboot">
+            <summary>
+            Reboot using ACPI.
+            </summary>
+            <exception cref="!:NotImplementedException">Thrown always.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.Power.ACPIShutdown">
+            <summary>
+            Shutdown the ACPI.
+            </summary>
+            <exception cref="T:System.IO.IOException">Thrown on IO error.</exception>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.Initialize">
+            <summary>
+            Initializes the PS/2 controller.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.IdentifyDevice(System.Byte,Cosmos.HAL.Device@)">
+            <summary>
+            Identifies a PS/2 device.
+            </summary>
+            <param name="aPort">The port of the PS/2 device to identify.</param>
+            <param name="aDevice">An instance of the identified device.</param>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.TestPort(System.Byte)">
+            <summary>
+            Tests a PS/2 device port.
+            </summary>
+            <param name="aPort">The PS/2 device port to test.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.PulseOutputLine(Cosmos.HAL.PS2Controller.OutputLines)">
+            <summary>
+            Pulses the PS/2 controller's output line.
+            </summary>
+            <param name="aPulseResetLine">The reset line.</param>
+            <param name="aPulseSecondLine">The second line.</param>
+            <param name="aPulseThirdLine">The third line.</param>
+            <param name="aPulseFourthLine">The fourth line.</param>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.WaitForAck">
+            <summary>
+            Waits for the acknowledgement byte (0xFA). Returns false if the timeout expires, true otherwise.
+            </summary>
+            <returns>Returns false if the timeout expires, true otherwise.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.ReadByteAfterAck">
+            <summary>
+            Reads the byte after acknowledgement.
+            </summary>
+            <returns>The byte read after acknowledgement.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.ReadByteAfterAckWithTimeout(System.Byte@)">
+            <summary>
+            Reads the byte after acknowledgement.
+            </summary>
+            <param name="aByte">The byte read after acknowledgement.</param>
+            <returns>Returns false if the timeout expired, true otherwise.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.PrepareSecondPortWrite">
+            <summary>
+            Prepares the controller to write a command in the second PS/2 device port.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.WaitForDeviceReset">
+            <summary>
+            Waits for the PS/2 device reset.
+            </summary>
+            <returns>Returns true if the device resets successfully, false otherwise.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.WaitToReadData">
+            <summary>
+            Waits to read data.
+            </summary>
+            <returns>Returns false if the timeout expired, true otherwise.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Controller.WaitToWrite">
+            <summary>
+            Waits to write data.
+            </summary>
+            <returns>Returns false if the timeout expired, true otherwise.</returns>
+        </member>
+        <member name="T:Cosmos.HAL.PS2Keyboard">
+            <summary>
+            This class describes the PS/2 keyboard.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Keyboard.UpdateLeds">
+            <summary>
+            Update keyboard LEDs.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Keyboard.GetScanCodeSet">
+            <summary>
+            Gets the current keyboard scan code set.
+            </summary>
+            <returns>Returns the current scan code set.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Keyboard.SetScanCodeSet(System.Byte)">
+            <summary>
+            Sets the scan code set.
+            </summary>
+            <param name="aScanCodeSet">The scan code set to set. Can be 1, 2 or 3.</param>
+        </member>
+        <member name="T:Cosmos.HAL.PS2Mouse">
+            <summary>
+            This class describes the PS/2 mouse.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Mouse.Initialize">
+            <summary>
+            This is the required call to start
+            the mouse receiving interrupts.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Mouse.TryToEnableScrollWheel">
+            <summary>
+            Tries to enable the scroll wheel.
+            </summary>
+            <returns>Returns the mouse id.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.PS2Mouse.TryToEnableAdditionalButtons">
+            <summary>
+            Tries to enable additional buttons (buttons 4 and 5).
+            </summary>
+            <returns>Returns the mouse id.</returns>
+        </member>
+        <member name="T:Cosmos.HAL.RTC">
+            <summary>
+            This class represents the Real-Time Clock.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.RTC.#cctor">
+            <summary>
+            The static constructor for RTC,
+            initializes all of the options
+            that are possible in the RTC.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.RTC.isBCDMode">
+            <summary>
+            True if the RTC is using BCD mode.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.RTC.is24HourMode">
+            <summary>
+            True if the RTC is using the 24-hour format.
+            </summary>
+        </member>
+        <member name="F:Cosmos.HAL.RTC.StatusByteB">
+            <summary>
+            The value of Status Register B that was read on startup.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.Second">
+            <summary>
+            The current second.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.Minute">
+            <summary>
+            The current minute.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.Hour">
+            <summary>
+            The current hour. Please note, this is 
+            always in 24-hour format.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.DayOfTheWeek">
+            <summary>
+            The current day of the week.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.DayOfTheMonth">
+            <summary>
+            The current day of the month.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.Month">
+            <summary>
+            The current month.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.Year">
+            <summary>
+            The current year in the century.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.RTC.Century">
+            <summary>
+            The current century. Beware, this may cause issues 
+            on computers from before 1995.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.RTC.FromBCD(System.Byte)">
+            <summary>
+            Converts a BCD coded value to hex coded 
+            </summary>
+            <param name="value">BCD coded</param>
+            <returns>Hex coded</returns>
+        </member>
+        <member name="M:Cosmos.HAL.RTC.WaitForReady">
+            <summary>
+            Waits until the status register says it can accept a value.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.#ctor">
+            <summary>
+            Creat new inctanse of the <see cref="T:Cosmos.HAL.TextScreen"/> class.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.Clear">
+            <summary>
+            Clear text screen.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.ScrollUp">
+            <summary>
+            Scroll screen up.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.SetColors(System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Set screen foreground and background colors.
+            </summary>
+            <param name="aForeground">Foreground color.</param>
+            <param name="aBackground">Background color.</param>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.SetCursorPos(System.Int32,System.Int32)">
+            <summary>
+            Set cursor position.
+            </summary>
+            <param name="aX">A position on X axis.</param>
+            <param name="aY">A position on Y axis.</param>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.GetColor">
+            <summary>
+            Get screen color.
+            </summary>
+            <returns>byte value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.GetCursorSize">
+            <summary>
+            Get cursor size.
+            </summary>
+            <returns>int value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.SetCursorSize(System.Int32)">
+            <summary>
+            Set cursor size.
+            </summary>
+            <param name="value">Size value.</param>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.GetCursorVisible">
+            <summary>
+            Check if cursor is visible.
+            </summary>
+            <returns>bool value.</returns>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreen.SetCursorVisible(System.Boolean)">
+            <summary>
+            Set cursor visibilty.
+            </summary>
+            <param name="value">TRUE - visible.</param>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreenBase.Clear">
+            <summary>
+            Clear text screen.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreenBase.SetColors(System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Get and set console foreground color.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreenBase.GetColor">
+            <summary>
+            Get screen color.
+            </summary>
+            <returns>byte value.</returns>
+        </member>
+        <member name="P:Cosmos.HAL.TextScreenBase.Cols">
+            <summary>
+            Get number of columns in text screen.
+            </summary>
+        </member>
+        <member name="P:Cosmos.HAL.TextScreenBase.Rows">
+            <summary>
+            Get number of rows in text screen.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreenBase.SetCursorPos(System.Int32,System.Int32)">
+            <summary>
+            Set cursor position.
+            </summary>
+            <param name="x">A position on X axis.</param>
+            <param name="y">A position on Y axis.</param>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreenBase.ScrollUp">
+            <summary>
+            Scroll screen up.
+            </summary>
+        </member>
+        <member name="M:Cosmos.HAL.TextScreenBase.GetCursorSize">
+            <summary>
+            Get cursor size.
+            </summary>
+            <returns>int value.</returns>
+        </member>
+    </members>
+</doc>
