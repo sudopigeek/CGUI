@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "H8APAr6J4f+rXoC0uAUbXBpT6HjyS1F2ec8OnsatQQ+ZF/qCMySm22NohZBb+Ha+UVKVajh5iu8ciBYfMwaCag==",
+  "dgSpecHash": "j3GLoh8eRMkh9YyH8vcn53pfplSFd/tmn2XdcVQbxdYhybHUWutVC7FEVXS4pkypnSlI52LuQzE8WlaeJoHxEw==",
   "success": true,
   "projectFilePath": "C:\\Users\\f\\source\\repos\\sudopigeek\\CGUI\\CGUI\\CGUI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\f\\.nuget\\packages\\costura.fody\\4.1.0\\costura.fody.4.1.0.nupkg.sha512",
     "C:\\Users\\f\\.nuget\\packages\\microsoft.netcore.app\\2.0.0\\microsoft.netcore.app.2.0.0.nupkg.sha512",
     "C:\\Users\\f\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.0.0\\microsoft.netcore.dotnetapphost.2.0.0.nupkg.sha512",
     "C:\\Users\\f\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.0.0\\microsoft.netcore.dotnethostpolicy.2.0.0.nupkg.sha512",

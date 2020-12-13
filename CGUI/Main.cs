@@ -257,17 +257,10 @@ namespace CGUI
                         if (info.Key == ConsoleKey.Tab)
                         {
                             //Move to next control (if one exists):
-                            if (tcount > index)
-                            {
-                                Unfocus(first);
-                                Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
-                            }
-                            else
-                            {
+                            if (tcount == index)
                                 index = 0;
-                                Unfocus(first);
-                                Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
-                            }
+                            Unfocus(first);
+                            Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
                             rkey = false;
                         }
                         else
@@ -300,25 +293,26 @@ namespace CGUI
                 {
                     TextBox first = (TextBox)frst;
                     currentControl = first;
+                    pointer = first.pos;
                     Focus(first);
                     index++;
-                    if (first.txt.ToString() == "")
+                    if (first.pos == 0)
                     {
                         driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                         driver.DoubleBuffer_Update();
                     }
                     else
                     {
-                        if (first.txt.Length == first.cLength)
+                        if (first.pos == first.cLength)
                         {
                             //Draw vertical cursor:
-                            driver.DoubleBuffer_DrawFillRectangle((uint)(x + (first.txt.Length * 8) + 1), (uint)y, 2, 15, (uint)first.ForeColor.ToArgb());
-                            driver.DoubleBuffer_Update();
                             x = x + (first.txt.Length * 8);
+                            driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.ForeColor.ToArgb());
+                            driver.DoubleBuffer_Update();                           
                         }
                         else
                         {
-                            x = (x + (first.txt.Length * 8));
+                            x = x + (first.pos * 8);
                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                             driver.DoubleBuffer_Update();
                         }
@@ -486,9 +480,7 @@ namespace CGUI
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                                             driver.DoubleBuffer_Update();
                                             if (first.KeyPress != null)
-                                            {
                                                 first.KeyPress.Invoke(first, info);
-                                            }
                                             pointer++;
                                         }
                                     }
@@ -530,36 +522,23 @@ namespace CGUI
                                             driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
                                         }
                                         if (pointer == (first.cLength - 1))
-                                        {
                                             //Draw cursor up one character in vertical state:
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.ForeColor.ToArgb());
-                                            driver.DoubleBuffer_Update();
-                                        }
                                         else
-                                        {
                                             //Draw cursor one character up:
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
-                                            driver.DoubleBuffer_Update();
-                                        }
-                                        
+                                        driver.DoubleBuffer_Update();
                                         if (first.KeyPress != null)
-                                        {
                                             first.KeyPress.Invoke(first, info);
-                                        }
                                         pointer++;
                                     }                                   
                                 }
                                 else
                                 {
                                     if (first.Limit != null)
-                                    {
                                         first.Limit.Invoke(first, new EventArgs());
-                                    }
-
                                     if (first.BeepOnLimit)
-                                    {
                                         Console.Beep();
-                                    }
                                 }
                                 break;
                             default:
@@ -572,13 +551,9 @@ namespace CGUI
                                             {
                                                 //Erase last character:
                                                 if (first.Mask != '~')
-                                                {
                                                     driver._DrawACSIIString(first.Mask.ToString(), (uint)first.BackColor.ToArgb(), (uint)x - 8, (uint)y);
-                                                }
                                                 else
-                                                {
                                                     driver._DrawACSIIString(first.txt[first.txt.Length - 1].ToString(), (uint)first.BackColor.ToArgb(), (uint)x - 8, (uint)y);
-                                                }
                                                 driver.DoubleBuffer_Update();
                                                 //Erase vertical cursor:
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.BackColor.ToArgb());
@@ -595,13 +570,9 @@ namespace CGUI
                                                 {
                                                     //Erase last character:
                                                     if (first.Mask != '~')
-                                                    {
                                                         driver._DrawACSIIString(first.Mask.ToString(), (uint)first.BackColor.ToArgb(), (uint)x - 8, (uint)y);
-                                                    }
                                                     else
-                                                    {
                                                         driver._DrawACSIIString(first.txt[first.txt.Length - 1].ToString(), (uint)first.BackColor.ToArgb(), (uint)x - 8, (uint)y);
-                                                    }
                                                     driver.DoubleBuffer_Update();
                                                     //Erase cursor:
                                                     driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
@@ -664,14 +635,9 @@ namespace CGUI
                                         else
                                         {
                                             if (first.Limit != null)
-                                            {
                                                 first.Limit.Invoke(first, new EventArgs());
-                                            }
-
                                             if (first.BeepOnLimit)
-                                            {
                                                 Console.Beep();
-                                            }
                                         }
                                         break;
                                     case ConsoleKey.Delete:
@@ -713,64 +679,32 @@ namespace CGUI
                                             }
 
                                             if (first.Delete != null)
-                                            {
                                                 first.Delete.Invoke(first, new EventArgs());
-                                            }
                                         }
                                         else
                                         {
                                             if (first.Limit != null)
-                                            {
                                                 first.Limit.Invoke(first, new EventArgs());
-                                            }
-
                                             if (first.BeepOnLimit)
-                                            {
                                                 Console.Beep();
-                                            }
                                         }
                                         break;
                                     case ConsoleKey.Tab:
                                         //Move to next textbox (if one exists):
-                                        if (tcount > index)
-                                        {
-                                            //Erase cursor:
-                                            if (first.txt.Length == first.cLength)
-                                            {
-                                                //Erase vertical cursor:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x + 1, (uint)y, 2, 15, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                            }
-                                            else
-                                            {
-                                                //Erase cursor:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                            }
-                                            //Loop back through:
-                                            Unfocus(first);
-                                            Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
-                                        }
+                                        //Erase cursor:
+                                        if (first.txt.Length == first.cLength)
+                                            //Erase vertical cursor:
+                                            driver.DoubleBuffer_DrawFillRectangle((uint)x + 1, (uint)y, 2, 15, (uint)first.BackColor.ToArgb());
                                         else
-                                        {
                                             //Erase cursor:
-                                            if (first.txt.Length == first.cLength)
-                                            {
-                                                //Erase vertical cursor:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x + 1, (uint)y, 2, 15, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                            }
-                                            else
-                                            {
-                                                //Erase cursor:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                            }
+                                            driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
+                                        driver.DoubleBuffer_Update();
+                                        if (tcount == index)
                                             //Move back to the first one:
                                             index = 0;
-                                            Unfocus(first);
-                                            Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
-                                        }
+                                        Unfocus(first);
+                                        first.pos = pointer;
+                                        Focus(tControls, null, tControls[index].X + 1, tControls[index].Y, tcount);
                                         break;
                                     case ConsoleKey.LeftArrow:
                                         if (pointer > 0)
@@ -780,11 +714,6 @@ namespace CGUI
                                                 //Erase vertical cursor:
                                                 driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.BackColor.ToArgb());
                                                 driver.DoubleBuffer_Update();
-                                                x -= 8;
-                                                //Draw cursor one character back:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                pointer--;
                                             }
                                             else
                                             {
@@ -797,45 +726,32 @@ namespace CGUI
                                                     driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
                                                     driver.DoubleBuffer_Update();
                                                 }                                                
-                                                //Draw cursor one character back:
-                                                x -= 8;
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                pointer--;
-                                            }                                        
+                                            }
+                                            //Draw cursor one character back:
+                                            x -= 8;
+                                            driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
+                                            driver.DoubleBuffer_Update();
+                                            pointer--;
                                         }
                                         break;
                                     case ConsoleKey.RightArrow:
                                         if (pointer < first.txt.Length)
                                         {
-                                            if (pointer == (first.cLength - 1))
-                                            {
-                                                //Erase cursor:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                //Redraw previously selected character:
-                                                driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
-                                                driver.DoubleBuffer_Update();
-                                                //Draw cursor up one character in vertical state:
-                                                x += 8;
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.ForeColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                pointer++;
-                                            }
-                                            else
-                                            {
-                                                //Erase cursor:
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                //Redraw previously selected character:
-                                                driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
-                                                driver.DoubleBuffer_Update();
-                                                //Draw cursor up one character:
-                                                x += 8;
-                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
-                                                driver.DoubleBuffer_Update();
-                                                pointer++;
-                                            }
+                                            //Erase cursor:
+                                            driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
+                                            driver.DoubleBuffer_Update();
+                                            //Redraw previously selected character:
+                                            driver._DrawACSIIString(first.txt[pointer].ToString(), (uint)first.ForeColor.ToArgb(), (uint)x, (uint)y);
+                                            driver.DoubleBuffer_Update();
+                                            x += 8;
+                                            if (pointer == (first.cLength - 1))      
+                                                // Draw cursor:
+                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y, 2, 15, (uint)first.ForeColor.ToArgb());                                            
+                                            else                                          
+                                                // Draw vertical cursor:
+                                                driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());                                          
+                                            driver.DoubleBuffer_Update();
+                                            pointer++;
                                         }
                                         break;
                                     default:

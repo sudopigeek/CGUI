@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v2.0": {
       "CGUI/1.0.0": {
         "dependencies": {
-          "Costura.Fody": "4.1.0",
           "Cosmos.Core": "1.0.0.0",
           "Cosmos.HAL2": "1.0.0.0",
           "Cosmos.System2": "1.0.0.0"
@@ -17,7 +16,6 @@
           "CGUI.dll": {}
         }
       },
-      "Costura.Fody/4.1.0": {},
       "Cosmos.Core/1.0.0.0": {
         "runtime": {
           "Cosmos.Core.dll": {
@@ -73,13 +71,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Costura.Fody/4.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-MkW5aqhqNvuP6MiaaD5Yx8efXv+5ucsumRx+Nsn5b+PA4RnaxJLtXhGkm1N+Hi7sjkSlL8kl1klSS/7v2DxZHw==",
-      "path": "costura.fody/4.1.0",
-      "hashPath": "costura.fody.4.1.0.nupkg.sha512"
     },
     "Cosmos.Core/1.0.0.0": {
       "type": "reference",

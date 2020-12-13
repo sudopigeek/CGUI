@@ -222,6 +222,7 @@ namespace CGUI
         internal StringBuilder txt = new StringBuilder("");
         internal int FocusOrder;
         internal int cLength;
+        internal int pos = 0;
         internal EventHandler Limit;
         internal EventHandler<System.ConsoleKeyInfo> KeyPress;
         internal EventHandler Delete;

@@ -43,10 +43,6 @@
       "frameworks": {
         "netcoreapp2.0": {
           "dependencies": {
-            "Costura.Fody": {
-              "target": "Package",
-              "version": "[4.1.0, )"
-            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
