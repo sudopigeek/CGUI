@@ -50,13 +50,12 @@ namespace Demo
 
         private void Btn_OnEnter(object sender, System.EventArgs e)
         {
-            l.Update("Enter pressed");
+            t2.SetText("NewText8901234567890");
         }
 
         private void Kernel_OnPress(object sender, CGUI.ConsoleKeyInfo info)
         {
-            l.Update("You pressed " + info.Key.ConvertToString());
-            btn.Focus();
+            
         }
     }
 }

@@ -246,7 +246,7 @@
         </member>
         <member name="P:CGUI.TextBox.Text">
             <summary>
-            The current text in the textbox.
+            Gets the current text in the textbox.
             </summary>
         </member>
         <member name="E:CGUI.TextBox.OnDelete">
@@ -285,6 +285,12 @@
             <summary>
             Sets focus to the textbox.
             </summary>
+        </member>
+        <member name="M:CGUI.TextBox.SetText(System.String)">
+            <summary>
+            Sets the specified text into the textbox.
+            </summary>
+            <param name="text">The text to put in the textbox.</param>
         </member>
         <member name="T:CGUI.Button">
             <summary>

@@ -246,7 +246,7 @@
         </member>
         <member name="P:CGUI.TextBox.Text">
             <summary>
-            The current text in the textbox.
+            Gets the current text in the textbox.
             </summary>
         </member>
         <member name="E:CGUI.TextBox.OnDelete">

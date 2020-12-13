@@ -182,6 +182,95 @@ namespace CGUI
                 Console.ReadKey(true);
             }
         }
+        internal static void SetText(TextBox tbox, string text)
+        {
+            if (text.Length <= tbox.cLength)
+            {
+                // Get current text:
+                string prevText = "";
+                if (tbox.Mask != '~')
+                {
+                    for (int i2 = 0; i2 < tbox.txt.Length; i2++)
+                    {
+                        prevText += tbox.Mask;
+                    }
+                }
+                else
+                {
+                    prevText = tbox.txt.ToString();
+                }
+                // Clear text in textbox:
+                if (tbox == currentControl)
+                    driver._DrawACSIIString(prevText, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                else
+                    driver._DrawACSIIString(prevText, (uint)tbox.UnfocusBackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver.DoubleBuffer_Update();
+                // Draw new string:
+                if (tbox.Mask != '~')
+                {
+                    uint i = (uint)tbox.X + 1;
+                    for (int i2 = 0; i2 < text.Length; i2++)
+                    {
+                        if (tbox == currentControl)
+                            driver._DrawACSIIString(tbox.Mask.ToString(), (uint)tbox.ForeColor.ToArgb(), i, (uint)tbox.Y);
+                        else
+                            driver._DrawACSIIString(tbox.Mask.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), i, (uint)tbox.Y);
+                        driver.DoubleBuffer_Update();
+                        i += 8;
+                    }
+                }
+                else
+                {
+                    if (tbox == currentControl)
+                        driver._DrawACSIIString(text, (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                    else
+                        driver._DrawACSIIString(text, (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                    driver.DoubleBuffer_Update();
+                }
+                tbox.txt.Clear();
+                tbox.txt.Append(text);
+                tbox.pos = text.Length;
+            }
+            else
+            {
+                string substr = text.Substring(0, tbox.cLength);
+                // Get current text:
+                string prevText = "";
+                if (tbox.Mask != '~')
+                {
+                    for (int i2 = 0; i2 < tbox.txt.Length; i2++)
+                    {
+                        prevText += tbox.Mask;
+                    }
+                }
+                else
+                {
+                    prevText = tbox.txt.ToString();
+                }
+                // Clear text in textbox:
+                driver._DrawACSIIString(prevText, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver.DoubleBuffer_Update();
+                // Draw new string:
+                if (tbox.Mask != '~')
+                {
+                    uint i = (uint)tbox.X + 1;
+                    for (int i2 = 0; i2 < substr.Length; i2++)
+                    {
+                        driver._DrawACSIIString(tbox.Mask.ToString(), (uint)tbox.ForeColor.ToArgb(), i, (uint)tbox.Y);
+                        driver.DoubleBuffer_Update();
+                        i += 8;
+                    }
+                }
+                else
+                {
+                    driver._DrawACSIIString(substr, (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                    driver.DoubleBuffer_Update();
+                }
+                tbox.txt.Clear();
+                tbox.txt.Append(substr);
+                tbox.pos = substr.Length;
+            }
+        }
         internal static void Unfocus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());

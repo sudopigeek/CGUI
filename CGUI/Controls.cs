@@ -210,7 +210,7 @@ namespace CGUI
         /// </summary>
         public bool BeepOnLimit { get; set; } = false;
         /// <summary>
-        /// The current text in the textbox.
+        /// Gets the current text in the textbox.
         /// </summary>
         public string Text
         {
@@ -307,6 +307,14 @@ namespace CGUI
             {
                 VGADriver.FocusControl(this);
             }
+        }
+        /// <summary>
+        /// Sets the specified text into the textbox.
+        /// </summary>
+        /// <param name="text">The text to put in the textbox.</param>
+        public void SetText(string text)
+        {
+            VGADriver.SetText(this, text);
         }
     }
     /// <summary>
