@@ -105,7 +105,7 @@ namespace CGUI
                 }
                 else if (screen.Controls[i].controlType == ControlType.Rectangle)
                 {
-                    CGUI.Shapes.Rectangle rectangle = ((CGUI.Shapes.Rectangle)screen.Controls[i]);
+                    Shapes.Rectangle rectangle = ((Shapes.Rectangle)screen.Controls[i]);
                     if (rectangle.Fill)
                     {
                         driver.DoubleBuffer_DrawFillRectangle((uint)rectangle.X, (uint)rectangle.Y, (uint)rectangle.Width, (uint)rectangle.Height, (uint)rectangle.Color.ToArgb());
@@ -126,6 +126,7 @@ namespace CGUI
                     TextBox tbox = ((TextBox)screen.Controls[i]);
                     tabControls.Add(tbox);
                     driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
+                    DrawPlaceholder(tbox);
                 }
                 else if (screen.Controls[i].controlType == ControlType.Button)
                 {
@@ -156,7 +157,7 @@ namespace CGUI
                     Console.ReadKey(true);
                 }
             }
-        }
+        }      
 
         internal static int tcount = 0;
         internal static int index = 0;
@@ -271,6 +272,29 @@ namespace CGUI
                 tbox.pos = substr.Length;
             }
         }
+        internal static void DrawPlaceholder(TextBox tbox)
+        {
+            // Draw placeholder:
+            if (tbox.Placeholder != "")
+            {
+                string output;
+                if (tbox.Placeholder.Length > tbox.cLength)
+                    output = tbox.Placeholder.Substring(0, tbox.cLength);
+                else
+                    output = tbox.Placeholder;
+                driver._DrawACSIIString(output, (uint)tbox.PlaceholderColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver.DoubleBuffer_Update();
+            }
+        }
+        internal static void ErasePlaceholder(TextBox tbox)
+        {
+            // Erase placeholder:
+            if (tbox == currentControl)
+                driver._DrawACSIIString(tbox.Placeholder, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            else
+                driver._DrawACSIIString(tbox.Placeholder, (uint)tbox.UnfocusBackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+            driver.DoubleBuffer_Update();
+        }
         internal static void Unfocus(TextBox tbox)
         {
             driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
@@ -289,6 +313,8 @@ namespace CGUI
                 driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
             }
             driver.DoubleBuffer_Update();
+            if (tbox.txt.ToString() == "")
+                DrawPlaceholder(tbox);
         }
         internal static void Focus(TextBox tbox)
         {
@@ -389,6 +415,8 @@ namespace CGUI
                     {
                         driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                         driver.DoubleBuffer_Update();
+                        if (first.txt.Length == 0)
+                            DrawPlaceholder(first);
                     }
                     else
                     {
@@ -543,6 +571,9 @@ namespace CGUI
                                             {
                                                 prevText = first.txt.ToString();
                                             }
+                                            // Erase placeholder:
+                                            if (prevText == "")
+                                                ErasePlaceholder(first);
                                             first.txt = first.txt.Insert(pointer, info.KeyChar.ToString());
                                             // Clear text in textbox:
                                             driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
@@ -588,6 +619,9 @@ namespace CGUI
                                         {
                                             prevText = first.txt.ToString();
                                         }
+                                        // Erase placeholder:
+                                        if (prevText == "")
+                                            ErasePlaceholder(first);
                                         first.txt = first.txt.Insert(pointer, info.KeyChar.ToString());
                                         // Clear text in textbox:
                                         driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
@@ -671,6 +705,9 @@ namespace CGUI
                                                     driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
                                                     driver.DoubleBuffer_Update();
                                                     first.txt.Remove(first.txt.Length - 1, 1);
+                                                    // Draw placeholder:
+                                                    if ((pointer - 1) == 0)
+                                                        DrawPlaceholder(first);
                                                 }
                                                 else
                                                 {
@@ -712,7 +749,7 @@ namespace CGUI
                                                     }                                                    
                                                     //Draw cursor one character back:
                                                     driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
-                                                    driver.DoubleBuffer_Update();
+                                                    driver.DoubleBuffer_Update();                                                    
                                                 }
                                             }                                           
                                             pointer--;
@@ -722,7 +759,7 @@ namespace CGUI
                                             }
                                         }
                                         else
-                                        {
+                                        {                                           
                                             if (first.Limit != null)
                                                 first.Limit.Invoke(first, new EventArgs());
                                             if (first.BeepOnLimit)
@@ -766,6 +803,9 @@ namespace CGUI
                                                 driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
                                                 driver.DoubleBuffer_Update();
                                             }
+                                            // Draw placeholder:
+                                            if (pointer == 0 && first.txt.Length == 0)
+                                                DrawPlaceholder(first);
 
                                             if (first.Delete != null)
                                                 first.Delete.Invoke(first, new EventArgs());

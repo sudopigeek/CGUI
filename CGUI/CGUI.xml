@@ -209,10 +209,15 @@
             The list of KeyPress instances representing extra/custom keys to listen for when the textbox has focus.
             </summary>
         </member>
+        <member name="P:CGUI.TextBox.PlaceholderColor">
+            <summary>
+            The color of the placeholder text; default is dark gray.
+            </summary>
+        </member>
         <member name="P:CGUI.TextBox.UnfocusForeColor">
             <summary>
             The foreground color of the textbox when it is not in focus.
-            </summary>
+            </summary>       
         </member>
         <member name="P:CGUI.TextBox.UnfocusBackColor">
             <summary>
@@ -244,6 +249,11 @@
             Determines whether or not to beep when attempting to type outside of the textbox's character limit.
             </summary>
         </member>
+        <member name="P:CGUI.TextBox.Placeholder">
+            <summary>
+            The placeholder text for the textbox; set to blank ("") to disable.
+            </summary>
+        </member>
         <member name="P:CGUI.TextBox.Text">
             <summary>
             Gets the current text in the textbox.
@@ -263,6 +273,45 @@
             <summary>
             Raised when the user attempts to enter or delete characters outside of the textbox's character range limit.
             </summary>
+        </member>
+        <member name="M:CGUI.TextBox.#ctor(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the TextBox class.
+            </summary>
+            <param name="charLength">The number of characters allowed in the textbox.</param>
+            <param name="placeholder">The placeholder text for the textbox; set to blank ("") to disable.</param>
+            <param name="x">The textbox's X coordinate.</param>
+            <param name="y">The textbox's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Char,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the TextBox class.
+            </summary>
+            <param name="charLength">The number of characters allowed in the textbox.</param>
+            <param name="mask">The character to draw on the screen instead of the actual character. Set this to '~' to disable.</param>
+            <param name="x">The textbox's X coordinate.</param>
+            <param name="y">The textbox's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Drawing.Color,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the TextBox class.
+            </summary>
+            <param name="charLength">The number of characters allowed in the textbox.</param>
+            <param name="foreColor">The text color.</param>
+            <param name="backColor">The background color for the textbox.</param>
+            <param name="x">The textbox's X coordinate.</param>
+            <param name="y">The textbox's Y coordinate.</param>
+        </member>
+        <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Drawing.Color,System.String,System.Int32,System.Int32)">
+            <summary>
+            Starts a new instance of the TextBox class.
+            </summary>
+            <param name="charLength">The number of characters allowed in the textbox.</param>
+            <param name="foreColor">The text color.</param>
+            <param name="backColor">The background color for the textbox.</param>
+            <param name="placeholder">The placeholder text for the textbox; set to blank ("") to disable.</param>
+            <param name="x">The textbox's X coordinate.</param>
+            <param name="y">The textbox's Y coordinate.</param>
         </member>
         <member name="M:CGUI.TextBox.#ctor(System.Int32,System.Drawing.Color,System.Int32,System.Int32)">
             <summary>

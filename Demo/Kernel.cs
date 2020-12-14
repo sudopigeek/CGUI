@@ -22,6 +22,7 @@ namespace Demo
             Label l1 = new Label("Welcome!", 10, 10);
             TextBox t = new TextBox(15, 10, 30);
             t2 = new TextBox(15, 10, 120);
+            t2.Placeholder = "Username";
             btn = new Button("enter", 10, 150);
             btn.OnEnter += Btn_OnEnter;
             KeyPress p = new KeyPress(ConsoleKey.D1, ConsoleModifiers.Alt);

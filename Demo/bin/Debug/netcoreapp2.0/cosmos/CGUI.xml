@@ -212,7 +212,7 @@
         <member name="P:CGUI.TextBox.UnfocusForeColor">
             <summary>
             The foreground color of the textbox when it is not in focus.
-            </summary>
+            </summary>       
         </member>
         <member name="P:CGUI.TextBox.UnfocusBackColor">
             <summary>
@@ -285,6 +285,12 @@
             <summary>
             Sets focus to the textbox.
             </summary>
+        </member>
+        <member name="M:CGUI.TextBox.SetText(System.String)">
+            <summary>
+            Sets the specified text into the textbox.
+            </summary>
+            <param name="text">The text to put in the textbox.</param>
         </member>
         <member name="T:CGUI.Button">
             <summary>

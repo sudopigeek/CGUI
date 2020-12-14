@@ -182,8 +182,12 @@ namespace CGUI
         /// </summary>
         public List<KeyPress> KeyPresses { get; set; }
         /// <summary>
-        /// The foreground color of the textbox when it is not in focus.
+        /// The color of the placeholder text; default is dark gray.
         /// </summary>
+        public Color PlaceholderColor { get; set; } = Color.DarkGray;
+        /// <summary>
+        /// The foreground color of the textbox when it is not in focus.
+        /// </summary>       
         public Color UnfocusForeColor { get; set; } = Color.White;
         /// <summary>
         /// The background color of the textbox when it is not in focus.
@@ -209,6 +213,10 @@ namespace CGUI
         /// Determines whether or not to beep when attempting to type outside of the textbox's character limit.
         /// </summary>
         public bool BeepOnLimit { get; set; } = false;
+        /// <summary>
+        /// The placeholder text for the textbox; set to blank ("") to disable.
+        /// </summary>
+        public string Placeholder { get; set; } = "";
         /// <summary>
         /// Gets the current text in the textbox.
         /// </summary>
@@ -272,6 +280,76 @@ namespace CGUI
         /// Starts a new instance of the TextBox class.
         /// </summary>
         /// <param name="charLength">The number of characters allowed in the textbox.</param>
+        /// <param name="placeholder">The placeholder text for the textbox; set to blank ("") to disable.</param>
+        /// <param name="x">The textbox's X coordinate.</param>
+        /// <param name="y">The textbox's Y coordinate.</param>
+        public TextBox(int charLength, string placeholder, int x, int y)
+        {
+            controlType = ControlType.TextBox;
+            KeyPresses = new List<KeyPress>();
+            cLength = charLength;
+            Placeholder = placeholder;
+            X = x;
+            Y = y;
+        }
+        /// <summary>
+        /// Starts a new instance of the TextBox class.
+        /// </summary>
+        /// <param name="charLength">The number of characters allowed in the textbox.</param>
+        /// <param name="mask">The character to draw on the screen instead of the actual character. Set this to '~' to disable.</param>
+        /// <param name="x">The textbox's X coordinate.</param>
+        /// <param name="y">The textbox's Y coordinate.</param>
+        public TextBox(int charLength, char mask, int x, int y)
+        {
+            controlType = ControlType.TextBox;
+            KeyPresses = new List<KeyPress>();
+            cLength = charLength;
+            Mask = mask;
+            X = x;
+            Y = y;
+        }
+        /// <summary>
+        /// Starts a new instance of the TextBox class.
+        /// </summary>
+        /// <param name="charLength">The number of characters allowed in the textbox.</param>
+        /// <param name="foreColor">The text color.</param>
+        /// <param name="backColor">The background color for the textbox.</param>
+        /// <param name="x">The textbox's X coordinate.</param>
+        /// <param name="y">The textbox's Y coordinate.</param>
+        public TextBox(int charLength, Color foreColor, Color backColor, int x, int y)
+        {
+            controlType = ControlType.TextBox;
+            KeyPresses = new List<KeyPress>();
+            cLength = charLength;
+            ForeColor = foreColor;
+            BackColor = backColor;
+            X = x;
+            Y = y;
+        }
+        /// <summary>
+        /// Starts a new instance of the TextBox class.
+        /// </summary>
+        /// <param name="charLength">The number of characters allowed in the textbox.</param>
+        /// <param name="foreColor">The text color.</param>
+        /// <param name="backColor">The background color for the textbox.</param>
+        /// <param name="placeholder">The placeholder text for the textbox; set to blank ("") to disable.</param>
+        /// <param name="x">The textbox's X coordinate.</param>
+        /// <param name="y">The textbox's Y coordinate.</param>
+        public TextBox(int charLength, Color foreColor, Color backColor, string placeholder, int x, int y)
+        {
+            controlType = ControlType.TextBox;
+            KeyPresses = new List<KeyPress>();
+            cLength = charLength;
+            ForeColor = foreColor;
+            BackColor = backColor;
+            Placeholder = placeholder;
+            X = x;
+            Y = y;
+        }
+        /// <summary>
+        /// Starts a new instance of the TextBox class.
+        /// </summary>
+        /// <param name="charLength">The number of characters allowed in the textbox.</param>
         /// <param name="foreColor">The text color.</param>
         /// <param name="x">The textbox's X coordinate.</param>
         /// <param name="y">The textbox's Y coordinate.</param>
@@ -280,7 +358,7 @@ namespace CGUI
             controlType = ControlType.TextBox;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
-            this.ForeColor = foreColor;
+            ForeColor = foreColor;
             X = x;
             Y = y;
         }
