@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
 using CGUI;
+using System.Drawing;
 
 namespace Demo
 {
@@ -16,9 +17,11 @@ namespace Demo
         Label l;
         TextBox t2;
         Button btn;
+        Screen s;
         protected override void Run()
         {
-            Screen s = new Screen();
+            driver.RenderScreen(Screens.StartupScreen("Starting...", 0, 0));
+            s = new Screen(Color.LightBlue);
             Label l1 = new Label("Welcome!", 10, 10);
             TextBox t = new TextBox(15, 10, 30);
             t2 = new TextBox(15, 10, 120);
@@ -51,7 +54,12 @@ namespace Demo
 
         private void Btn_OnEnter(object sender, System.EventArgs e)
         {
-            t2.SetText("NewText8901234567890");
+            //t2.SetText("NewText8901234567890");
+            TextBox tbox = new TextBox(15, 10, 200);
+            s.Controls.Add(tbox);
+            s.Controls.Remove(btn);
+            //driver.UpdateScreen();
+            //tbox.Focus();
         }
 
         private void Kernel_OnPress(object sender, CGUI.ConsoleKeyInfo info)

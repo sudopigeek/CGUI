@@ -93,7 +93,7 @@ namespace CGUI
                 int y = Y;
                 for (int i2 = 0; i2 < lines.Length; i2++)
                 {
-                    VGADriver.driver._DrawACSIIString(lines[i2], (uint)backColor.ToArgb(), (uint)X, (uint)y);
+                    VGADriver.driver._DrawACSIIString(lines[i2], (uint)VGADriver.currentScreen.backColor.ToArgb(), (uint)X, (uint)y);
                     VGADriver.driver.DoubleBuffer_Update();
                     y += 12;
                 }
@@ -101,7 +101,7 @@ namespace CGUI
             }
             else
             {
-                VGADriver.driver._DrawACSIIString(Text, (uint)backColor.ToArgb(), (uint)X, (uint)Y);
+                VGADriver.driver._DrawACSIIString(Text, (uint)VGADriver.currentScreen.backColor.ToArgb(), (uint)X, (uint)Y);
                 VGADriver.driver.DoubleBuffer_Update();              
             }
 
@@ -228,7 +228,6 @@ namespace CGUI
             }
         }
         internal StringBuilder txt = new StringBuilder("");
-        internal int FocusOrder;
         internal int cLength;
         internal int pos = 0;
         internal EventHandler Limit;

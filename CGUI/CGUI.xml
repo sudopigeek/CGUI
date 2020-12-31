@@ -118,6 +118,98 @@
             <param name="command">The actual command (e.g. cd)</param>
             <param name="about">The string that summarizes/describes the command.</param>
         </member>
+        <member name="T:CGUI.ControlList">
+            <summary>
+            Represents a list of controls.
+            </summary>
+        </member>
+        <member name="M:CGUI.ControlList.#ctor">
+            <summary>
+            Starts a new instance of the ControlList class.
+            </summary>
+        </member>
+        <member name="M:CGUI.ControlList.GetEnumerator">
+            <summary>
+            Gets the enumerator for the ControlList.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CGUI.ControlList.Item(System.Int32)">
+            <summary>
+            Gets the control at the specified index.
+            </summary>
+            <param name="index">The index of the desired control.</param>
+            <returns></returns>
+        </member>
+        <member name="P:CGUI.ControlList.Count">
+            <summary>
+            Gets the number of controls in the ControlList.
+            </summary>
+        </member>
+        <member name="M:CGUI.ControlList.Add(CGUI.Control)">
+            <summary>
+            Adds a new control to the end of the ControlList.
+            </summary>
+            <param name="control">The control to add.</param>
+        </member>
+        <member name="M:CGUI.ControlList.Remove(CGUI.Control)">
+            <summary>
+            Removes a control from the ControlList. If the currently focused control is removed, the screen's first control is automatically focused.
+            </summary>
+            <param name="control">The control to remove.</param>
+        </member>
+        <member name="M:CGUI.ControlList.Remove(CGUI.Control,CGUI.Control)">
+            <summary>
+            Removes a control from the ControlList and sets focus to a different control.
+            </summary>
+            <param name="control">The control to remove.</param>
+            <param name="focusNext">The control to set focus to after removing the initial control.</param>
+        </member>
+        <member name="M:CGUI.ControlList.RemoveAt(System.Int32)">
+            <summary>
+            Removes a control from the ControlList at the specified index.
+            </summary>
+            <param name="index">The index to remove at.</param>
+        </member>
+        <member name="M:CGUI.ControlList.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of controls from the ControlList.
+            </summary>
+            <param name="index">The index at which to start at.</param>
+            <param name="count">The number of controls to remove.</param>
+        </member>
+        <member name="M:CGUI.ControlList.Clear">
+            <summary>
+            Removes all controls from the ControlList.
+            </summary>
+        </member>
+        <member name="M:CGUI.ControlList.Contains(CGUI.Control)">
+            <summary>
+            Determines whether an item is in the ControlList.
+            </summary>
+            <param name="control">The control to check for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.ControlList.IndexOf(CGUI.Control)">
+            <summary>
+            Searches for the specified control and returns the zero-based index of the first occurrence in the ControlList.
+            </summary>
+            <param name="control">The control to search for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.ControlList.Insert(System.Int32,CGUI.Control)">
+            <summary>
+            Inserts a control into the ControlList at the specified index.
+            </summary>
+            <param name="index">The index to insert the control at.</param>
+            <param name="control">The control to insert.</param>
+        </member>
+        <member name="M:CGUI.ControlList.ToArray">
+            <summary>
+            Copies the elements of the ControlList to a new array.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:CGUI.Label">
             <summary>
             The Label control.
@@ -1304,7 +1396,7 @@
         </member>
         <member name="T:CGUI.ControlType">
             <summary>
-            Represents types of currently supported controls.
+            Represents types of currently defined controls.
             </summary>
         </member>
         <member name="F:CGUI.ControlType.Label">
@@ -1341,6 +1433,20 @@
             <summary>
             Internal base class for CGUI controls.
             </summary>
+        </member>
+        <member name="T:CGUI.Screens">
+            <summary>
+            Class containing pre-made screens.
+            </summary>
+        </member>
+        <member name="M:CGUI.Screens.StartupScreen(System.String,System.Int32,System.Int32)">
+            <summary>
+            Represents a simple startup screen containing a message.
+            </summary>
+            <param name="text">The text to display.</param>
+            <param name="x">The texts' X position.</param>
+            <param name="y">The texts' Y position.</param>
+            <returns>A Screen instance that can be displayed with VGADriver.RenderScreen()</returns>
         </member>
         <member name="T:CGUI.Shapes.Line">
             <summary>
