@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using CGUI.Shapes;
+﻿using System.Drawing;
 
 namespace CGUI
 {
@@ -191,6 +189,42 @@ namespace CGUI
         /// Represents a button.
         /// </summary>
         Button
+    }
+    /// <summary>
+    /// Represents horizontal alignments.
+    /// </summary>
+    public enum HorizontalAlign
+    {
+        /// <summary>
+        /// Center align.
+        /// </summary>
+        Center,
+        /// <summary>
+        /// Left align.
+        /// </summary>
+        Left,
+        /// <summary>
+        /// Right align.
+        /// </summary>
+        Right
+    }
+    /// <summary>
+    /// Represents vertical alignments.
+    /// </summary>
+    public enum VerticalAlign
+    {
+        /// <summary>
+        /// Top align.
+        /// </summary>
+        Top,
+        /// <summary>
+        /// Middle align.
+        /// </summary>
+        Middle,
+        /// <summary>
+        /// Bottom align.
+        /// </summary>
+        Bottom
     }
       
     /// <summary>

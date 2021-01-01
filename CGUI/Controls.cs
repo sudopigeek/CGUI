@@ -26,6 +26,22 @@ namespace CGUI
         /// </summary>
         /// <param name="text">The label text.</param>
         /// <param name="foreColor">The text color.</param>
+        /// <param name="verticalAlign">The text's vertical alignment.</param>
+        /// <param name="horizontalAlign">The text's horizontal alignment.</param>
+        public Label(string text, Color foreColor, VerticalAlign verticalAlign, HorizontalAlign horizontalAlign)
+        {
+            controlType = ControlType.Label;
+            X = horizontalAlign.GetValue(text);
+            Y = verticalAlign.GetValue(text);
+            Text = text;
+            prevText = text;
+            this.foreColor = foreColor;
+        }
+        /// <summary>
+        /// Starts a new instance of the Label class.
+        /// </summary>
+        /// <param name="text">The label text.</param>
+        /// <param name="foreColor">The text color.</param>
         /// <param name="x">The label's X coordinate.</param>
         /// <param name="y">The label's Y coordinate.</param>
         public Label(string text, Color foreColor, int x, int y)
@@ -94,15 +110,13 @@ namespace CGUI
                 for (int i2 = 0; i2 < lines.Length; i2++)
                 {
                     VGADriver.driver._DrawACSIIString(lines[i2], (uint)VGADriver.currentScreen.backColor.ToArgb(), (uint)X, (uint)y);
-                    VGADriver.driver.DoubleBuffer_Update();
                     y += 12;
                 }
                 
             }
             else
             {
-                VGADriver.driver._DrawACSIIString(Text, (uint)VGADriver.currentScreen.backColor.ToArgb(), (uint)X, (uint)Y);
-                VGADriver.driver.DoubleBuffer_Update();              
+                VGADriver.driver._DrawACSIIString(Text, (uint)VGADriver.currentScreen.backColor.ToArgb(), (uint)X, (uint)Y);        
             }
 
             if (newText.Contains("\n"))
@@ -111,18 +125,17 @@ namespace CGUI
                 int y = Y;
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    VGADriver.driver._DrawACSIIString(lines[i], (uint)foreColor.ToArgb(), (uint)X, (uint)y);
-                    VGADriver.driver.DoubleBuffer_Update();
                     y += 12;
                 }
             }
             else
             {
                 VGADriver.driver._DrawACSIIString(newText, (uint)foreColor.ToArgb(), (uint)X, (uint)Y);
-                VGADriver.driver.DoubleBuffer_Update();
-            }
+            }            
             prevText = Text;
-            Text = newText; 
+            Text = newText;
+            VGADriver.ValidateControls();
+            VGADriver.driver.DoubleBuffer_Update();
         }
     }
     /// <summary>

@@ -8,10 +8,39 @@ namespace CGUI
 {
     internal class Internal
     {
-        public static Color screenColor;
-        public static int screenWidth;
-        public static int screenHeight;
-        public static int GetFirstTabControl(ControlList controls)
+        internal static Color screenColor;
+        internal static int screenWidth;
+        internal static int screenHeight;
+        internal static int GetHorizontalCenter(string input = null)
+        {
+            if (input == null)
+                return (int)Math.Ceiling((double)screenWidth / 2);
+            else
+            {
+                int strLength = input.Length * 8;
+                if (strLength <= screenWidth)
+                {
+                    if (((screenWidth - strLength) / 2).ToString().Contains("."))
+                        return (int)Math.Ceiling(((double)screenWidth - strLength) / 2);
+                    else      
+                        return (screenWidth - strLength) / 2;
+                }
+                return -1;
+            }      
+        }
+        internal static int GetVerticalCenter(string input = null)
+        {
+            if (input == null)
+                return (int)Math.Ceiling((double)screenHeight / 2);
+            else
+            {
+                if (((screenHeight - 12) / 2).ToString().Contains("."))
+                    return (int)Math.Ceiling(((double)screenHeight - 12) / 2);
+                else
+                    return (screenHeight - 12) / 2;
+            }
+        }
+        internal static int GetFirstTabControl(ControlList controls)
         {
             for (int i = 0; i < controls.Count; i++)
             {

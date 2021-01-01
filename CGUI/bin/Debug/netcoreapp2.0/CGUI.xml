@@ -225,6 +225,15 @@
             The text color of the label.
             </summary>
         </member>
+        <member name="M:CGUI.Label.#ctor(System.String,System.Drawing.Color,CGUI.VerticalAlign,CGUI.HorizontalAlign)">
+            <summary>
+            Starts a new instance of the Label class.
+            </summary>
+            <param name="text">The label text.</param>
+            <param name="foreColor">The text color.</param>
+            <param name="verticalAlign">The text's vertical alignment.</param>
+            <param name="horizontalAlign">The text's horizontal alignment.</param>
+        </member>
         <member name="M:CGUI.Label.#ctor(System.String,System.Drawing.Color,System.Int32,System.Int32)">
             <summary>
             Starts a new instance of the Label class.
@@ -1429,6 +1438,46 @@
             Represents a button.
             </summary>
         </member>
+        <member name="T:CGUI.HorizontalAlign">
+            <summary>
+            Represents horizontal alignments.
+            </summary>
+        </member>
+        <member name="F:CGUI.HorizontalAlign.Center">
+            <summary>
+            Center align.
+            </summary>
+        </member>
+        <member name="F:CGUI.HorizontalAlign.Left">
+            <summary>
+            Left align.
+            </summary>
+        </member>
+        <member name="F:CGUI.HorizontalAlign.Right">
+            <summary>
+            Right align.
+            </summary>
+        </member>
+        <member name="T:CGUI.VerticalAlign">
+            <summary>
+            Represents vertical alignments.
+            </summary>
+        </member>
+        <member name="F:CGUI.VerticalAlign.Top">
+            <summary>
+            Top align.
+            </summary>
+        </member>
+        <member name="F:CGUI.VerticalAlign.Middle">
+            <summary>
+            Middle align.
+            </summary>
+        </member>
+        <member name="F:CGUI.VerticalAlign.Bottom">
+            <summary>
+            Bottom align.
+            </summary>
+        </member>
         <member name="T:CGUI.Control">
             <summary>
             Internal base class for CGUI controls.
@@ -1444,9 +1493,18 @@
             Represents a simple startup screen containing a message.
             </summary>
             <param name="text">The text to display.</param>
-            <param name="x">The texts' X position.</param>
-            <param name="y">The texts' Y position.</param>
-            <returns>A Screen instance that can be displayed with VGADriver.RenderScreen()</returns>
+            <param name="x">The text's X position.</param>
+            <param name="y">The text's Y position.</param>
+            <returns>A Screen instance that can be displayed with VGADriver.RenderScreen().</returns>
+        </member>
+        <member name="M:CGUI.Screens.StartupScreen(System.String,CGUI.VerticalAlign,CGUI.HorizontalAlign)">
+            <summary>
+            Represents a simple startup screen containing a message at the specified alignments.
+            </summary>
+            <param name="text">The text to display.</param>
+            <param name="verticalAlign">The text's vertical alignment.</param>
+            <param name="horizontalAlign">The text's horizontal alignment.</param>
+            <returns></returns>
         </member>
         <member name="T:CGUI.Shapes.Line">
             <summary>

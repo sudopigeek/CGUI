@@ -20,7 +20,6 @@ namespace Demo
         Screen s;
         protected override void Run()
         {
-            driver.RenderScreen(Screens.StartupScreen("Starting...", 0, 0));
             s = new Screen(Color.LightBlue);
             Label l1 = new Label("Welcome!", 10, 10);
             TextBox t = new TextBox(15, 10, 30);

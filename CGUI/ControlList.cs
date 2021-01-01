@@ -128,19 +128,31 @@ namespace CGUI
         /// </summary>
         /// <param name="control">The control to check for.</param>
         /// <returns></returns>
-        public bool Contains(Control control) { return Controls.Contains(control); }
+        public bool Contains(Control control) 
+        {
+            if (GetControlIndex(control) > -1)
+                return true;
+            else
+                return false;
+        }
         /// <summary>
         /// Searches for the specified control and returns the zero-based index of the first occurrence in the ControlList.
         /// </summary>
         /// <param name="control">The control to search for.</param>
         /// <returns></returns>
-        public int IndexOf(Control control) { return Controls.IndexOf(control); }
+        public int IndexOf(Control control) 
+        {
+            return GetControlIndex(control);
+        }
         /// <summary>
         /// Inserts a control into the ControlList at the specified index.
         /// </summary>
         /// <param name="index">The index to insert the control at.</param>
         /// <param name="control">The control to insert.</param>
-        public void Insert(int index, Control control) { Controls.Insert(index, control); }
+        public void Insert(int index, Control control) 
+        { 
+            Controls.Insert(index, control); 
+        }
         /// <summary>
         /// Copies the elements of the ControlList to a new array.
         /// </summary>

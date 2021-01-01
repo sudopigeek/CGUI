@@ -181,5 +181,33 @@ namespace CGUI
                 default: return null;
             }
         }
+        internal static int GetValue(this VerticalAlign align, string input)
+        {
+            switch (align)
+            {
+                case VerticalAlign.Bottom:
+                    return Internal.screenHeight - 13;
+                case VerticalAlign.Middle:
+                    return Internal.GetVerticalCenter(input);
+                case VerticalAlign.Top:
+                    return 0;
+                default:
+                    return -1;
+            }
+        }
+        internal static int GetValue(this HorizontalAlign align, string input)
+        {
+            switch (align)
+            {
+                case HorizontalAlign.Center:
+                    return Internal.GetHorizontalCenter(input);
+                case HorizontalAlign.Left:
+                    return 0;
+                case HorizontalAlign.Right:
+                    return Internal.screenWidth - (input.Length * 8);
+                default:
+                    return -1;
+            }
+        }
     }
 }
