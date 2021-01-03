@@ -159,7 +159,6 @@ namespace CGUI
         /// <returns></returns>
         public Control[] ToArray() { return Controls.ToArray(); }
     }
-
     internal class ControlEnumerator : IEnumerator
     {
         private List<Control> Controls;

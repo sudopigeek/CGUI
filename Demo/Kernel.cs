@@ -57,8 +57,6 @@ namespace Demo
             TextBox tbox = new TextBox(15, 10, 200);
             s.Controls.Add(tbox);
             s.Controls.Remove(btn);
-            //driver.UpdateScreen();
-            //tbox.Focus();
         }
 
         private void Kernel_OnPress(object sender, CGUI.ConsoleKeyInfo info)

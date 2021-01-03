@@ -128,14 +128,14 @@ namespace CGUI
                 }
                 // Clear text in textbox:
                 if (tbox == currentControl)
-                    driver._DrawACSIIString(prevText, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                    driver._DrawACSIIString(prevText, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                 else
-                    driver._DrawACSIIString(prevText, (uint)tbox.UnfocusBackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                    driver._DrawACSIIString(prevText, (uint)tbox.UnfocusBackColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                 driver.DoubleBuffer_Update();
                 // Draw new string:
                 if (tbox.Mask != '~')
                 {
-                    uint i = (uint)tbox.X + 1;
+                    uint i = (uint)tbox.X;
                     for (int i2 = 0; i2 < text.Length; i2++)
                     {
                         if (tbox == currentControl)
@@ -149,9 +149,9 @@ namespace CGUI
                 else
                 {
                     if (tbox == currentControl)
-                        driver._DrawACSIIString(text, (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                        driver._DrawACSIIString(text, (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                     else
-                        driver._DrawACSIIString(text, (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                        driver._DrawACSIIString(text, (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                     driver.DoubleBuffer_Update();
                 }
                 tbox.txt.Clear();
@@ -175,12 +175,12 @@ namespace CGUI
                     prevText = tbox.txt.ToString();
                 }
                 // Clear text in textbox:
-                driver._DrawACSIIString(prevText, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver._DrawACSIIString(prevText, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                 driver.DoubleBuffer_Update();
                 // Draw new string:
                 if (tbox.Mask != '~')
                 {
-                    uint i = (uint)tbox.X + 1;
+                    uint i = (uint)tbox.X;
                     for (int i2 = 0; i2 < substr.Length; i2++)
                     {
                         driver._DrawACSIIString(tbox.Mask.ToString(), (uint)tbox.ForeColor.ToArgb(), i, (uint)tbox.Y);
@@ -190,7 +190,7 @@ namespace CGUI
                 }
                 else
                 {
-                    driver._DrawACSIIString(substr, (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                    driver._DrawACSIIString(substr, (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                     driver.DoubleBuffer_Update();
                 }
                 tbox.txt.Clear();
@@ -208,7 +208,7 @@ namespace CGUI
                     output = tbox.Placeholder.Substring(0, tbox.cLength);
                 else
                     output = tbox.Placeholder;
-                driver._DrawACSIIString(output, (uint)tbox.PlaceholderColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver._DrawACSIIString(output, (uint)tbox.PlaceholderColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                 driver.DoubleBuffer_Update();
             }
         }
@@ -216,48 +216,21 @@ namespace CGUI
         {
             // Erase placeholder:
             if (tbox == currentControl)
-                driver._DrawACSIIString(tbox.Placeholder, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver._DrawACSIIString(tbox.Placeholder, (uint)tbox.BackColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
             else
-                driver._DrawACSIIString(tbox.Placeholder, (uint)tbox.UnfocusBackColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                driver._DrawACSIIString(tbox.Placeholder, (uint)tbox.UnfocusBackColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
             driver.DoubleBuffer_Update();
         }
-        internal static void Focus(Control control)
-        {
-            if (control.controlType == ControlType.Button)
-            {
-                Button button = (Button)control;
-                driver.DoubleBuffer_DrawFillRectangle((uint)button.X, (uint)button.Y, ((uint)button.txt.Length * 8) + 20, 13 + 10, (uint)button.BackColor.ToArgb());
-                driver.DoubleBuffer_Update();
-                driver._DrawACSIIString(button.txt, (uint)button.TextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
-            }
-            else if (control.controlType == ControlType.TextBox)
-            {
-                TextBox tbox = (TextBox)control;
-                driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.BackColor.ToArgb());
-                driver.DoubleBuffer_Update();
-                if (tbox.Mask != '~')
-                {
-                    StringBuilder b = new StringBuilder("");
-                    for (int i = 0; i < tbox.txt.Length; i++)
-                    {
-                        b.Append(tbox.Mask);
-                    }
-                    driver._DrawACSIIString(b.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
-                }
-                else
-                {
-                    driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
-                }                
-            }
-            driver.DoubleBuffer_Update();
-        }
-        internal static void Unfocus(Control control)
+        internal static void EditFocus(Control control, bool focus)
         {
             switch (control.controlType)
             {
                 case ControlType.TextBox:
                     TextBox tbox = (TextBox)control;
-                    driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
+                    if (focus)
+                        driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.BackColor.ToArgb());
+                    else
+                        driver.DoubleBuffer_DrawFillRectangle((uint)tbox.X, (uint)tbox.Y, (uint)(tbox.cLength * 8) + 4, 15, (uint)tbox.UnfocusBackColor.ToArgb());
                     driver.DoubleBuffer_Update();
                     if (tbox.Mask != '~')
                     {
@@ -266,21 +239,37 @@ namespace CGUI
                         {
                             b.Append(tbox.Mask);
                         }
-                        driver._DrawACSIIString(b.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+
+                        if (focus)
+                            driver._DrawACSIIString(b.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
+                        else
+                            driver._DrawACSIIString(b.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                     }
                     else
                     {
-                        driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X + 1, (uint)tbox.Y);
+                        if (focus)
+                            driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.ForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
+                        else
+                            driver._DrawACSIIString(tbox.txt.ToString(), (uint)tbox.UnfocusForeColor.ToArgb(), (uint)tbox.X, (uint)tbox.Y);
                     }
                     driver.DoubleBuffer_Update();
-                    if (tbox.txt.ToString() == "")
-                        DrawPlaceholder(tbox);
+                    if (!focus)
+                    {
+                        if (tbox.txt.ToString() == "")
+                            DrawPlaceholder(tbox);
+                    }   
                     break;
                 case ControlType.Button:
                     Button button = (Button)control;
-                    driver.DoubleBuffer_DrawFillRectangle((uint)button.X, (uint)button.Y, ((uint)button.txt.Length * 8) + 20, 13 + 10, (uint)button.UnfocusBackColor.ToArgb());
+                    if (focus)
+                        driver.DoubleBuffer_DrawFillRectangle((uint)button.X, (uint)button.Y, ((uint)button.txt.Length * 8) + 20, 13 + 10, (uint)button.BackColor.ToArgb());
+                    else
+                        driver.DoubleBuffer_DrawFillRectangle((uint)button.X, (uint)button.Y, ((uint)button.txt.Length * 8) + 20, 13 + 10, (uint)button.UnfocusBackColor.ToArgb());
                     driver.DoubleBuffer_Update();
-                    driver._DrawACSIIString(button.txt, (uint)button.UnfocusTextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
+                    if (focus)
+                        driver._DrawACSIIString(button.txt, (uint)button.TextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
+                    else
+                        driver._DrawACSIIString(button.txt, (uint)button.UnfocusTextColor.ToArgb(), (uint)button.X + 10, (uint)button.Y + 5);
                     driver.DoubleBuffer_Update();
                     break;
             }
@@ -298,8 +287,8 @@ namespace CGUI
                 currentControl = frst;
                 if (frst.controlType == ControlType.Button)
                 {
-                    Button first = (Button)frst;                   
-                    Focus(first);                   
+                    Button first = (Button)frst;
+                    EditFocus(first, true);                  
                     bool rkey = true;
                     while (rkey)
                     {
@@ -339,7 +328,7 @@ namespace CGUI
                 {
                     TextBox first = (TextBox)frst;
                     pointer = first.pos;
-                    Focus(first);                  
+                    EditFocus(first, true);              
                     if (first.pos == 0)
                     {
                         driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
@@ -505,7 +494,7 @@ namespace CGUI
                                                 ErasePlaceholder(first);
                                             first.txt = first.txt.Insert(pointer, info.KeyChar.ToString());
                                             // Clear text in textbox:
-                                            driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                            driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                             driver.DoubleBuffer_Update();
                                             //Erase cursor:
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
@@ -514,7 +503,7 @@ namespace CGUI
                                             // Draw new string:
                                             if (first.Mask != '~')
                                             {
-                                                uint i = (uint)first.X + 1;
+                                                uint i = (uint)first.X;
                                                 for (int i2 = 0; i2 < first.txt.Length; i2++)
                                                 {
                                                     driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), i, (uint)first.Y);
@@ -523,7 +512,7 @@ namespace CGUI
                                             }
                                             else
                                             {
-                                                driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                                driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                             }
                                             //Draw cursor one character up:
                                             driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
@@ -553,7 +542,7 @@ namespace CGUI
                                             ErasePlaceholder(first);
                                         first.txt = first.txt.Insert(pointer, info.KeyChar.ToString());
                                         // Clear text in textbox:
-                                        driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                        driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                         driver.DoubleBuffer_Update();
                                         //Erase cursor:
                                         driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
@@ -562,7 +551,7 @@ namespace CGUI
                                         // Draw new string:
                                         if (first.Mask != '~')
                                         {
-                                            uint i = (uint)first.X + 1;
+                                            uint i = (uint)first.X;
                                             for (int i2 = 0; i2 < first.txt.Length; i2++)
                                             {
                                                 driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), i, (uint)first.Y);
@@ -571,7 +560,7 @@ namespace CGUI
                                         }
                                         else
                                         {
-                                            driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                            driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                         }
                                         if (pointer == (first.cLength - 1))
                                             //Draw cursor up one character in vertical state:
@@ -656,7 +645,7 @@ namespace CGUI
                                                     // Remove character from internal string:
                                                     first.txt = first.txt.Remove(pointer - 1, 1);
                                                     // Clear text in textbox:
-                                                    driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                                    driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                                     driver.DoubleBuffer_Update();
                                                     //Erase cursor:
                                                     driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.BackColor.ToArgb());
@@ -665,7 +654,7 @@ namespace CGUI
                                                     // Draw new string:
                                                     if (first.Mask != '~')
                                                     {
-                                                        uint i = (uint)first.X + 1;
+                                                        uint i = (uint)first.X;
                                                         for (int i2 = 0; i2 < first.txt.Length; i2++)
                                                         {
                                                             driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), i, (uint)first.Y);
@@ -674,7 +663,7 @@ namespace CGUI
                                                     }
                                                     else
                                                     {
-                                                        driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                                        driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                                     }
                                                     //Draw cursor one character back:
                                                     driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)y + 13, 8, 2, (uint)first.ForeColor.ToArgb());
@@ -714,12 +703,12 @@ namespace CGUI
                                             // Remove character from internal string:
                                             first.txt = first.txt.Remove(pointer, 1);
                                             // Clear text in textbox:
-                                            driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                            driver._DrawACSIIString(prevText, (uint)first.BackColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                             driver.DoubleBuffer_Update();
                                             // Draw new string:
                                             if (first.Mask != '~')
                                             {
-                                                uint i = (uint)first.X + 1;
+                                                uint i = (uint)first.X;
                                                 for (int i2 = 0; i2 < first.txt.Length; i2++)
                                                 {
                                                     driver._DrawACSIIString(first.Mask.ToString(), (uint)first.ForeColor.ToArgb(), i, (uint)first.Y);
@@ -729,7 +718,7 @@ namespace CGUI
                                             }
                                             else
                                             {
-                                                driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X + 1, (uint)first.Y);
+                                                driver._DrawACSIIString(first.txt.ToString(), (uint)first.ForeColor.ToArgb(), (uint)first.X, (uint)first.Y);
                                                 driver.DoubleBuffer_Update();
                                             }
                                             // Draw placeholder:
@@ -832,45 +821,40 @@ namespace CGUI
             // unfocus current control:
             if (currentControl.controlType == ControlType.Button)
             {
-                Unfocus(currentControl);
+                EditFocus(currentControl, false);
             }
             else if (currentControl.controlType == ControlType.TextBox)
             {
-                int x = tbox.X + 1 + (tbox.txt.Length * 8);
+                int x = tbox.X + (tbox.txt.Length * 8);
                 //Erase cursor:
                 if (tbox.txt.Length == tbox.cLength)
-                {
                     //Erase vertical cursor:
                     driver.DoubleBuffer_DrawFillRectangle((uint)x + 1, (uint)tbox.Y, 2, 15, (uint)tbox.BackColor.ToArgb());
-                    driver.DoubleBuffer_Update();
-                }
                 else
-                {
                     //Erase cursor:     
                     driver.DoubleBuffer_DrawFillRectangle((uint)x, (uint)tbox.Y + 13, 8, 2, (uint)tbox.BackColor.ToArgb());
-                    driver.DoubleBuffer_Update();
-                }
-                Unfocus(currentControl);
+                driver.DoubleBuffer_Update();
+                EditFocus(currentControl, false);
             }
 
             // focus specified control:
             //index = GetIndex(currentScreen, tbox);
-            Focus(tbox, tbox.X + 1, tbox.Y, tcount);
+            Focus(tbox, tbox.X, tbox.Y, tcount);
         }
         internal static void FocusControl(Button btn)
         {
             // unfocus current control:
             if (currentControl.controlType == ControlType.Button)
             {
-                Unfocus(currentControl);
+                EditFocus(currentControl, false);
             }
             else if (currentControl.controlType == ControlType.TextBox)
             {
-                Unfocus(currentControl);
+                EditFocus(currentControl, false);
             }
 
             // focus specified control:
-            Focus(btn, btn.X + 1, btn.Y, tcount);
+            Focus(btn, btn.X, btn.Y, tcount);
         }
         internal static void DeleteControl(Control control, Control next = null)
         {
@@ -914,8 +898,8 @@ namespace CGUI
                 // Validate current control or focus a specified control:
                 if (next != null)
                 {
-                    Focus(next);
-                    Focus(next, next.X + 1, next.Y, tcount);
+                    EditFocus(next, true);
+                    Focus(next, next.X, next.Y, tcount);
                 }
                 else
                 {
@@ -926,13 +910,13 @@ namespace CGUI
                         if (cindex > -1)
                         {
                             // Set focus to another control:
-                            Focus(currentScreen.Controls[cindex]);
-                            Focus(currentScreen.Controls[cindex], currentScreen.Controls[cindex].X + 1, currentScreen.Controls[cindex].Y, tcount);
+                            EditFocus(currentScreen.Controls[cindex], true);
+                            Focus(currentScreen.Controls[cindex], currentScreen.Controls[cindex].X, currentScreen.Controls[cindex].Y, tcount);
                         }
                     }
                     else
                     {
-                        Focus(currentControl, currentControl.X + 1, currentControl.Y, tcount);
+                        Focus(currentControl, currentControl.X, currentControl.Y, tcount);
                     }
                 }   
             }                                
@@ -1001,11 +985,11 @@ namespace CGUI
             index++;
             if (tcount <= index)
                 index = 0;
-            Unfocus(currentControl);
+            EditFocus(currentControl, false);
             if (currentControl.controlType == ControlType.TextBox)
                 ((TextBox)currentControl).pos = pointer;
 
-            Focus(null, tabControls[index].X + 1, tabControls[index].Y, tcount);
+            Focus(null, tabControls[index].X, tabControls[index].Y, tcount);
         }
     }
 }

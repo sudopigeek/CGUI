@@ -59,7 +59,7 @@ namespace CGUI
                 if (f > -1)
                 {
                     Control c = screen.Controls[f];
-                    Focus(c, c.X + 1, c.Y, tcount);
+                    Focus(c, c.X, c.Y, tcount);
                 }   
             }
         }              
