@@ -44,7 +44,18 @@ namespace CGUI
         {
             for (int i = 0; i < controls.Count; i++)
             {
-                if (controls[i].controlType == ControlType.TextBox || controls[i].controlType == ControlType.Button)
+                if (controls[i].controlType == ControlType.TextBox || controls[i].controlType == ControlType.Button && controls[i].Enabled == true)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        internal static int GetFirstTabControl(List<Control> controls)
+        {
+            for (int i = 0; i < controls.Count; i++)
+            {
+                if (controls[i].controlType == ControlType.TextBox || controls[i].controlType == ControlType.Button && controls[i].Enabled == true)
                 {
                     return i;
                 }
@@ -455,17 +466,14 @@ namespace CGUI
                             case '~':
                             case '`':
                                 #endregion
-                                if (info.Key != ConsoleKey.Tab && info.Key != ConsoleKey.Backspace && info.Key != ConsoleKey.RightArrow && info.Key != ConsoleKey.LeftArrow)
+                                if (first.KeyPresses.Count > 0)
                                 {
-                                    if (first.KeyPresses.Count > 0)
+                                    KeyPress p = GetKeyPress(first.KeyPresses, info.Key, info.Modifiers);
+                                    if (p != null)
                                     {
-                                        KeyPress p = GetKeyPress(first.KeyPresses, info.Key, info.Modifiers);
-                                        if (p != null)
+                                        if (p.OnPress_Handler != null)
                                         {
-                                            if (p.OnPress_Handler != null)
-                                            {
-                                                p.OnPress_Handler.Invoke(Extensions.ConvertToString(info.Key), new ConsoleKeyInfo(info));
-                                            }
+                                            p.OnPress_Handler.Invoke(Extensions.ConvertToString(info.Key), new ConsoleKeyInfo(info));
                                         }
                                     }
                                 }
@@ -985,11 +993,48 @@ namespace CGUI
             index++;
             if (tcount <= index)
                 index = 0;
-            EditFocus(currentControl, false);
-            if (currentControl.controlType == ControlType.TextBox)
-                ((TextBox)currentControl).pos = pointer;
+            
+            if (tabControls[index].Enabled == true)
+            {
+                EditFocus(currentControl, false);
+                if (currentControl.controlType == ControlType.TextBox)
+                    ((TextBox)currentControl).pos = pointer;
 
-            Focus(null, tabControls[index].X, tabControls[index].Y, tcount);
+                Focus(null, tabControls[index].X, tabControls[index].Y, tcount);
+            }
+            else
+            {
+                Next();
+            }
+            
+        }
+        internal static void D_EControl(Control control, bool enable)
+        {
+            if (currentScreen != null)
+            {
+                if (enable)
+                {
+                    // enable control:
+                    if (control.Enabled == false)
+                        control.Enabled = true;
+                }
+                else
+                {
+                    // Unfocus control if it is focused:
+                    if (currentControl == control)
+                    {
+                        EditFocus(control, false);
+                        control.Enabled = false;
+                        int i = Internal.GetFirstTabControl(tabControls);
+                        // Focus another enabled control:
+                        Focus(tabControls[i], tabControls[i].X, tabControls[i].Y, tcount);
+                    }
+                    else
+                    {
+                        control.Enabled = false;
+                    }
+                }                        
+            }
         }
     }
 }

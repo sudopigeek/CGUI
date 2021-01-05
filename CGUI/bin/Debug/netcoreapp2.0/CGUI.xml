@@ -442,6 +442,16 @@
             </summary>
             <param name="text">The text to put in the textbox.</param>
         </member>
+        <member name="M:CGUI.TextBox.Enable">
+            <summary>
+            Enables the textbox.
+            </summary>
+        </member>
+        <member name="M:CGUI.TextBox.Disable">
+            <summary>
+            Disables the textbox.
+            </summary>
+        </member>
         <member name="T:CGUI.Button">
             <summary>
             The Button control.
@@ -502,6 +512,16 @@
         <member name="M:CGUI.Button.Focus">
             <summary>
             Sets focus to the button.
+            </summary>
+        </member>
+        <member name="M:CGUI.Button.Enable">
+            <summary>
+            Enables the button.
+            </summary>
+        </member>
+        <member name="M:CGUI.Button.Disable">
+            <summary>
+            Disables the button.
             </summary>
         </member>
         <member name="T:CGUI.KeyPress">

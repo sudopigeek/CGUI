@@ -56,7 +56,7 @@ namespace Demo
             //t2.SetText("NewText8901234567890");
             TextBox tbox = new TextBox(15, 10, 200);
             s.Controls.Add(tbox);
-            s.Controls.Remove(btn);
+            t2.Disable();
         }
 
         private void Kernel_OnPress(object sender, CGUI.ConsoleKeyInfo info)

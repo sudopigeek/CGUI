@@ -298,6 +298,7 @@ namespace CGUI
         public TextBox(int charLength, string placeholder, int x, int y)
         {
             controlType = ControlType.TextBox;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             Placeholder = placeholder;
@@ -314,6 +315,7 @@ namespace CGUI
         public TextBox(int charLength, char mask, int x, int y)
         {
             controlType = ControlType.TextBox;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             Mask = mask;
@@ -331,6 +333,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, Color backColor, int x, int y)
         {
             controlType = ControlType.TextBox;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             ForeColor = foreColor;
@@ -350,6 +353,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, Color backColor, string placeholder, int x, int y)
         {
             controlType = ControlType.TextBox;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             ForeColor = foreColor;
@@ -368,6 +372,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, int x, int y)
         {
             controlType = ControlType.TextBox;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             ForeColor = foreColor;
@@ -383,6 +388,7 @@ namespace CGUI
         public TextBox(int charLength, int x, int y)
         {
             controlType = ControlType.TextBox;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             X = x;
@@ -405,6 +411,20 @@ namespace CGUI
         public void SetText(string text)
         {
             VGADriver.SetText(this, text);
+        }
+        /// <summary>
+        /// Enables the textbox.
+        /// </summary>
+        public void Enable()
+        {
+            VGADriver.D_EControl(this, true);
+        }
+        /// <summary>
+        /// Disables the textbox.
+        /// </summary>
+        public void Disable()
+        {
+            VGADriver.D_EControl(this, false);
         }
     }
     /// <summary>
@@ -461,6 +481,7 @@ namespace CGUI
         public Button(string text, int x, int y)
         {
             controlType = ControlType.Button;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             txt = text;
             X = x;
@@ -476,6 +497,7 @@ namespace CGUI
         public Button(string text, ConsoleKey triggerKey, int x, int y)
         {
             controlType = ControlType.Button;
+            Enabled = true;
             KeyPresses = new List<KeyPress>();
             txt = text;
             TriggerKey = triggerKey;
@@ -491,6 +513,20 @@ namespace CGUI
             {
                 VGADriver.FocusControl(this);
             }
+        }
+        /// <summary>
+        /// Enables the button.
+        /// </summary>
+        public void Enable()
+        {
+            VGADriver.D_EControl(this, true);
+        }
+        /// <summary>
+        /// Disables the button.
+        /// </summary>
+        public void Disable()
+        {
+            VGADriver.D_EControl(this, false);
         }
     }
     /// <summary>

@@ -235,5 +235,6 @@ namespace CGUI
         internal ControlType controlType { get; set; }
         internal int X { get; set; }
         internal int Y { get; set; }
+        internal bool? Enabled { get; set; } = null;
     }
 }
