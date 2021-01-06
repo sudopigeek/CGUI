@@ -231,6 +231,17 @@ namespace CGUI
         /// </summary>
         public string Placeholder { get; set; } = "";
         /// <summary>
+        /// Returns true if the textbox is enabled; otherwise, false.
+        /// </summary>
+        public bool? IsEnabled
+        {
+            get
+            {
+                return Enabled;
+            }
+            private set { }
+        }
+        /// <summary>
         /// Gets the current text in the textbox.
         /// </summary>
         public string Text
@@ -299,6 +310,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             Enabled = true;
+            IsEnabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             Placeholder = placeholder;
@@ -316,6 +328,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             Enabled = true;
+            IsEnabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             Mask = mask;
@@ -334,6 +347,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             Enabled = true;
+            IsEnabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             ForeColor = foreColor;
@@ -354,6 +368,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             Enabled = true;
+            IsEnabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             ForeColor = foreColor;
@@ -373,6 +388,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             Enabled = true;
+            IsEnabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             ForeColor = foreColor;
@@ -389,6 +405,7 @@ namespace CGUI
         {
             controlType = ControlType.TextBox;
             Enabled = true;
+            IsEnabled = true;
             KeyPresses = new List<KeyPress>();
             cLength = charLength;
             X = x;
@@ -418,6 +435,7 @@ namespace CGUI
         public void Enable()
         {
             VGADriver.D_EControl(this, true);
+            IsEnabled = true;
         }
         /// <summary>
         /// Disables the textbox.
@@ -425,6 +443,7 @@ namespace CGUI
         public void Disable()
         {
             VGADriver.D_EControl(this, false);
+            IsEnabled = false;
         }
     }
     /// <summary>
@@ -471,6 +490,17 @@ namespace CGUI
         /// The background color.
         /// </summary>
         public Color BackColor { get; set; } = Color.White;
+        /// <summary>
+        /// Returns true if the button is enabled; otherwise, false.
+        /// </summary>
+        public bool? IsEnabled
+        {
+            get
+            {
+                return Enabled;
+            }
+            private set { }
+        }
         internal string txt = "";
         /// <summary>
         /// Starts a new instance of the Button class.
@@ -520,6 +550,7 @@ namespace CGUI
         public void Enable()
         {
             VGADriver.D_EControl(this, true);
+            IsEnabled = true;
         }
         /// <summary>
         /// Disables the button.
@@ -527,6 +558,7 @@ namespace CGUI
         public void Disable()
         {
             VGADriver.D_EControl(this, false);
+            IsEnabled = false;
         }
     }
     /// <summary>

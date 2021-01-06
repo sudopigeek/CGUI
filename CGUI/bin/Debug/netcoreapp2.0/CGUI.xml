@@ -355,6 +355,11 @@
             The placeholder text for the textbox; set to blank ("") to disable.
             </summary>
         </member>
+        <member name="P:CGUI.TextBox.IsEnabled">
+            <summary>
+            Returns true if the textbox is enabled; otherwise, false.
+            </summary>
+        </member>
         <member name="P:CGUI.TextBox.Text">
             <summary>
             Gets the current text in the textbox.
@@ -490,6 +495,11 @@
         <member name="P:CGUI.Button.BackColor">
             <summary>
             The background color.
+            </summary>
+        </member>
+        <member name="P:CGUI.Button.IsEnabled">
+            <summary>
+            Returns true if the button is enabled; otherwise, false.
             </summary>
         </member>
         <member name="M:CGUI.Button.#ctor(System.String,System.Int32,System.Int32)">
