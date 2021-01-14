@@ -13,18 +13,21 @@ namespace Demo
         protected override void BeforeRun()
         {
             driver = new VGADriver();
+            
         }
         Label l;
         TextBox t2;
+        TextBox t;
         Button btn;
         Screen s;
         protected override void Run()
         {
             s = new Screen(Color.LightBlue);
             Label l1 = new Label("Welcome!", 10, 10);
-            TextBox t = new TextBox(15, 10, 30);
+            t = new TextBox(15, 10, 30);
             t2 = new TextBox(15, 10, 120);
-            t2.Placeholder = "Username";
+            t2.Placeholder = "Password";
+            t2.Mask = '*';
             btn = new Button("enter", 10, 150);
             btn.OnEnter += Btn_OnEnter;
             KeyPress p = new KeyPress(ConsoleKey.D1, ConsoleModifiers.Alt);
@@ -32,6 +35,8 @@ namespace Demo
             t.KeyPresses.Add(p);
             t.OnDelete += T_OnDelete;
             t.OnKeyPress += T_OnKeyPress;
+            driver.Mouse.OnClick += Mouse_OnClick;
+            driver.Mouse.OnRightClick += Mouse_OnRightClick;
             l = new Label("--", 10, 80);
             s.Controls.Add(l1);
             s.Controls.Add(t);
@@ -39,6 +44,16 @@ namespace Demo
             s.Controls.Add(btn);
             s.Controls.Add(l);
             driver.RenderScreen(s);
+        }
+
+        private void Mouse_OnRightClick(object sender, EventArgs e)
+        {
+            l.Update("Mouse Right Clicked!");
+        }
+
+        private void Mouse_OnClick(object sender, EventArgs e)
+        {
+            l.Update("Mouse Clicked!");
         }
 
         private void T_OnKeyPress(object sender, System.ConsoleKeyInfo e)
@@ -61,7 +76,7 @@ namespace Demo
 
         private void Kernel_OnPress(object sender, CGUI.ConsoleKeyInfo info)
         {
-            
+            s.Controls.Add(new TextBox(15, 10, 210));
         }
     }
 }

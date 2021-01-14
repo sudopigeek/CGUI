@@ -63,7 +63,7 @@ namespace CGUI
         /// <param name="control">The control to add.</param>
         public void Add(Control control) 
         {
-            VGADriver.DrawControl(control);
+            VGADriver.DrawControl(control, true);
             Controls.Add(control); 
         }
         /// <summary>

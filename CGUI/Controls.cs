@@ -31,6 +31,7 @@ namespace CGUI
         public Label(string text, Color foreColor, VerticalAlign verticalAlign, HorizontalAlign horizontalAlign)
         {
             controlType = ControlType.Label;
+            CursorType = CursorType.Normal;
             X = horizontalAlign.GetValue(text);
             Y = verticalAlign.GetValue(text);
             Text = text;
@@ -47,6 +48,7 @@ namespace CGUI
         public Label(string text, Color foreColor, int x, int y)
         {
             controlType = ControlType.Label;
+            CursorType = CursorType.Normal;
             X = x;
             Y = y;
             Text = text;
@@ -62,6 +64,7 @@ namespace CGUI
         public Label(string text, int x, int y)
         {
             controlType = ControlType.Label;
+            CursorType = CursorType.Normal;
             X = x;
             Y = y;
             Text = text;
@@ -76,6 +79,7 @@ namespace CGUI
         public Label(string text, Cosmos.System.Graphics.Point point)
         {
             controlType = ControlType.Label;
+            CursorType = CursorType.Normal;
             X = point.X;
             Y = point.Y;
             Text = text;
@@ -91,6 +95,7 @@ namespace CGUI
         public Label(string text, Color foreColor, Cosmos.System.Graphics.Point point)
         {
             controlType = ControlType.Label;
+            CursorType = CursorType.Normal;
             X = point.X;
             Y = point.Y;
             Text = text;
@@ -161,6 +166,7 @@ namespace CGUI
         public Picture(Image image, int x, int y)
         {
             controlType = ControlType.Picture;
+            CursorType = CursorType.Normal;
             Image = image;
             prevImage = image;
             X = x;
@@ -309,6 +315,7 @@ namespace CGUI
         public TextBox(int charLength, string placeholder, int x, int y)
         {
             controlType = ControlType.TextBox;
+            CursorType = CursorType.Text;
             Enabled = true;
             IsEnabled = true;
             KeyPresses = new List<KeyPress>();
@@ -327,6 +334,7 @@ namespace CGUI
         public TextBox(int charLength, char mask, int x, int y)
         {
             controlType = ControlType.TextBox;
+            CursorType = CursorType.Text;
             Enabled = true;
             IsEnabled = true;
             KeyPresses = new List<KeyPress>();
@@ -346,6 +354,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, Color backColor, int x, int y)
         {
             controlType = ControlType.TextBox;
+            CursorType = CursorType.Text;
             Enabled = true;
             IsEnabled = true;
             KeyPresses = new List<KeyPress>();
@@ -367,6 +376,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, Color backColor, string placeholder, int x, int y)
         {
             controlType = ControlType.TextBox;
+            CursorType = CursorType.Text;
             Enabled = true;
             IsEnabled = true;
             KeyPresses = new List<KeyPress>();
@@ -387,6 +397,7 @@ namespace CGUI
         public TextBox(int charLength, Color foreColor, int x, int y)
         {
             controlType = ControlType.TextBox;
+            CursorType = CursorType.Text;
             Enabled = true;
             IsEnabled = true;
             KeyPresses = new List<KeyPress>();
@@ -404,6 +415,7 @@ namespace CGUI
         public TextBox(int charLength, int x, int y)
         {
             controlType = ControlType.TextBox;
+            CursorType = CursorType.Text;
             Enabled = true;
             IsEnabled = true;
             KeyPresses = new List<KeyPress>();
@@ -511,6 +523,7 @@ namespace CGUI
         public Button(string text, int x, int y)
         {
             controlType = ControlType.Button;
+            CursorType = CursorType.Hand;
             Enabled = true;
             KeyPresses = new List<KeyPress>();
             txt = text;
@@ -527,6 +540,7 @@ namespace CGUI
         public Button(string text, ConsoleKey triggerKey, int x, int y)
         {
             controlType = ControlType.Button;
+            CursorType = CursorType.Hand;
             Enabled = true;
             KeyPresses = new List<KeyPress>();
             txt = text;
@@ -757,7 +771,7 @@ namespace CGUI
             }
             else if (c.controlType == ControlType.Line)
             {
-                CGUI.Shapes.Line line = (CGUI.Shapes.Line)c;
+                Shapes.Line line = (Shapes.Line)c;
                 // check if origin is out of bounds:
                 if (line.X >= Internal.screenWidth || line.Y >= Internal.screenHeight || line.X < 0 || line.Y < 0)
                 {

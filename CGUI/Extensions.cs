@@ -209,5 +209,13 @@ namespace CGUI
                     return -1;
             }
         }
+        internal static bool ControlEquals(this Control control, Control controlToCompare)
+        {
+            if (control.X == controlToCompare.X && control.Y == controlToCompare.Y && control.controlType == controlToCompare.controlType)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

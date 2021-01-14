@@ -8,6 +8,10 @@ namespace CGUI
     public partial class VGADriver
     {        
         /// <summary>
+        /// Represents the mouse.
+        /// </summary>
+        public Mouse Mouse { get; set; }
+        /// <summary>
         /// Starts a new instance of the VGADriver class using the default screen size (640x480).
         /// </summary>
         public VGADriver()
@@ -17,6 +21,8 @@ namespace CGUI
             Internal.screenWidth = 640;
             Internal.screenHeight = 480;
             Internal.screenColor = Color.Black;
+            Mouse = new Mouse();
+            Instance = this;
             driver.DoubleBuffer_Update();
         }
         /// <summary>
@@ -31,6 +37,8 @@ namespace CGUI
             Internal.screenWidth = screenWidth;
             Internal.screenHeight = screenHeight;
             Internal.screenColor = Color.Black;
+            Mouse = new Mouse();
+            Instance = this;
             driver.DoubleBuffer_Update();
         }
         /// <summary>
@@ -38,7 +46,7 @@ namespace CGUI
         /// </summary>
         /// <param name="screen">The Screen to render.</param>
         public void RenderScreen(Screen screen)
-        {   
+        {
             currentScreen = screen;
             currentControl = null;
             tabControls.Clear();
@@ -46,12 +54,10 @@ namespace CGUI
             index = 0;
             ValidateControls();
             Internal.screenColor = screen.backColor;
-            driver.DoubleBuffer_DrawFillRectangle(0, 0, (uint)Internal.screenWidth, (uint)Internal.screenHeight, (uint)screen.backColor.ToArgb());
             for (int i = 0; i < screen.Controls.Count; i++)
             {
-                DrawControl(screen.Controls[i]);
+                DrawControl(screen.Controls[i], true);
             }
-            driver.DoubleBuffer_Update();
 
             if (tcount >= 1)
             {
@@ -60,7 +66,7 @@ namespace CGUI
                 {
                     Control c = screen.Controls[f];
                     Focus(c, c.X, c.Y, tcount);
-                }   
+                }
             }
         }              
         /// <summary>
@@ -92,7 +98,7 @@ namespace CGUI
             driver.DoubleBuffer_Clear((uint)color.ToArgb());
             driver.DoubleBuffer_Update();
         }
-    }
+    }   
     /// <summary>
     /// Represents an area on the screen.
     /// </summary>
@@ -236,5 +242,6 @@ namespace CGUI
         internal int X { get; set; }
         internal int Y { get; set; }
         internal bool? Enabled { get; set; } = null;
+        internal CursorType CursorType { get; set; }
     }
 }
