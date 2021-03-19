@@ -1225,6 +1225,11 @@
             Double-Buffered SVGAII Video Driver
             </summary>
         </member>
+        <member name="P:CGUI.VGADriver.Mouse">
+            <summary>
+            Represents the mouse.
+            </summary>
+        </member>
         <member name="M:CGUI.VGADriver.#ctor">
             <summary>
             Starts a new instance of the VGADriver class using the default screen size (640x480).
@@ -1258,6 +1263,31 @@
             Clears the screen using the specified color.
             </summary>
             <param name="color">The color to clear the screen with.</param>
+        </member>
+        <member name="M:CGUI.VGADriver.ControlExists(System.Int32,System.Int32)">
+            <summary>
+            Checks whether a control exists at the specified coordinates.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.VGADriver.ControlExists(CGUI.ControlType,System.Int32,System.Int32)">
+            <summary>
+            Checks whether a type of control exists at the specified coordinates.
+            </summary>
+            <param name="type">The control's type.</param>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.VGADriver.GetControl(System.Int32,System.Int32)">
+            <summary>
+            Gets the control at the specified coordinates. If the control doesn't exist, null is returned.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <returns></returns>
         </member>
         <member name="T:CGUI.Area">
             <summary>
@@ -1397,6 +1427,41 @@
         <member name="T:CGUI.Control">
             <summary>
             Internal base class for CGUI controls.
+            </summary>
+        </member>
+        <member name="T:CGUI.Mouse">
+            <summary>
+            Represents a mouse.
+            </summary>
+        </member>
+        <member name="E:CGUI.Mouse.OnClick">
+            <summary>
+            Raised when the mouse is clicked.
+            </summary>
+        </member>
+        <member name="E:CGUI.Mouse.OnRightClick">
+            <summary>
+            Raised when the mouse is right-clicked.
+            </summary>
+        </member>
+        <member name="T:CGUI.CursorType">
+            <summary>
+            Represents cursor types.
+            </summary>
+        </member>
+        <member name="F:CGUI.CursorType.Normal">
+            <summary>
+            The normal mouse cursor.
+            </summary>
+        </member>
+        <member name="F:CGUI.CursorType.Text">
+            <summary>
+            The I-beam shaped cursor.
+            </summary>
+        </member>
+        <member name="F:CGUI.CursorType.Hand">
+            <summary>
+            The hand-shaped cursor.
             </summary>
         </member>
         <member name="T:CGUI.Screens">

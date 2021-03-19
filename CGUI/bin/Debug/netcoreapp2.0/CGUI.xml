@@ -1264,6 +1264,31 @@
             </summary>
             <param name="color">The color to clear the screen with.</param>
         </member>
+        <member name="M:CGUI.VGADriver.ControlExists(System.Int32,System.Int32)">
+            <summary>
+            Checks whether a control exists at the specified coordinates.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.VGADriver.ControlExists(CGUI.ControlType,System.Int32,System.Int32)">
+            <summary>
+            Checks whether a type of control exists at the specified coordinates.
+            </summary>
+            <param name="type">The control's type.</param>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGUI.VGADriver.GetControl(System.Int32,System.Int32)">
+            <summary>
+            Gets the control at the specified coordinates. If the control doesn't exist, null is returned.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <returns></returns>
+        </member>
         <member name="T:CGUI.Area">
             <summary>
             Represents an area on the screen.

@@ -98,6 +98,52 @@ namespace CGUI
             driver.DoubleBuffer_Clear((uint)color.ToArgb());
             driver.DoubleBuffer_Update();
         }
+        /// <summary>
+        /// Checks whether a control exists at the specified coordinates.
+        /// </summary>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        /// <returns></returns>
+        public bool ControlExists(int x, int y)
+        {
+            foreach (Control c in currentScreen.Controls)
+            {
+                if (c.X == x && c.Y == y)
+                    return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Checks whether a type of control exists at the specified coordinates.
+        /// </summary>
+        /// <param name="type">The control's type.</param>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        /// <returns></returns>
+        public bool ControlExists(ControlType type, int x, int y)
+        {
+            foreach (Control c in currentScreen.Controls)
+            {
+                if (c.controlType == type && c.X == x && c.Y == y)
+                    return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Gets the control at the specified coordinates. If the control doesn't exist, null is returned.
+        /// </summary>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        /// <returns></returns>
+        public Control GetControl(int x, int y)
+        {
+            foreach (Control c in currentScreen.Controls)
+            {
+                if (c.X == x && c.Y == y)
+                    return c;
+            }
+            return null;
+        }
     }   
     /// <summary>
     /// Represents an area on the screen.
